@@ -130,6 +130,11 @@ namespace ProjetoTCC
 
         void FixedUpdate() // TAXA DE ATUALIZAÇÃO FIXA DE 0.02
         {
+            if(_GameController.CurrentGameState != GameState.GAMEPLAY)
+            {
+                return;
+            }
+
             isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.02f, whatIsGround);
             playerRb.velocity = new Vector2(h * speed, playerRb.velocity.y);
         }
@@ -144,6 +149,11 @@ namespace ProjetoTCC
 
         void Update()
         {
+
+            if (_GameController.CurrentGameState != GameState.GAMEPLAY)
+            {
+                return;
+            }
 
             h = Input.GetAxisRaw("Horizontal");
             v = Input.GetAxisRaw("Vertical");
@@ -425,8 +435,6 @@ namespace ProjetoTCC
                     break;
 
             }
-
-
 
             _GameController.CurrentWeaponID = _GameController.WeaponID;
         }

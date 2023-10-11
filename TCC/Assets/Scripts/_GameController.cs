@@ -1,10 +1,21 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 namespace ProjetoTCC
 {
+    public enum GameState
+    {
+        PAUSE,
+        GAMEPLAY,
+        ITENS
+    }
+
     public class _GameController : MonoBehaviour
     {
+        [SerializeField]
+        private GameState currentGameState;
+        public GameState CurrentGameState => currentGameState;
 
         [Header("Configuração Para o Combate")]
         #region Variaveis Para As Mecanicas de Dano
@@ -134,12 +145,23 @@ namespace ProjetoTCC
         [SerializeField]
         private GameObject pausePainel;
         private bool pauseState;
+        [SerializeField]
+        private GameObject itensPainel;
+        #endregion
+
+        [Header("Navegação dos Paineis")]
+        #region Variaveis para a Navegação dos Paineis
+        [SerializeField]
+        private Button firstPainelPause;
+        [SerializeField]
+        private Button firstPainelItens;
         #endregion
 
         private void Start()
         {
             DontDestroyOnLoad(this.gameObject);
             pausePainel.SetActive(false);
+            itensPainel.SetActive(false);
             characterID = PlayerPrefs.GetInt("titleCharacterID");
         }
 
@@ -148,7 +170,7 @@ namespace ProjetoTCC
             string s = Gold.ToString("N0");
             goldTXT.text = s.Replace(",",".");
 
-            if(Input.GetButtonDown("Cancel"))
+            if(Input.GetButtonDown("Cancel") && currentGameState != GameState.ITENS)
             {
                 PauseGame();
             }
@@ -173,13 +195,37 @@ namespace ProjetoTCC
                 case true:
 
                     Time.timeScale = 0;
+                    ChangeState(GameState.PAUSE);
+                    firstPainelPause.Select();
                     break;
 
                 case false:
 
                     Time.timeScale = 1;
+                    ChangeState(GameState.GAMEPLAY);
                     break;
             }
+        }
+
+        public void ChangeState(GameState newState)
+        {
+            currentGameState = newState;
+        }
+
+        public void ButtonItensDown()
+        {
+            pausePainel.SetActive(false);
+            itensPainel.SetActive(true);
+            firstPainelItens.Select();
+            ChangeState(GameState.ITENS);
+        }
+
+        public void ClosePainel()
+        {
+            itensPainel.SetActive(false);
+            pausePainel.SetActive(true);
+            firstPainelPause.Select();
+            ChangeState(GameState.PAUSE);
         }
     }
 }
