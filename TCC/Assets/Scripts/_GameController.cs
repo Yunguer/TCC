@@ -136,7 +136,6 @@ namespace ProjetoTCC
         private bool pauseState;
         #endregion
 
-
         private void Start()
         {
             DontDestroyOnLoad(this.gameObject);
@@ -154,8 +153,6 @@ namespace ProjetoTCC
                 PauseGame();
             }
         }
-
-
         public void ValidateWeapon()
         {
             if(weaponClassID[weaponID] != characterClassID[characterID])
