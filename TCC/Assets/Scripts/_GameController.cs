@@ -153,6 +153,7 @@ namespace ProjetoTCC
                 PauseGame();
             }
         }
+
         public void ValidateWeapon()
         {
             if(weaponClassID[weaponID] != characterClassID[characterID])
