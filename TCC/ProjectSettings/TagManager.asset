@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Weapon
+  - Collectable
+  - Entrance
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - Enemy
+  - Collectable
+  - Ground
+  - Interaction
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Background
+    uniqueID: 2966709183
+    locked: 0
+  - name: Paredes
+    uniqueID: 2726713375
+    locked: 0
+  - name: Decoracao Background
+    uniqueID: 3661874531
+    locked: 0
+  - name: Decoracao P2
+    uniqueID: 619974253
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Decoracao P1
+    uniqueID: 3253917479
+    locked: 0
+  - name: Plataformas
+    uniqueID: 1844218185
+    locked: 0
+  - name: HUD
+    uniqueID: 2186073919
+    locked: 0
