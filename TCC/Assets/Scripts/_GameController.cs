@@ -13,6 +13,8 @@ namespace ProjetoTCC
 
     public class _GameController : MonoBehaviour
     {
+        private Inventory inventory;
+
         [SerializeField]
         private GameState currentGameState;
         public GameState CurrentGameState => currentGameState;
@@ -117,6 +119,10 @@ namespace ProjetoTCC
         [Header("Banco de Dados de Armas")]
         #region Banco de Dados de Armas
         [SerializeField]
+        private string[] weaponName;
+        [SerializeField]
+        private Sprite[] inventoryIMG;
+        [SerializeField]
         private int[] weaponClassID; // 0 = Espada, Machado, Martelo, Adagas, Maça - 1 = Arcos - 2 = Cajados
         public int[] WeaponClassID => weaponClassID;
         
@@ -160,6 +166,7 @@ namespace ProjetoTCC
         private void Start()
         {
             DontDestroyOnLoad(this.gameObject);
+            inventory = FindObjectOfType(typeof(Inventory)) as Inventory;
             pausePainel.SetActive(false);
             itensPainel.SetActive(false);
             characterID = PlayerPrefs.GetInt("titleCharacterID");
@@ -173,6 +180,10 @@ namespace ProjetoTCC
             if(Input.GetButtonDown("Cancel") && currentGameState != GameState.ITENS)
             {
                 PauseGame();
+            }
+            else if(Input.GetButtonDown("Cancel") && currentGameState == GameState.ITENS)
+            {
+                ClosePainel();
             }
         }
 
@@ -217,6 +228,7 @@ namespace ProjetoTCC
             pausePainel.SetActive(false);
             itensPainel.SetActive(true);
             firstPainelItens.Select();
+            inventory.LoadInventory();
             ChangeState(GameState.ITENS);
         }
 
@@ -225,6 +237,9 @@ namespace ProjetoTCC
             itensPainel.SetActive(false);
             pausePainel.SetActive(true);
             firstPainelPause.Select();
+
+            inventory.ClearLoadedItens();
+
             ChangeState(GameState.PAUSE);
         }
     }
