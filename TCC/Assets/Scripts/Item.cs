@@ -6,17 +6,19 @@ namespace ProjetoTCC
 {
     public class Item : MonoBehaviour
     {
+        private _GameController _GameController;
         [SerializeField]
         private int itemID;
+        public int ItemID => itemID;
 
         void Start()
         {
-
+            _GameController = FindObjectOfType(typeof(_GameController)) as _GameController;
         }
 
         public void UseItem()
         {
-            print("Este item " + itemID + " foi utilizado");
+            _GameController.UseItemWeapon(itemID);
         }
     }
 }

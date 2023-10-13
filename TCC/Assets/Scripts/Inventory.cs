@@ -71,11 +71,15 @@ namespace ProjetoTCC
             foreach(GameObject i in inventoryItens)
             {
                 GameObject temp = Instantiate(i);
+                Item itemInfo = temp.GetComponent<Item>();
 
                 loadedItens.Add(temp);
 
                 slots[s].GetComponent<SlotInventory>().SlotObject = temp;
                 slots[s].interactable = true;
+
+                itensIcons[s].sprite = _GameController.InventoryIMG[itemInfo.ItemID];
+                itensIcons[s].gameObject.SetActive(true);
 
                 s++;
             }

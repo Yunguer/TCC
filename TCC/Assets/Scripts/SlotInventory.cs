@@ -6,6 +6,8 @@ namespace ProjetoTCC
 {
     public class SlotInventory : MonoBehaviour
     {
+        private _GameController _GameController;
+        
         [SerializeField]
         private GameObject slotObject;
         public GameObject SlotObject
@@ -22,7 +24,7 @@ namespace ProjetoTCC
 
         void Start()
         {
-
+            _GameController = FindObjectOfType(typeof(_GameController)) as _GameController;
         }
 
         void Update()
@@ -34,7 +36,8 @@ namespace ProjetoTCC
         {
             if(slotObject != null)
             {
-                slotObject.SendMessage("UseItem", SendMessageOptions.DontRequireReceiver);
+                //slotObject.SendMessage("UseItem", SendMessageOptions.DontRequireReceiver);
+                _GameController.OpenItenInfo();
             }
         }
     }

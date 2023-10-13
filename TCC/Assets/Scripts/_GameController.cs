@@ -8,11 +8,13 @@ namespace ProjetoTCC
     {
         PAUSE,
         GAMEPLAY,
-        ITENS
+        ITENS,
+        ITEM_INFO
     }
 
     public class _GameController : MonoBehaviour
     {
+        private PlayerScript playerScript;
         private Inventory inventory;
 
         [SerializeField]
@@ -122,6 +124,7 @@ namespace ProjetoTCC
         private string[] weaponName;
         [SerializeField]
         private Sprite[] inventoryIMG;
+        public Sprite[] InventoryIMG => inventoryIMG;
         [SerializeField]
         private int[] weaponClassID; // 0 = Espada, Machado, Martelo, Adagas, Maça - 1 = Arcos - 2 = Cajados
         public int[] WeaponClassID => weaponClassID;
@@ -148,11 +151,13 @@ namespace ProjetoTCC
 
         [Header("Paineis")]
         #region Variaveis do Painel
-        [SerializeField]
-        private GameObject pausePainel;
         private bool pauseState;
         [SerializeField]
+        private GameObject pausePainel;
+        [SerializeField]
         private GameObject itensPainel;
+        [SerializeField]
+        private GameObject itensInfoPainel;
         #endregion
 
         [Header("Navegação dos Paineis")]
@@ -161,14 +166,18 @@ namespace ProjetoTCC
         private Button firstPainelPause;
         [SerializeField]
         private Button firstPainelItens;
+        [SerializeField]
+        private Button firstPainelItenInfo;
         #endregion
 
         private void Start()
         {
             DontDestroyOnLoad(this.gameObject);
             inventory = FindObjectOfType(typeof(Inventory)) as Inventory;
+            playerScript = FindObjectOfType(typeof(PlayerScript)) as PlayerScript;
             pausePainel.SetActive(false);
             itensPainel.SetActive(false);
+            itensInfoPainel.SetActive(false);
             characterID = PlayerPrefs.GetInt("titleCharacterID");
         }
 
@@ -177,13 +186,17 @@ namespace ProjetoTCC
             string s = Gold.ToString("N0");
             goldTXT.text = s.Replace(",",".");
 
-            if(Input.GetButtonDown("Cancel") && currentGameState != GameState.ITENS)
+            if(Input.GetButtonDown("Cancel") && currentGameState != GameState.ITENS && currentGameState != GameState.ITEM_INFO)
             {
                 PauseGame();
             }
             else if(Input.GetButtonDown("Cancel") && currentGameState == GameState.ITENS)
             {
                 ClosePainel();
+            }
+            else if (Input.GetButtonDown("Cancel") && currentGameState == GameState.ITEM_INFO)
+            {
+                CloseItemInfo();
             }
         }
 
@@ -241,6 +254,24 @@ namespace ProjetoTCC
             inventory.ClearLoadedItens();
 
             ChangeState(GameState.PAUSE);
+        }
+
+        public void UseItemWeapon(int weaponID)
+        {
+            playerScript.ChangeWeapon(weaponID);
+        }
+
+        public void OpenItenInfo()
+        {
+            itensInfoPainel.SetActive(true);
+            firstPainelItenInfo.Select();
+            ChangeState(GameState.ITEM_INFO);
+        }
+
+        public void CloseItemInfo()
+        {
+            itensInfoPainel.SetActive(false);
+            ChangeState(GameState.ITENS);
         }
     }
 }
