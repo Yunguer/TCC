@@ -18,6 +18,7 @@ namespace ProjetoTCC
 
         public void UseItem()
         {
+            print(itemID);
             _GameController.UseItemWeapon(itemID);
         }
     }

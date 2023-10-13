@@ -9,6 +9,8 @@ namespace ProjetoTCC
     public class NextScene : MonoBehaviour
     {
         [SerializeField]
+        private Canvas hudCanvas;
+        [SerializeField]
         private string destinyScene;
         public static Action OnAnimationEnded;
         private FadeIn_FadeOut fade;
@@ -21,6 +23,7 @@ namespace ProjetoTCC
         public void Interaction()
         {
             StartCoroutine("ChangeScene");
+            hudCanvas.worldCamera = Camera.current;
         }
         public void OnAnimationEnd()
         {

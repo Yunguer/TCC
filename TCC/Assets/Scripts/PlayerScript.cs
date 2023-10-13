@@ -414,7 +414,9 @@ namespace ProjetoTCC
                     tempWeaponData = weapons[2].GetComponent<WeaponData>();
                     tempWeaponData.Damage = _GameController.WeaponDamage[weaponID];
                     tempWeaponData.DamageType = _GameController.WeaponDamageType[weaponID];
-                    
+
+                    _GameController.WeaponID = id;
+
                     break;
 
                 case 1: // Arcos
@@ -422,6 +424,8 @@ namespace ProjetoTCC
                     bows[0].GetComponent<SpriteRenderer>().sprite = _GameController.WeaponsSprites_1[weaponID];
                     bows[1].GetComponent<SpriteRenderer>().sprite = _GameController.WeaponsSprites_2[weaponID];
                     bows[2].GetComponent<SpriteRenderer>().sprite = _GameController.WeaponsSprites_3[weaponID];
+
+                    _GameController.WeaponID = id;
 
                     break;
 
@@ -432,10 +436,12 @@ namespace ProjetoTCC
                     staffs[2].GetComponent<SpriteRenderer>().sprite = _GameController.WeaponsSprites_3[weaponID];
                     staffs[3].GetComponent<SpriteRenderer>().sprite = _GameController.WeaponsSprites_4[weaponID];
 
+                    _GameController.WeaponID = id;
+
                     break;
 
             }
-
+            
             _GameController.CurrentWeaponID = _GameController.WeaponID;
         }
 

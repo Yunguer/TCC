@@ -122,6 +122,7 @@ namespace ProjetoTCC
         #region Banco de Dados de Armas
         [SerializeField]
         private string[] weaponName;
+        public string[] WeaponName => weaponName;
         [SerializeField]
         private Sprite[] inventoryIMG;
         public Sprite[] InventoryIMG => inventoryIMG;
@@ -147,6 +148,9 @@ namespace ProjetoTCC
         [SerializeField]
         private int[] weaponDamageType;
         public int[] WeaponDamageType => weaponDamageType;
+        [SerializeField]
+        private int[] weaponUpgrade;
+        public int[] WeaponUpgrade => weaponUpgrade;
         #endregion
 
         [Header("Paineis")]
@@ -234,6 +238,10 @@ namespace ProjetoTCC
         public void ChangeState(GameState newState)
         {
             currentGameState = newState;
+            if(newState == GameState.GAMEPLAY)
+            {
+                Time.timeScale = 1;
+            }
         }
 
         public void ButtonItensDown()
@@ -272,6 +280,19 @@ namespace ProjetoTCC
         {
             itensInfoPainel.SetActive(false);
             ChangeState(GameState.ITENS);
+        }
+
+        public void ReturnGameplay()
+        {
+            itensPainel.SetActive(false);
+            pausePainel.SetActive(false);
+            itensInfoPainel.SetActive(false);
+            ChangeState(GameState.GAMEPLAY);
+        }
+
+        public void DeleteItem(int slotID)
+        {
+
         }
     }
 }
