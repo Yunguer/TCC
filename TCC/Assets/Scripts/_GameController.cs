@@ -112,8 +112,11 @@ namespace ProjetoTCC
         private int[] characterClassID;
         public int[] CharacterClassID => characterClassID;
         [SerializeField]
-        private int[] inicialWeaponID;
-        public int[] InicialWeaponID => inicialWeaponID;
+        private int inicialWeaponID;
+        public int InicialWeaponID => inicialWeaponID;
+        [SerializeField]
+        private GameObject[] inicialWeapon;
+        public GameObject[] InicialWeapon => inicialWeapon;
 
 
         #endregion
@@ -183,6 +186,16 @@ namespace ProjetoTCC
             itensPainel.SetActive(false);
             itensInfoPainel.SetActive(false);
             characterID = PlayerPrefs.GetInt("titleCharacterID");
+
+            inventory.InventoryItens.Add(inicialWeapon[characterID]);
+
+            GameObject weaponTemp = Instantiate(inicialWeapon[characterID]);
+
+            inventory.LoadedItens.Add(weaponTemp);
+
+            inicialWeaponID = weaponTemp.GetComponent<Item>().ItemID;
+
+            inventory.ClearLoadedItens();
         }
 
         void Update()
@@ -208,7 +221,7 @@ namespace ProjetoTCC
         {
             if(weaponClassID[weaponID] != characterClassID[characterID])
             {
-                weaponID = inicialWeaponID[characterID];
+                weaponID = inicialWeaponID;
             }
         }
 
@@ -306,6 +319,17 @@ namespace ProjetoTCC
                 up += 1;
                 weaponUpgrade[weaponID] = up;
             }
+        }
+
+        public void SwapItensInventory(int slotID)
+        {
+            GameObject Item1 = inventory.InventoryItens[0];
+            GameObject Item2 = inventory.InventoryItens[slotID];
+
+            inventory.InventoryItens[0] = Item2;
+            inventory.InventoryItens[slotID] = Item1;
+
+            ReturnGameplay();
         }
     }
 }

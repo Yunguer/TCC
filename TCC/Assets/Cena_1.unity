@@ -6478,7 +6478,12 @@ MonoBehaviour:
   - {fileID: 2800000, guid: f094f6c9de9e5ba40a86e5e88f46db37, type: 3}
   - {fileID: 2800000, guid: 696b34f9e0980a64d87055ee9141347a, type: 3}
   characterClassID: 00000000000000000100000002000000
-  inicialWeaponID: 00000000000000000100000002000000
+  inicialWeaponID: 0
+  inicialWeapon:
+  - {fileID: 7998914962212620258, guid: 1e9a81b258abace42b4fc27bfddb143c, type: 3}
+  - {fileID: 7998914962212620258, guid: 1e9a81b258abace42b4fc27bfddb143c, type: 3}
+  - {fileID: 7998914962212620258, guid: ae07a4d98e94bfd439e0753ae55d72f0, type: 3}
+  - {fileID: 7998914962212620258, guid: 5b8b5ed5c7fa0284ab07f33e36f317f9, type: 3}
   weaponName:
   - Espada de Madeira
   - Arco de Madeira
@@ -6597,14 +6602,7 @@ MonoBehaviour:
   qArrow1: 0
   qArrow2: 0
   qArrow3: 0
-  inventoryItens:
-  - {fileID: 7998914962212620258, guid: 1e9a81b258abace42b4fc27bfddb143c, type: 3}
-  - {fileID: 7998914962212620258, guid: 7b4461f041088d64894677cccf2da1bc, type: 3}
-  - {fileID: 7998914962212620258, guid: ae07a4d98e94bfd439e0753ae55d72f0, type: 3}
-  - {fileID: 7998914962212620258, guid: 5b8b5ed5c7fa0284ab07f33e36f317f9, type: 3}
-  - {fileID: 7998914962212620258, guid: 7fac67f002e8b5247be84ff260877940, type: 3}
-  - {fileID: 7998914962212620258, guid: 8a7b02371f7b8754e8e702b738357ae1, type: 3}
-  - {fileID: 7998914962212620258, guid: d63d639bceae3f045b07aef7a1b82547, type: 3}
+  inventoryItens: []
   loadedItens: []
 --- !u!114 &1157082387
 MonoBehaviour:
@@ -9990,10 +9988,22 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1157082387}
+    - target: {fileID: 6931262738364694830, guid: fd9c2b8aef89d2a43b68d75e90c24a47, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7983639611967729684, guid: fd9c2b8aef89d2a43b68d75e90c24a47, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1157082384}
+    - target: {fileID: 8176827005805877932, guid: fd9c2b8aef89d2a43b68d75e90c24a47, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8656230939345716391, guid: fd9c2b8aef89d2a43b68d75e90c24a47, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9017510854358274453, guid: fd9c2b8aef89d2a43b68d75e90c24a47, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 

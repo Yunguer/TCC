@@ -93,6 +93,28 @@ namespace ProjetoTCC
             damageWeapon.text = "Dano: " + damage.ToString() + " de " + damageType;
 
             LoadUpgrade();
+
+            if(slotID == 0)
+            {
+                equipBTN.interactable = false;
+                deleteBTN.interactable = false;
+            }
+            else
+            {
+                int weaponClassID = _GameController.WeaponClassID[weaponID];
+                int characterClassID = _GameController.CharacterClassID[_GameController.CharacterID];
+
+                if(weaponClassID == characterClassID)
+                {
+                    equipBTN.interactable = true;
+                }
+                else
+                {
+                    equipBTN.interactable = false;
+                }
+
+                deleteBTN.interactable = true;
+            }
         }
 
         public void UpgradeButton()
@@ -105,7 +127,7 @@ namespace ProjetoTCC
         {
             slotObject.SendMessage("UseItem", SendMessageOptions.DontRequireReceiver);
             inventory.ClearLoadedItens();
-            _GameController.ReturnGameplay();
+            _GameController.SwapItensInventory(slotID);
         }
 
         public void DeleteButton()

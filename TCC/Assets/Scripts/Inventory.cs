@@ -36,6 +36,17 @@ namespace ProjetoTCC
 
         [SerializeField]
         private List<GameObject> loadedItens;
+        public List<GameObject> LoadedItens
+        {
+            get
+            {
+                return loadedItens;
+            }
+            set
+            {
+                loadedItens = value;
+            }
+        }
         #endregion
 
         void Start()
