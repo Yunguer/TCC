@@ -79,6 +79,19 @@ namespace ProjetoTCC
         private int maxMana;
         public int MaxMana => maxMana;
         [SerializeField]
+        private int arrowQnt;
+        public int ArrowQnt
+        {
+            get
+            {
+                return arrowQnt;
+            }
+            set
+            {
+                arrowQnt = value;
+            }
+        }
+        [SerializeField]
         private int weaponID, currentWeaponID;
         public int WeaponID
         {

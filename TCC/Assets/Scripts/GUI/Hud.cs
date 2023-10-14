@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 namespace ProjetoTCC
 {
@@ -12,14 +13,18 @@ namespace ProjetoTCC
         private _GameController _GameController;
         #endregion
 
-        [Header("Configuração Para a Barra de Vida")]
-        #region Variaveis para a Barra de Vida
+        [Header("Configuração Para a HUD")]
+        #region Variaveis para a HUD
         [SerializeField]
         private Image[] hpBar;
         [SerializeField]
         private Image[] mpBar;
         [SerializeField]
         private GameObject mpHUD;
+        [SerializeField]
+        private GameObject arrowHUD;
+        [SerializeField]
+        private TMP_Text arrowQnt;
         #endregion
 
         void Start()
@@ -28,7 +33,8 @@ namespace ProjetoTCC
             _GameController = FindObjectOfType(typeof(_GameController)) as _GameController;
 
             mpHUD.SetActive(false);
-            StartCoroutine(nameof(CheckClassManaBar));
+            arrowHUD.SetActive(false);
+            StartCoroutine(nameof(CheckClassBar));
         }
 
 
@@ -37,8 +43,11 @@ namespace ProjetoTCC
             LifeBarController();
             if (mpHUD.activeSelf == true)
             {
-
                 ManaBarController();
+            }
+            if (arrowHUD.activeSelf == true)
+            {
+                arrowQnt.text = "x " + _GameController.ArrowQnt.ToString();
             }
         }
 
@@ -243,13 +252,16 @@ namespace ProjetoTCC
 
         }
 
-        IEnumerator CheckClassManaBar()
+        IEnumerator CheckClassBar()
         {
             yield return new WaitForSeconds(0.1f);
             if (_GameController.CharacterClassID[_GameController.CharacterID] == 2)
             {
                 mpHUD.SetActive(true);
-                
+            }
+            if (_GameController.CharacterClassID[_GameController.CharacterID] == 1)
+            {
+                arrowHUD.SetActive(true);
             }
         }
     }

@@ -94,7 +94,7 @@ namespace ProjetoTCC
         [SerializeField]
         private int currentWeaponID;
         [SerializeField]
-        private GameObject[] weapons, bows, staffs;
+        private GameObject[] weapons, bows, staffs, arrows;
         [SerializeField]
         private GameObject prefabArrow, prefabMagic;
         [SerializeField]
@@ -278,6 +278,17 @@ namespace ProjetoTCC
             playerAnimator.SetFloat("weaponClassID", _GameController.WeaponClassID[_GameController.CurrentWeaponID]);
 
             Interact();
+
+            if(_GameController.ArrowQnt > 0)
+            {
+                arrows[0].SetActive(true);
+                arrows[1].SetActive(true);
+            }
+            else
+            {
+                arrows[0].SetActive(false);
+                arrows[1].SetActive(false);
+            }
         }
 
 
@@ -321,11 +332,14 @@ namespace ProjetoTCC
                     break;
 
                 case 2:
-                    
-                    GameObject tempPrefab = Instantiate(prefabArrow, spawnArrow.position, spawnArrow.localRotation);
-                    tempPrefab.transform.localScale = new Vector3(tempPrefab.transform.localScale.x * dir.x, tempPrefab.transform.localScale.y, tempPrefab.transform.localScale.z);
-                    tempPrefab.GetComponent<Rigidbody2D>().velocity = new Vector2(5 * dir.x, 0);
-                    Destroy(tempPrefab, 2);
+                    if(_GameController.ArrowQnt > 0)
+                    {
+                        _GameController.ArrowQnt--;
+                        GameObject tempPrefab = Instantiate(prefabArrow, spawnArrow.position, spawnArrow.localRotation);
+                        tempPrefab.transform.localScale = new Vector3(tempPrefab.transform.localScale.x * dir.x, tempPrefab.transform.localScale.y, tempPrefab.transform.localScale.z);
+                        tempPrefab.GetComponent<Rigidbody2D>().velocity = new Vector2(5 * dir.x, 0);
+                        Destroy(tempPrefab, 2);
+                    }
                     break;
             }
         }
@@ -343,9 +357,13 @@ namespace ProjetoTCC
                     break;
 
                 case 2:
-                    GameObject tempPrefab = Instantiate(prefabMagic, spawnMagic.position, spawnMagic.localRotation);
-                    tempPrefab.GetComponent<Rigidbody2D>().velocity = new Vector2(3 * dir.x, 0);
-                    Destroy(tempPrefab, 1);
+                    if(currentMana >= 1)
+                    {
+                        GameObject tempPrefab = Instantiate(prefabMagic, spawnMagic.position, spawnMagic.localRotation);
+                        tempPrefab.GetComponent<Rigidbody2D>().velocity = new Vector2(3 * dir.x, 0);
+                        Destroy(tempPrefab, 1);
+                        currentMana = currentMana - 1;
+                    }
                     break;
             }
         }
@@ -459,7 +477,6 @@ namespace ProjetoTCC
 
                 case 2: //Cajados
 
-                    print(weaponID);
                     staffs[0].GetComponent<SpriteRenderer>().sprite = _GameController.WeaponsSprites_1[weaponID];
                     staffs[1].GetComponent<SpriteRenderer>().sprite = _GameController.WeaponsSprites_2[weaponID];
                     staffs[2].GetComponent<SpriteRenderer>().sprite = _GameController.WeaponsSprites_3[weaponID];
