@@ -22,6 +22,18 @@ namespace ProjetoTCC
         private int qHealth, qMana, qArrow1, qArrow2, qArrow3;
         [SerializeField]
         private List<GameObject> inventoryItens;
+        public List<GameObject> InventoryItens
+        {
+            get
+            {
+                return inventoryItens;
+            }
+            set
+            {
+                inventoryItens = value;
+            }
+        }
+
         [SerializeField]
         private List<GameObject> loadedItens;
         #endregion

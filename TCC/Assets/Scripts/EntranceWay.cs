@@ -9,6 +9,7 @@ namespace ProjetoTCC
     {
         #region Comunicação Entre Scripts
         private FadeIn_FadeOut fade;
+        private PlayerScript playerScript;
         #endregion
 
         [Header("Configurações Para o Transporte do Player")]
@@ -35,10 +36,12 @@ namespace ProjetoTCC
         void Start()
         {
             fade = FindObjectOfType(typeof(FadeIn_FadeOut)) as FadeIn_FadeOut;
+            playerScript = FindObjectOfType(typeof(PlayerScript)) as PlayerScript;
         }
 
         public void Interaction()
         {
+            playerScript.CanInteract = false;
             StartCoroutine("TriggerEntrance");
         }
 
@@ -52,11 +55,12 @@ namespace ProjetoTCC
             fade.FadeIn();
             yield return new WaitWhile(() => fade.Tinted.color.a < 0.97f);
             tPlayer.gameObject.SetActive(false);
-            tPlayer.position = destiny.position;
+            TPlayer.position = destiny.position;
             tPlayer.gameObject.SetActive(true);
             fade.FadeOut();
             yield return new WaitForSeconds(0.5f);
             OnAnimationEnd();
+            playerScript.CanInteract = true;
         }
     }
 

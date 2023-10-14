@@ -8,6 +8,10 @@ namespace ProjetoTCC
 {
     public class NextScene : MonoBehaviour
     {
+        private PlayerScript playerScript;
+
+        [SerializeField]
+        private float x, y, z;
         [SerializeField]
         private Canvas hudCanvas;
         [SerializeField]
@@ -17,13 +21,13 @@ namespace ProjetoTCC
 
         private void Start()
         {
-            fade = FindObjectOfType(typeof(FadeIn_FadeOut)) as FadeIn_FadeOut;    
+            fade = FindObjectOfType(typeof(FadeIn_FadeOut)) as FadeIn_FadeOut;
+            playerScript = FindObjectOfType(typeof(PlayerScript)) as PlayerScript;
         }
 
         public void Interaction()
         {
             StartCoroutine("ChangeScene");
-            hudCanvas.worldCamera = Camera.current;
         }
         public void OnAnimationEnd()
         {
@@ -35,6 +39,7 @@ namespace ProjetoTCC
             fade.FadeIn();
             yield return new WaitWhile(() => fade.Tinted.color.a < 0.99f);
             SceneManager.LoadScene(destinyScene);
+            playerScript.transform.position = new Vector3(x, y, z);
             OnAnimationEnd();
         }
     }

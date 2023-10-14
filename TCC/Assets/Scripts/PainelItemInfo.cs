@@ -9,6 +9,7 @@ namespace ProjetoTCC
     public class PainelItemInfo : MonoBehaviour
     {
         private _GameController _GameController;
+        private Inventory inventory;
 
         [Header("Configuração dos Slots do Inventario")]
         #region Variaveis para informação do Slot
@@ -60,11 +61,16 @@ namespace ProjetoTCC
         private Button equipBTN;
         [SerializeField]
         private Button deleteBTN;
+        [SerializeField]
+        private int weaponID;
+        [SerializeField]
+        private int upgrade;
         #endregion
 
         void Start()
         {
             _GameController = FindObjectOfType(typeof(_GameController)) as _GameController;
+            inventory = FindObjectOfType(typeof(Inventory)) as Inventory;
         }
 
         void Update()
@@ -75,8 +81,8 @@ namespace ProjetoTCC
         public void LoadItemInfo()
         {
             Item itemInfo = slotObject.GetComponent<Item>();
-            int weaponID = itemInfo.ItemID;
-                
+            weaponID = itemInfo.ItemID;
+
 
             itemIMG.sprite = _GameController.InventoryIMG[weaponID];
             itemName.text = _GameController.WeaponName[weaponID];
@@ -86,33 +92,49 @@ namespace ProjetoTCC
 
             damageWeapon.text = "Dano: " + damage.ToString() + " de " + damageType;
 
-            int upgrade = _GameController.WeaponUpgrade[weaponID];
-            
-            foreach(GameObject a in upgrades)
-            {
-                a.SetActive(false);
-            }
-
-            for(int i = 0; i < upgrade; i++)
-            {
-                upgrades[i].SetActive(true);
-            }
+            LoadUpgrade();
         }
 
         public void UpgradeButton()
         {
-
+            _GameController.UpgradeWeapon(weaponID);
+            LoadUpgrade();
         }
 
         public void EquipButton()
         {
             slotObject.SendMessage("UseItem", SendMessageOptions.DontRequireReceiver);
+            inventory.ClearLoadedItens();
             _GameController.ReturnGameplay();
         }
 
         public void DeleteButton()
         {
+            _GameController.DeleteItem(slotID);
+        }
 
+        void LoadUpgrade()
+        {
+            upgrade = _GameController.WeaponUpgrade[weaponID];
+
+            if(upgrade >= 10) 
+            { 
+                upgradeBTN.interactable = false; 
+            }
+            else 
+            { 
+                upgradeBTN.interactable = true; 
+            }
+
+            foreach (GameObject a in upgrades)
+            {
+                a.SetActive(false);
+            }
+
+            for (int i = 0; i < upgrade; i++)
+            {
+                upgrades[i].SetActive(true);
+            }
         }
     }
 }

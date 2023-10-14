@@ -66,6 +66,18 @@ namespace ProjetoTCC
         private GameObject interactionBaloon;
         [SerializeField]
         private GameObject interactionBaloonKey;
+        private bool canInteract = true;
+        public bool CanInteract
+        {
+            get
+            {
+                return canInteract;
+            }
+            set
+            {
+                canInteract = value;
+            }
+        }
         #endregion
 
         [Header("Configuração de Armas")]
@@ -100,6 +112,7 @@ namespace ProjetoTCC
 
         void Start()
         {
+            DontDestroyOnLoad(this.gameObject);
             _GameController = FindObjectOfType(typeof(_GameController)) as _GameController;
 
             //CARREGANDO OS DADOS INICIAIS DO PERSONAGEM
@@ -152,6 +165,13 @@ namespace ProjetoTCC
 
             if (_GameController.CurrentGameState != GameState.GAMEPLAY)
             {
+                return;
+            }
+            if(!canInteract)
+            {
+                idAnimation = 0;
+                playerAnimator.SetInteger("idAnimation", idAnimation);
+                h = 0;
                 return;
             }
 
@@ -431,6 +451,7 @@ namespace ProjetoTCC
 
                 case 2: //Cajados
 
+                    print(weaponID);
                     staffs[0].GetComponent<SpriteRenderer>().sprite = _GameController.WeaponsSprites_1[weaponID];
                     staffs[1].GetComponent<SpriteRenderer>().sprite = _GameController.WeaponsSprites_2[weaponID];
                     staffs[2].GetComponent<SpriteRenderer>().sprite = _GameController.WeaponsSprites_3[weaponID];

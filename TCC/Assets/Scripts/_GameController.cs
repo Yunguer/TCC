@@ -292,7 +292,20 @@ namespace ProjetoTCC
 
         public void DeleteItem(int slotID)
         {
+            inventory.InventoryItens.RemoveAt(slotID);
+            inventory.LoadInventory();
+            itensInfoPainel.SetActive(false);
+            firstPainelItens.Select();
+        }
 
+        public void UpgradeWeapon(int weaponID)
+        {
+            int up = weaponUpgrade[weaponID];
+            if(up < 10)
+            {
+                up += 1;
+                weaponUpgrade[weaponID] = up;
+            }
         }
     }
 }
