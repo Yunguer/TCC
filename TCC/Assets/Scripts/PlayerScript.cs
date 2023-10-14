@@ -14,14 +14,20 @@ namespace ProjetoTCC
         private _GameController _GameController;
         #endregion
 
-        [Header("Configurção de Vida do Player")]
-        #region Variaveis para Vida
+        [Header("Configurção de Vida/Mana do Player")]
+        #region Variaveis para Vida/Mana
         [SerializeField]
         private int maxLife;
         public int MaxLife => maxLife;
         [SerializeField]
         private int currentLife;
         public int CurrentLife => currentLife;
+        [SerializeField]
+        private int maxMana;
+        public int MaxMana => maxMana;
+        [SerializeField]
+        private int currentMana;
+        public int CurrentMana => currentMana;
         #endregion
 
         [Header("Triggers Para a Movimentação")]
@@ -118,12 +124,14 @@ namespace ProjetoTCC
             //CARREGANDO OS DADOS INICIAIS DO PERSONAGEM
 
             maxLife = _GameController.MaxLife;
+            maxMana = _GameController.MaxMana;
             weaponID = _GameController.WeaponID;
 
             playerRb = GetComponent<Rigidbody2D>(); // ASSOSSIA O COMPONENTE A VARÁVEL
             playerAnimator = GetComponent<Animator>(); // ASSOSSIA O COMPONENTE A VARIÁVEL
 
             currentLife = maxLife;
+            currentMana = maxMana;
 
             foreach (GameObject o in weapons)
             {

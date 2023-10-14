@@ -76,6 +76,9 @@ namespace ProjetoTCC
         private int maxLife;
         public int MaxLife => maxLife;
         [SerializeField]
+        private int maxMana;
+        public int MaxMana => maxMana;
+        [SerializeField]
         private int weaponID, currentWeaponID;
         public int WeaponID
         {
@@ -330,6 +333,11 @@ namespace ProjetoTCC
             inventory.InventoryItens[slotID] = Item1;
 
             ReturnGameplay();
+        }
+
+        public void ColectItem(GameObject colectedObject)
+        {
+            inventory.InventoryItens.Add(colectedObject);
         }
     }
 }

@@ -23,6 +23,10 @@ namespace ProjetoTCC
         #region Variaveis para o Sistema de Loot
         [SerializeField]
         private GameObject[] loots;
+        [SerializeField]
+        private int minQnt;
+        [SerializeField]
+        private int maxQnt;
         #endregion
 
         public bool IsOpened
@@ -39,11 +43,10 @@ namespace ProjetoTCC
         {
             if (!IsOpened && !alreadyOpened)
             {
-                int coinsAmount = UnityEngine.Random.Range(3, 7);
+                int coinsAmount = UnityEngine.Random.Range(minQnt, maxQnt);
                 for (int i = 0; i < coinsAmount; i++)
                 {
                     int rand = 0;
-                    rand = UnityEngine.Random.Range(0, 0);
                     GameObject lootTemp = Instantiate(loots[rand], transform.position, transform.localRotation);
                     lootTemp.GetComponent<Rigidbody2D>().AddForce(new Vector2(UnityEngine.Random.Range(-35, 35), 200));
                 }
