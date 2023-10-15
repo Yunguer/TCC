@@ -279,7 +279,7 @@ namespace ProjetoTCC
 
             Interact();
 
-            if(_GameController.ArrowQnt > 0)
+            if(_GameController.ArrowQnt[_GameController.EquipedArrowID] > 0)
             {
                 arrows[0].SetActive(true);
                 arrows[1].SetActive(true);
@@ -332,9 +332,9 @@ namespace ProjetoTCC
                     break;
 
                 case 2:
-                    if(_GameController.ArrowQnt > 0)
+                    if(_GameController.ArrowQnt[_GameController.EquipedArrowID] > 0)
                     {
-                        _GameController.ArrowQnt--;
+                        _GameController.ArrowQnt[_GameController.EquipedArrowID]--;
                         GameObject tempPrefab = Instantiate(prefabArrow, spawnArrow.position, spawnArrow.localRotation);
                         tempPrefab.transform.localScale = new Vector3(tempPrefab.transform.localScale.x * dir.x, tempPrefab.transform.localScale.y, tempPrefab.transform.localScale.z);
                         tempPrefab.GetComponent<Rigidbody2D>().velocity = new Vector2(5 * dir.x, 0);

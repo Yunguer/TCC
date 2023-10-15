@@ -85,9 +85,9 @@ namespace ProjetoTCC
 
             qntHealth.text = "x 0";
             qntMana.text = "x 0";
-            qntArrow1.text = "x 0";
-            qntArrow2.text = "x 0";
-            qntArrow3.text = "x 0";
+            qntArrow1.text = "x " + _GameController.ArrowQnt[0];
+            qntArrow2.text = "x " + _GameController.ArrowQnt[1];
+            qntArrow3.text = "x " + _GameController.ArrowQnt[2];
 
             int s = 0;
 

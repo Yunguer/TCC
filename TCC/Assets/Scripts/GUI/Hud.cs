@@ -25,6 +25,8 @@ namespace ProjetoTCC
         private GameObject arrowHUD;
         [SerializeField]
         private TMP_Text arrowQnt;
+        [SerializeField]
+        private Image arrowIcon;
         #endregion
 
         void Start()
@@ -47,7 +49,30 @@ namespace ProjetoTCC
             }
             if (arrowHUD.activeSelf == true)
             {
-                arrowQnt.text = "x " + _GameController.ArrowQnt.ToString();
+                if(Input.GetButtonDown("ButtonLeft"))
+                {
+                    if(_GameController.EquipedArrowID == 0)
+                    {
+                        _GameController.EquipedArrowID = _GameController.ArrowIcon.Length - 1;
+                    }
+                    else
+                    {
+                        _GameController.EquipedArrowID -= 1;
+                    }
+                }
+                else if(Input.GetButtonDown("ButtonRight"))
+                {
+                    if (_GameController.EquipedArrowID == _GameController.ArrowIcon.Length - 1)
+                    {
+                        _GameController.EquipedArrowID = 0;
+                    }
+                    else
+                    {
+                        _GameController.EquipedArrowID += 1;
+                    }
+                }
+                arrowIcon.sprite = _GameController.ArrowIcon[_GameController.EquipedArrowID];
+                arrowQnt.text = "x " + _GameController.ArrowQnt[_GameController.EquipedArrowID].ToString();
             }
         }
 
@@ -261,6 +286,7 @@ namespace ProjetoTCC
             }
             if (_GameController.CharacterClassID[_GameController.CharacterID] == 1)
             {
+                arrowIcon.sprite = _GameController.ArrowIcon[_GameController.EquipedArrowID];
                 arrowHUD.SetActive(true);
             }
         }

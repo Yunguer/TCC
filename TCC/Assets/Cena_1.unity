@@ -6501,9 +6501,9 @@ MonoBehaviour:
   currentCharacterID: 0
   maxLife: 20
   maxMana: 10
-  arrowQnt: 10
   weaponID: 0
   currentWeaponID: 0
+  arrowQnt: 050000000a0000000f000000
   characterName: []
   spriteSheetsName:
   - {fileID: 2800000, guid: 8be8b0785dd764b40a563f13eae1185b, type: 3}
@@ -6569,6 +6569,11 @@ MonoBehaviour:
   weaponDamage: 0a0000000500000005000000050000000f000000140000000f000000
   weaponDamageType: 00000000010000000000000000000000010000000000000001000000
   weaponUpgrade: 03000000000000000100000004000000070000000800000009000000
+  equipedArrowID: 2
+  arrowIcon:
+  - {fileID: -1061379503, guid: 07b1e77c73616a448ac8e71e211ad5ea, type: 3}
+  - {fileID: 2081112308, guid: 07b1e77c73616a448ac8e71e211ad5ea, type: 3}
+  - {fileID: 3511263, guid: 07b1e77c73616a448ac8e71e211ad5ea, type: 3}
   pausePainel: {fileID: 1185254521}
   itensPainel: {fileID: 1491958990}
   itensInfoPainel: {fileID: 348806972}
@@ -10241,6 +10246,10 @@ PrefabInstance:
       propertyPath: arrowQnt
       value: 
       objectReference: {fileID: 1727971567}
+    - target: {fileID: 2426074534000440988, guid: fd9c2b8aef89d2a43b68d75e90c24a47, type: 3}
+      propertyPath: arrowIcon
+      value: 
+      objectReference: {fileID: 628953672}
     - target: {fileID: 2973674994935249896, guid: fd9c2b8aef89d2a43b68d75e90c24a47, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 

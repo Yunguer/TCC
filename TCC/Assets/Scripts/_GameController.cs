@@ -79,19 +79,6 @@ namespace ProjetoTCC
         private int maxMana;
         public int MaxMana => maxMana;
         [SerializeField]
-        private int arrowQnt;
-        public int ArrowQnt
-        {
-            get
-            {
-                return arrowQnt;
-            }
-            set
-            {
-                arrowQnt = value;
-            }
-        }
-        [SerializeField]
         private int weaponID, currentWeaponID;
         public int WeaponID
         {
@@ -113,6 +100,19 @@ namespace ProjetoTCC
             set
             {
                 currentWeaponID = value;
+            }
+        }
+        [SerializeField]
+        private int[] arrowQnt;
+        public int[] ArrowQnt
+        {
+            get
+            {
+                return arrowQnt;
+            }
+            set
+            {
+                arrowQnt = value;
             }
         }
         #endregion
@@ -148,7 +148,7 @@ namespace ProjetoTCC
         [SerializeField]
         private int[] weaponClassID; // 0 = Espada, Machado, Martelo, Adagas, Maça - 1 = Arcos - 2 = Cajados
         public int[] WeaponClassID => weaponClassID;
-        
+
         [SerializeField]
         private Sprite[] weaponsSprites_1;
         public Sprite[] WeaponsSprites_1 => weaponsSprites_1;
@@ -170,6 +170,22 @@ namespace ProjetoTCC
         [SerializeField]
         private int[] weaponUpgrade;
         public int[] WeaponUpgrade => weaponUpgrade;
+        [SerializeField]
+        private int equipedArrowID;
+        public int EquipedArrowID
+        {
+            get
+            {
+                return equipedArrowID;
+            }
+            set
+            {
+                equipedArrowID = value;
+            }
+        }
+        [SerializeField]
+        private Sprite[] arrowIcon;
+        public Sprite[] ArrowIcon => arrowIcon;
         #endregion
 
         [Header("Paineis")]
