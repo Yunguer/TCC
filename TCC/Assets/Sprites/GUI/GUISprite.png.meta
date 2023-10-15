@@ -500,6 +500,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: GUISprite_0
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 149
+        width: 22
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3fadf9bde803ec1428f628827af6145a
+      internalID: 130525180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -513,6 +534,7 @@ TextureImporter:
     nameFileIdTable:
       Border_Hearth_Unity: -777185175
       Border_Mana_Unity: -1098464523
+      GUISprite_0: 130525180
       Hearth_1: 1085136314
       Hearth_2: 1362860065
       Hearth_3: -175697366

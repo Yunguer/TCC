@@ -23,12 +23,15 @@ namespace ProjetoTCC
 
         [Header("Configuração Para o Combate")]
         #region Variaveis Para As Mecanicas de Dano
+        
         [SerializeField]
         private string[] damageTypes;
         public string[] DamageTypes => damageTypes;
+        
         [SerializeField]
         private GameObject[] damageFX;
         public GameObject[] DamageFX => damageFX;
+        
         [SerializeField]
         private GameObject deathFX;
         public GameObject DeathFX => deathFX;
@@ -36,6 +39,7 @@ namespace ProjetoTCC
 
         [Header("Configuração Para o Controle do Dinheiro")]
         #region Variaveis Para O Dinheiro
+        
         [SerializeField]
         private int gold;
         public int Gold
@@ -56,9 +60,11 @@ namespace ProjetoTCC
 
         [Header("Informações do Player")]
         #region Variaveis do Player Para Mudança de Cena
+        
         [SerializeField]
         private int characterID;
         public int CharacterID => characterID;
+        
         [SerializeField]
         private int currentCharacterID;
         public int CurrentCharacterID
@@ -72,12 +78,43 @@ namespace ProjetoTCC
                 currentCharacterID = value;
             }
         }
+        
         [SerializeField]
         private int maxLife;
         public int MaxLife => maxLife;
+        
+        [SerializeField]
+        private int currentLife;
+        public int CurrentLife
+            {
+            get
+            {
+                return currentLife;
+            }
+            set
+            {
+                currentLife = value;
+            }
+        }
+        
         [SerializeField]
         private int maxMana;
         public int MaxMana => maxMana;
+        
+        [SerializeField]
+        private int currentMana;
+        public int CurrentMana
+        {
+            get
+            {
+                return currentMana;
+            }
+            set
+            {
+                currentMana = value;
+            }
+        }
+        
         [SerializeField]
         private int weaponID, currentWeaponID;
         public int WeaponID
@@ -102,8 +139,9 @@ namespace ProjetoTCC
                 currentWeaponID = value;
             }
         }
+        
         [SerializeField]
-        private int[] arrowQnt;
+        private int[] arrowQnt; // 0 - FLECHA COMUM 1 - FLECHA DE FERRO 2 - FLECHA DE OURO
         public int[] ArrowQnt
         {
             get
@@ -113,6 +151,34 @@ namespace ProjetoTCC
             set
             {
                 arrowQnt = value;
+            }
+        }
+
+        [SerializeField]
+        private int equipedArrowID;
+        public int EquipedArrowID
+        {
+            get
+            {
+                return equipedArrowID;
+            }
+            set
+            {
+                equipedArrowID = value;
+            }
+        }
+
+        [SerializeField]
+        private int[] potionQnt; // 0 - POÇÃO DE CURA 1 - POÇÃO DE MANA;
+        public int[] PotionQnt
+        {
+            get
+            {
+                return potionQnt;
+            }
+            set
+            {
+                potionQnt = value;
             }
         }
         #endregion
@@ -133,8 +199,6 @@ namespace ProjetoTCC
         [SerializeField]
         private GameObject[] inicialWeapon;
         public GameObject[] InicialWeapon => inicialWeapon;
-
-
         #endregion
 
         [Header("Banco de Dados de Armas")]
@@ -171,21 +235,16 @@ namespace ProjetoTCC
         private int[] weaponUpgrade;
         public int[] WeaponUpgrade => weaponUpgrade;
         [SerializeField]
-        private int equipedArrowID;
-        public int EquipedArrowID
-        {
-            get
-            {
-                return equipedArrowID;
-            }
-            set
-            {
-                equipedArrowID = value;
-            }
-        }
-        [SerializeField]
         private Sprite[] arrowIcon;
         public Sprite[] ArrowIcon => arrowIcon;
+
+        [SerializeField]
+        private Sprite[] arrowImg;
+        public Sprite[] ArrowImg => arrowImg;
+
+        [SerializeField]
+        private GameObject[] arrowPrefab;
+        public GameObject[] ArrowPrefab => arrowPrefab;
         #endregion
 
         [Header("Paineis")]
@@ -228,6 +287,9 @@ namespace ProjetoTCC
             inicialWeaponID = weaponTemp.GetComponent<Item>().ItemID;
 
             inventory.ClearLoadedItens();
+
+            currentLife = maxLife;
+            currentMana = maxMana;
         }
 
         void Update()
@@ -367,6 +429,36 @@ namespace ProjetoTCC
         public void ColectItem(GameObject colectedObject)
         {
             inventory.InventoryItens.Add(colectedObject);
+        }
+
+        public void UsePotion(int potionID)
+        { 
+            if(potionQnt[potionID] > 0)
+            {
+                PotionQnt[potionID] -= 1;
+                switch (potionID)
+                {
+                    case 0:
+                        ; //VIDA
+
+                        currentLife += 3;
+                        if (currentLife > maxLife)
+                        {
+                            currentLife = maxLife;
+                        }
+
+                        break;
+                    case 1: //MANA
+
+                        currentMana += 3;
+                        if(currentMana > maxMana)
+                        {
+                            currentMana = maxMana;
+                        }
+
+                        break;
+                }
+            }
         }
     }
 }

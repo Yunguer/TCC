@@ -83,11 +83,11 @@ namespace ProjetoTCC
                 i.gameObject.SetActive(false);
             }
 
-            qntHealth.text = "x 0";
-            qntMana.text = "x 0";
-            qntArrow1.text = "x " + _GameController.ArrowQnt[0];
-            qntArrow2.text = "x " + _GameController.ArrowQnt[1];
-            qntArrow3.text = "x " + _GameController.ArrowQnt[2];
+            qntHealth.text = "x " + _GameController.PotionQnt[0].ToString();
+            qntMana.text = "x " + _GameController.PotionQnt[1].ToString();
+            qntArrow1.text = "x " + _GameController.ArrowQnt[0].ToString();
+            qntArrow2.text = "x " + _GameController.ArrowQnt[1].ToString();
+            qntArrow3.text = "x " + _GameController.ArrowQnt[2].ToString();
 
             int s = 0;
 

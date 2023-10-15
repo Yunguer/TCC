@@ -49,7 +49,8 @@ namespace ProjetoTCC
         [SerializeField]
         private bool isLookingLeft; // INDICA SE O PERSONAGEM ESTÁ VIRADO PARA A ESQUERDA
         [SerializeField]
-        private bool isAttacking; // INDICAR SE O PERSONAGEM ESTÁ EXECUTANDO UM ATAQUE 
+        private bool isAttacking;
+        public bool IsAttacking => isAttacking;// INDICAR SE O PERSONAGEM ESTÁ EXECUTANDO UM ATAQUE 
         [SerializeField]
         private int idAnimation; // INDICA O ID DA ANIMAÇÃO
         [SerializeField]
@@ -96,7 +97,7 @@ namespace ProjetoTCC
         [SerializeField]
         private GameObject[] weapons, bows, staffs, arrows;
         [SerializeField]
-        private GameObject prefabArrow, prefabMagic;
+        private GameObject prefabMagic;
         [SerializeField]
         private Transform spawnArrow, spawnMagic;
         #endregion
@@ -131,7 +132,7 @@ namespace ProjetoTCC
             playerAnimator = GetComponent<Animator>(); // ASSOSSIA O COMPONENTE A VARIÁVEL
 
             currentLife = maxLife;
-            currentMana = maxMana;
+            currentMana = _GameController.CurrentMana;
 
             foreach (GameObject o in weapons)
             {
@@ -335,7 +336,9 @@ namespace ProjetoTCC
                     if(_GameController.ArrowQnt[_GameController.EquipedArrowID] > 0)
                     {
                         _GameController.ArrowQnt[_GameController.EquipedArrowID]--;
-                        GameObject tempPrefab = Instantiate(prefabArrow, spawnArrow.position, spawnArrow.localRotation);
+                        WeaponData ArrowWeaponData = _GameController.ArrowPrefab[_GameController.EquipedArrowID].GetComponent<WeaponData>();
+                        ArrowWeaponData.DamageType = _GameController.WeaponDamageType[_GameController.WeaponID];
+                        GameObject tempPrefab = Instantiate(_GameController.ArrowPrefab[_GameController.EquipedArrowID], spawnArrow.position, spawnArrow.localRotation);
                         tempPrefab.transform.localScale = new Vector3(tempPrefab.transform.localScale.x * dir.x, tempPrefab.transform.localScale.y, tempPrefab.transform.localScale.z);
                         tempPrefab.GetComponent<Rigidbody2D>().velocity = new Vector2(5 * dir.x, 0);
                         Destroy(tempPrefab, 2);
@@ -357,12 +360,12 @@ namespace ProjetoTCC
                     break;
 
                 case 2:
-                    if(currentMana >= 1)
+                    if(_GameController.CurrentMana >= 1)
                     {
                         GameObject tempPrefab = Instantiate(prefabMagic, spawnMagic.position, spawnMagic.localRotation);
                         tempPrefab.GetComponent<Rigidbody2D>().velocity = new Vector2(3 * dir.x, 0);
                         Destroy(tempPrefab, 1);
-                        currentMana = currentMana - 1;
+                        _GameController.CurrentMana = _GameController.CurrentMana - 1;
                     }
                     break;
             }
@@ -427,6 +430,9 @@ namespace ProjetoTCC
             {
                 case "Collectable":
                     col.gameObject.SendMessage("Collect", SendMessageOptions.DontRequireReceiver);
+                    break;
+                case "Enemy":
+                    _GameController.CurrentLife -= 1;
                     break;
             }       
         }

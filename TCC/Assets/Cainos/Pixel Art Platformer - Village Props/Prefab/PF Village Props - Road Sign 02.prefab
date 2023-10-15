@@ -229,6 +229,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c0a3935419ce414b967e3f42b6695c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  x: -16
+  y: -1.53
+  z: 1
   hudCanvas: {fileID: 0}
   destinyScene: Cena_2
 --- !u!1 &3008790805172985204
