@@ -337,12 +337,12 @@ namespace ProjetoTCC
                     {
                         _GameController.ArrowQnt[_GameController.EquipedArrowID]--;
                         WeaponData ArrowWeaponData = _GameController.ArrowPrefab[_GameController.EquipedArrowID].GetComponent<WeaponData>();
-                        ArrowWeaponData.DamageType = _GameController.WeaponDamageType[_GameController.WeaponID];
                         GameObject tempPrefab = Instantiate(_GameController.ArrowPrefab[_GameController.EquipedArrowID], spawnArrow.position, spawnArrow.localRotation);
                         tempPrefab.transform.localScale = new Vector3(tempPrefab.transform.localScale.x * dir.x, tempPrefab.transform.localScale.y, tempPrefab.transform.localScale.z);
                         tempPrefab.GetComponent<Rigidbody2D>().velocity = new Vector2(5 * dir.x, 0);
                         Destroy(tempPrefab, 2);
                     }
+
                     break;
             }
         }

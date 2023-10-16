@@ -19,8 +19,8 @@ TagManager:
   - Collectable
   - Ground
   - Interaction
-  - 
-  - 
+  - EnemyObstacles
+  - Player
   - 
   - 
   - 
