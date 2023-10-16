@@ -20,6 +20,7 @@ namespace ProjetoTCC
         [SerializeField]
         private float[] damageModifier; //SISTEMA DE RESISTENCIA/FRAQUESA CONTRA DETERMINADO TIPO DE DANO
         private bool tookHit; // VERIFICAÇÃO PARA SE LEVOU UM HIT
+        public bool TookHit => tookHit;
         private bool dead; // INDICA SE ESTÁ MORTO
         [SerializeField]
         private Color[] characterColor; // CONTROLE DE COR DO PERSONAGEM
@@ -75,6 +76,7 @@ namespace ProjetoTCC
             playerScript = FindObjectOfType(typeof(PlayerScript)) as PlayerScript;
             sRender = GetComponent<SpriteRenderer>();
             animator = GetComponent<Animator>();
+            tookHit = false;
 
             sRender.color = characterColor[0];
 
@@ -170,19 +172,11 @@ namespace ProjetoTCC
                         Destroy(knockTemp, 0.02f);
 
                         StartCoroutine("Invulnerable");
-
+                        this.gameObject.SendMessage("TookHit", SendMessageOptions.DontRequireReceiver);
                     }
                     break;
             }
 
-        }
-
-        void Flip()
-        {
-            isLookingLeft = !isLookingLeft; // INVERTE O VALOR DA VARIAVEL BOLEANA
-            float x = transform.localScale.x;
-            x *= -1; // INVERTE O FINAL DO SCALE X
-            transform.localScale = new Vector3(x, transform.localScale.y, transform.localScale.z);
         }
 
         IEnumerator Loot()

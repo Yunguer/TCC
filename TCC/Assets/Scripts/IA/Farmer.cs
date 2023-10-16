@@ -76,6 +76,12 @@ namespace ProjetoTCC
         [SerializeField]
         private int weaponID;
 
+        [SerializeField]
+        private int classID;
+
+        [SerializeField]
+        private bool isAlertOnHit;
+
         #endregion
         void Start()
         {
@@ -84,17 +90,23 @@ namespace ProjetoTCC
             playerScript = FindObjectOfType(typeof(PlayerScript)) as PlayerScript;
             rigidbody2D = GetComponent<Rigidbody2D>();
             animator = GetComponent<Animator>();
+            isAlertOnHit = false;
             enemyDamageController.IsLookingLeft = isLookingLeft;
-            if(isLookingLeft)
+            if(!isLookingLeft)
             {
                 Flip();
             }
-            ChangeWeapon(weaponID);
+            ChangeWeapon(classID);
         }
 
 
         void Update()
         { 
+            if(enemyDamageController.TookHit == true)
+            {
+                return;
+            }
+
             if(currentEnemyState != EnemyState.ATTACKING && currentEnemyState != EnemyState.RETREAT)
             {
                 UnityEngine.Debug.DrawRay(transform.position, dir * seeCharacterDistance, Color.red);
@@ -122,7 +134,6 @@ namespace ProjetoTCC
                 if (hit == true)
                 {
                     Flip();
-                    hit = Physics2D.Raycast(transform.position, dir * -1, changeRoteDistance, obstaclesLayer);
                 }
             }
 
@@ -130,11 +141,11 @@ namespace ProjetoTCC
             {
                 float dist = Vector3.Distance(transform.position, playerScript.transform.position);
 
-                if(dist <= atackDistance)
+                if (dist <= atackDistance)
                 {
                     ChangeState(EnemyState.ATTACKING);
                 }
-                else if(dist >= leaveAlertDistance)
+                else if (dist >= leaveAlertDistance && isAlertOnHit == false)
                 {
                     print("Saiu alerta");
                     ChangeState(EnemyState.STOPPED);
@@ -151,6 +162,7 @@ namespace ProjetoTCC
                 animator.SetInteger("idAnimation", 1);
             }
             enemyDamageController.IsLookingLeft = isLookingLeft;
+            animator.SetFloat("classID", classID);
 
         }
 
@@ -210,6 +222,55 @@ namespace ProjetoTCC
             }
         }
 
+        public void BowAttack(int atk)
+        {
+            switch (atk)
+            {
+                case 0:
+
+                    isAttacking = false;
+                    bows[2].SetActive(false);
+                    ChangeState(EnemyState.RETREAT);
+                    break;
+
+                case 1:
+
+                    isAttacking = true;
+                    break;
+
+                case 2:
+                    //WeaponData ArrowWeaponData = _GameController.ArrowPrefab[_GameController.EquipedArrowID].GetComponent<WeaponData>();
+                    //GameObject tempPrefab = Instantiate(_GameController.ArrowPrefab[_GameController.EquipedArrowID], spawnArrow.position, spawnArrow.localRotation);
+                    //tempPrefab.transform.localScale = new Vector3(tempPrefab.transform.localScale.x * dir.x, tempPrefab.transform.localScale.y, tempPrefab.transform.localScale.z);
+                    //tempPrefab.GetComponent<Rigidbody2D>().velocity = new Vector2(5 * dir.x, 0);
+                    //Destroy(tempPrefab, 2);
+
+                    break;
+            }
+        }
+
+        public void StaffAttack(int atk)
+        {
+            switch (atk)
+            {
+                case 0:
+                    isAttacking = false;
+                    staffs[3].SetActive(false);
+                    ChangeState(EnemyState.RETREAT);
+                    break;
+                case 1:
+                    isAttacking = true;
+                    break;
+
+                case 2:
+                    //GameObject tempPrefab = Instantiate(prefabMagic, spawnMagic.position, spawnMagic.localRotation);
+                    //tempPrefab.GetComponent<Rigidbody2D>().velocity = new Vector2(3 * dir.x, 0);
+                    //Destroy(tempPrefab, 1);
+                    //_GameController.CurrentMana = _GameController.CurrentMana - 1;
+                    break;
+            }
+        }
+
         void WeaponControl(int id)
         {
             foreach (GameObject o in weapons)
@@ -246,7 +307,6 @@ namespace ProjetoTCC
         public void ChangeWeapon(int id)
         {
             WeaponData tempWeaponData;
-            weaponID = id;
 
             switch (id)
             {
@@ -295,6 +355,20 @@ namespace ProjetoTCC
 
             }
         }
+
+        public void TookHit()
+        {
+            isAlertOnHit = true;
+            StartCoroutine(nameof(AwaitAfterHit));
+            ChangeState(EnemyState.ALERT);
+        }
+
+        IEnumerator AwaitAfterHit()
+        {
+            yield return new WaitForSeconds(1);
+            isAlertOnHit = false;
+        }
+
 
         IEnumerator Idle()
         {
