@@ -1072,7 +1072,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a77a2dfce0ab4a1419a7b85ab7db1dcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
+  damage: 10
   damageType: 0
 --- !u!1 &6634474437999267055
 GameObject:
@@ -1634,22 +1634,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44d0d8a7ac7d10e42841f1bfd98424f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentEnemyState: 2
+  currentEnemyState: 0
   changeRoteDistance: 0.5
   obstaclesLayer:
     serializedVersion: 2
-    m_Bits: 1024
-  seeCharacterDistance: 2.5
+    m_Bits: 3072
+  seeCharacterDistance: 3.5
   characterLayer:
     serializedVersion: 2
     m_Bits: 2048
-  atackDistance: 0
-  leaveAlertDistance: 0
+  atackDistance: 0.8
+  leaveAlertDistance: 4.5
   baseSpeed: 1
   Speed: 0
   isLookingLeft: 0
   waitingTimeIdle: 1
-  weapons: []
+  waitingTimeRetreat: 2
+  weapons:
+  - {fileID: 6558739559977556358}
+  - {fileID: 4870605054880873557}
+  - {fileID: 7108540252345961315}
+  bows:
+  - {fileID: 7039539771882654251}
+  - {fileID: 6634474437999267055}
+  - {fileID: 7688351386747422512}
+  staffs:
+  - {fileID: 6116578773249033346}
+  - {fileID: 3367730761534383625}
+  - {fileID: 3815470567674765201}
+  - {fileID: 3443257910707383226}
+  weaponID: 6
+  classID: 0
+  isAlertOnHit: 0
 --- !u!95 &3166736704048801194
 Animator:
   serializedVersion: 5
@@ -1660,7 +1676,7 @@ Animator:
   m_GameObject: {fileID: 7450228826778745187}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e9523a2c667bde14e813a02c4e85daf6, type: 2}
+  m_Controller: {fileID: 9100000, guid: fc12dea31abcb304bb61b8a2d4460e2e, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
