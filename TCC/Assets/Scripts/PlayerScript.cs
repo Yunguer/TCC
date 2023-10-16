@@ -433,6 +433,7 @@ namespace ProjetoTCC
                     break;
                 case "Enemy":
                     _GameController.CurrentLife -= 1;
+                    playerAnimator.SetTrigger("hit");
                     break;
             }       
         }

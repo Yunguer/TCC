@@ -31,6 +31,17 @@ namespace ProjetoTCC
         #region Variaveis para movimentação
         [SerializeField]
         private bool isLookingLeft, isPlayerOnLeft; //VARIAVES DE CHECAGEM DE POSIÇÃO PARA O KNOCKBACK
+        public bool IsLookingLeft
+        {
+            get
+            {
+                return isLookingLeft;
+            }
+            set
+            {
+                isLookingLeft = value;
+            }
+        }
         #endregion
 
         #region Variaveis para Checagem
@@ -67,16 +78,11 @@ namespace ProjetoTCC
 
             sRender.color = characterColor[0];
 
-            if (isLookingLeft == true)
-            {
-                float x = transform.localScale.x;
-                x *= -1; // INVERTE O FINAL DO SCALE X
-                transform.localScale = new Vector3(x, transform.localScale.y, transform.localScale.z);
-            }
         }
 
         void Update()
         {
+
             //VERIFICA SE O PLAYER ESTÁ A ESQUERDA OU A DIREITA DO INIMIGO
             float xPlayer = playerScript.transform.position.x;
 
