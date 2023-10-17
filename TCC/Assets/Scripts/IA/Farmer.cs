@@ -97,6 +97,7 @@ namespace ProjetoTCC
                 Flip();
             }
             ChangeWeapon(classID);
+
         }
 
 
@@ -111,6 +112,7 @@ namespace ProjetoTCC
             {
                 UnityEngine.Debug.DrawRay(transform.position, dir * seeCharacterDistance, Color.red);
                 RaycastHit2D hitCharacter = Physics2D.Raycast(transform.position, dir, seeCharacterDistance, characterLayer);
+
                 if (hitCharacter)
                 {
                     ChangeState(EnemyState.ALERT);
