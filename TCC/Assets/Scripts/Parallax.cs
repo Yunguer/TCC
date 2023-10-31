@@ -16,7 +16,9 @@ namespace ProjetoTCC
         private float speed;
 
         [SerializeField]
+        #pragma warning disable CS0108 // O membro oculta o membro herdado; nova palavra-chave ausente
         private Transform camera;
+        #pragma warning restore CS0108 // O membro oculta o membro herdado; nova palavra-chave ausente
         private Vector3 previewCameraPosition;
 
         void Start()

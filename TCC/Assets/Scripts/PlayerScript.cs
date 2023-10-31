@@ -108,6 +108,7 @@ namespace ProjetoTCC
             SimpleChest.OnAnimationEnded += OnInteractionAnimationEnded;
             EntranceWay.OnAnimationEnded += OnInteractionAnimationEnded;
             NextScene.OnAnimationEnded += OnInteractionAnimationEnded;
+            NPC.OnAnimationEnded += OnInteractionAnimationEnded;
         }
 
         private void OnDisable() // FUNÇÃO PARA EXECUTAR A ANIMAÇÃO DOS OBJETOS UMA VEZ
@@ -115,6 +116,7 @@ namespace ProjetoTCC
             SimpleChest.OnAnimationEnded -= OnInteractionAnimationEnded;
             EntranceWay.OnAnimationEnded -= OnInteractionAnimationEnded;
             NextScene.OnAnimationEnded -= OnInteractionAnimationEnded;
+            NPC.OnAnimationEnded -= OnInteractionAnimationEnded;
         }
 
         void Start()
