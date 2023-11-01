@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<chats>
+
+	<dialogue name="dialogue_1">
+		<lines>
+		
+			<line>Oi, meu nome é Pedro!</line>
+			<line>Eu tenho uma missão para você!</line>
+			<line>Você aceita?</line>
+		</lines>
+	</dialogue>
+
+
+	<dialogue name="dialogue_2">
+		<lines>
+
+			<line>Fico feliz em saber que você irá me ajudar!</line>
+			<line>Ao terminar a missão volte a falar comigo!</line>
+			<line>Até Logo!</line>
+		</lines>
+	</dialogue>
+
+	<dialogue name="dialogue_3">
+		<lines>
+
+			<line>Que pena!</line>
+			<line>Se mudar de ideia, volte a falar comigo!</line>
+			<line>Até Logo!</line>
+		</lines>
+	</dialogue>
+
+	<dialogue name="dialogue_4">
+		<lines>
+
+			<line>Volte a falar comigo quando terminar a missão</line>
+			<line>Até Logo!</line>
+		</lines>
+	</dialogue>
+
+	<dialogue name="dialogue_5">
+		<lines>
+
+			<line>Vejo que terminou sua missão com sucesso</line>
+			<line>Receba sua recompensa!</line>
+			<line>Até Logo!</line>
+		</lines>
+	</dialogue>
+
+	<dialogue name="dialogue_6">
+		<lines>
+			<line>Até Logo!</line>
+		</lines>
+	</dialogue>
+
+	<dialogue name="resposta_1">
+		<lines>
+
+			<line>Sim, eu aceito a missão!</line>
+			<line>Não, eu já tenho outras coisas para fazer!</line>
+		</lines>
+	</dialogue>
+	
+	
+</chats>
