@@ -1,7 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using System.Linq;
+using UnityEngine;
 
 namespace ProjetoTCC
 {
@@ -31,11 +30,11 @@ namespace ProjetoTCC
         {
             _GameController = FindObjectOfType(typeof(_GameController)) as _GameController;
 
-            if(isPlayer)
+            if (isPlayer)
             {
                 spriteSheetName = _GameController.SpriteSheetName[_GameController.CharacterID].name;
             }
-            
+
             sRender = GetComponent<SpriteRenderer>();
             loadSpriteSheet();
         }
@@ -51,7 +50,7 @@ namespace ProjetoTCC
                     _GameController.CurrentCharacterID = _GameController.CharacterID;
                 }
 
-                if(spriteSheetName != _GameController.SpriteSheetName[_GameController.CharacterID].name)
+                if (spriteSheetName != _GameController.SpriteSheetName[_GameController.CharacterID].name)
                 {
                     spriteSheetName = _GameController.SpriteSheetName[_GameController.CharacterID].name;
                 }

@@ -140,8 +140,8 @@ namespace ProjetoTCC
 
                         if(_GameController.CharacterClassID[_GameController.CharacterID] == 1)
                         {
-                            weaponDamage = weaponDamage * _GameController.WeaponDamage[_GameController.WeaponID];
-                            damageType = _GameController.WeaponDamageType[_GameController.WeaponID];
+                            weaponDamage = weaponDamage * _GameController.CurrentWeapon.Damage;
+                            damageType = (int)_GameController.CurrentWeapon.DamageType;
                         }
 
                         //danoTomado = danoArma + (danoArma * (ajusteDano[id]/100))

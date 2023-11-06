@@ -14,6 +14,10 @@ namespace ProjetoTCC
 
     public class _GameController : MonoBehaviour
     {
+        [SerializeField]
+        private WeaponProvider weaponProvider;
+        public WeaponProvider WeaponProvider => weaponProvider;
+
         private PlayerScript playerScript;
         private Inventory inventory;
 
@@ -114,29 +118,17 @@ namespace ProjetoTCC
                 currentMana = value;
             }
         }
-        
-        [SerializeField]
-        private int weaponID, currentWeaponID;
-        public int WeaponID
+      
+        private CustomWeaponData currentWeapon;
+        public CustomWeaponData CurrentWeapon
         {
             get
             {
-                return weaponID;
+                return currentWeapon;
             }
             set
             {
-                weaponID = value;
-            }
-        }
-        public int CurrentWeaponID
-        {
-            get
-            {
-                return currentWeaponID;
-            }
-            set
-            {
-                currentWeaponID = value;
+                currentWeapon = value;
             }
         }
         
@@ -185,17 +177,18 @@ namespace ProjetoTCC
 
         [Header("Banco de Personagens")]
         #region Variaveis do Personagem Atual
+        
         [SerializeField]
         private string[] characterName;
+        
         [SerializeField]
         private Texture[] spriteSheetsName;
         public Texture[] SpriteSheetName => spriteSheetsName;
+        
         [SerializeField]
         private int[] characterClassID;
         public int[] CharacterClassID => characterClassID;
-        [SerializeField]
-        private int inicialWeaponID;
-        public int InicialWeaponID => inicialWeaponID;
+
         [SerializeField]
         private GameObject[] inicialWeapon;
         public GameObject[] InicialWeapon => inicialWeapon;
@@ -278,15 +271,11 @@ namespace ProjetoTCC
             itensInfoPainel.SetActive(false);
             characterID = PlayerPrefs.GetInt("titleCharacterID");
 
+            currentWeapon = weaponProvider.GetInicialWeaponByCharacterId((PlayerType)characterID);
+
+            playerScript.ChangeWeapon(currentWeapon);
+
             inventory.InventoryItens.Add(inicialWeapon[characterID]);
-
-            GameObject weaponTemp = Instantiate(inicialWeapon[characterID]);
-
-            inventory.LoadedItens.Add(weaponTemp);
-
-            inicialWeaponID = weaponTemp.GetComponent<Item>().ItemID;
-
-            inventory.ClearLoadedItens();
 
             currentLife = maxLife;
             currentMana = maxMana;
@@ -313,9 +302,10 @@ namespace ProjetoTCC
 
         public void ValidateWeapon()
         {
-            if(weaponClassID[weaponID] != characterClassID[characterID])
+            var weapon = WeaponProvider.GetWeaponById(currentWeapon.Id);
+            if ((int)weapon.WeaponType != characterClassID[characterID])
             {
-                weaponID = inicialWeaponID;
+                currentWeapon = weaponProvider.GetInicialWeaponByCharacterId((PlayerType)characterID);
             }
         }
 
@@ -371,7 +361,7 @@ namespace ProjetoTCC
             ChangeState(GameState.PAUSE);
         }
 
-        public void UseItemWeapon(int weaponID)
+        public void UseItemWeapon(string weaponID)
         {
             playerScript.ChangeWeapon(weaponID);
         }
@@ -405,14 +395,11 @@ namespace ProjetoTCC
             firstPainelItens.Select();
         }
 
-        public void UpgradeWeapon(int weaponID)
+        public void UpgradeWeapon(string weaponID, int slotID)
         {
-            int up = weaponUpgrade[weaponID];
-            if(up < 10)
-            {
-                up += 1;
-                weaponUpgrade[weaponID] = up;
-            }
+            var weapon = weaponProvider.GetWeaponById(weaponID);
+            var newWeaponId = $"{weaponID.Substring(0, weaponID.Length - 2)}_{weapon.Level+1}";
+            inventory.InventoryItens[slotID].GetComponent<Item>().ItemID = newWeaponId;
         }
 
         public void SwapItensInventory(int slotID)

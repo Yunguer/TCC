@@ -8,8 +8,18 @@ namespace ProjetoTCC
     {
         private _GameController _GameController;
         [SerializeField]
-        private int itemID;
-        public int ItemID => itemID;
+        private string itemID;
+        public string ItemID
+        {
+            get
+            {
+                return itemID;
+            }
+            set
+            {
+                itemID = value;
+            }
+        }
 
         void Start()
         {

@@ -1,0 +1,183 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be81113142f248e428a474ed1fcc93ba, type: 3}
+  m_Name: WeaponProvider
+  m_EditorClassIdentifier: 
+  meleeWeapons:
+    keys:
+    - WEAPON_MELEE_MADEIRA_LVL_0
+    - WEAPON_MELEE_MADEIRA_LVL_1
+    - WEAPON_MELEE_MADEIRA_LVL_2
+    - WEAPON_MELEE_MADEIRA_LVL_3
+    - WEAPON_MELEE_MADEIRA_LVL_4
+    - WEAPON_MELEE_MADEIRA_LVL_5
+    - WEAPON_MELEE_MADEIRA_LVL_6
+    - WEAPON_MELEE_MADEIRA_LVL_7
+    - WEAPON_MELEE_MADEIRA_LVL_8
+    - WEAPON_MELEE_MADEIRA_LVL_9
+    - WEAPON_MELEE_MADEIRA_LVL_10
+    - WEAPON_MELEE_RUBI_LVL_0
+    - WEAPON_MELEE_RUBI_LVL_1
+    - WEAPON_MELEE_RUBI_LVL_2
+    - WEAPON_MELEE_RUBI_LVL_3
+    - WEAPON_MELEE_RUBI_LVL_4
+    - WEAPON_MELEE_RUBI_LVL_5
+    - WEAPON_MELEE_RUBI_LVL_6
+    - WEAPON_MELEE_RUBI_LVL_7
+    - WEAPON_MELEE_RUBI_LVL_8
+    - WEAPON_MELEE_RUBI_LVL_9
+    - WEAPON_MELEE_RUBI_LVL_10
+    - WEAPON_MELEE_MACHADORUBI_LVL_0
+    - WEAPON_MELEE_MACHADORUBI_LVL_1
+    - WEAPON_MELEE_MACHADORUBI_LVL_2
+    - WEAPON_MELEE_MACHADORUBI_LVL_3
+    - WEAPON_MELEE_MACHADORUBI_LVL_4
+    - WEAPON_MELEE_MACHADORUBI_LVL_5
+    - WEAPON_MELEE_MACHADORUBI_LVL_6
+    - WEAPON_MELEE_MACHADORUBI_LVL_7
+    - WEAPON_MELEE_MACHADORUBI_LVL_8
+    - WEAPON_MELEE_MACHADORUBI_LVL_9
+    - WEAPON_MELEE_MACHADORUBI_LVL_10
+    - WEAPON_MELEE_MARTELOSAFIRA_LVL_0
+    - WEAPON_MELEE_MARTELOSAFIRA_LVL_1
+    - WEAPON_MELEE_MARTELOSAFIRA_LVL_2
+    - WEAPON_MELEE_MARTELOSAFIRA_LVL_3
+    - WEAPON_MELEE_MARTELOSAFIRA_LVL_4
+    - WEAPON_MELEE_MARTELOSAFIRA_LVL_5
+    - WEAPON_MELEE_MARTELOSAFIRA_LVL_6
+    - WEAPON_MELEE_MARTELOSAFIRA_LVL_7
+    - WEAPON_MELEE_MARTELOSAFIRA_LVL_8
+    - WEAPON_MELEE_MARTELOSAFIRA_LVL_9
+    - WEAPON_MELEE_MARTELOSAFIRA_LVL_10
+    values:
+    - {fileID: 11400000, guid: 648d0b841144a37439b23681bf9c9d8e, type: 2}
+    - {fileID: 11400000, guid: ccd1c8c07fcccdd4fb91a4090c58e246, type: 2}
+    - {fileID: 11400000, guid: d2c7260663f0aca4f986fbbcd130a1cf, type: 2}
+    - {fileID: 11400000, guid: 8de769433c7d2ba44ba8823ffe71b58e, type: 2}
+    - {fileID: 11400000, guid: d3f1f046a3b836d469561980986f5c85, type: 2}
+    - {fileID: 11400000, guid: 453abc2831084c345ad1b19613c90527, type: 2}
+    - {fileID: 11400000, guid: 9f0c64d3663a607408e155d11b737006, type: 2}
+    - {fileID: 11400000, guid: 089bcf78060b6b943bd73bd0fe2d3738, type: 2}
+    - {fileID: 11400000, guid: c77685e2fcf9765408b83270ec5aec35, type: 2}
+    - {fileID: 11400000, guid: 2ab06a417ca075342948085b6ba97474, type: 2}
+    - {fileID: 11400000, guid: 0e4648fd26d66c948be0d7a5c6f4f83f, type: 2}
+    - {fileID: 11400000, guid: 78e2fdbb0933cfb4f965c20ed9345a01, type: 2}
+    - {fileID: 11400000, guid: dd0fc257963e76145bff2e0056b65451, type: 2}
+    - {fileID: 11400000, guid: ce07739889e087344b10b73a84e2bb4c, type: 2}
+    - {fileID: 11400000, guid: eb74f03656a73004083be89cb2fbfd7d, type: 2}
+    - {fileID: 11400000, guid: f098d52671a1f1f48ba70a1e6e5b84a4, type: 2}
+    - {fileID: 11400000, guid: 3cbe911a6476afb46a56d1ba1a09075f, type: 2}
+    - {fileID: 11400000, guid: efa5781ee6ecb49418d538c727e2aba3, type: 2}
+    - {fileID: 11400000, guid: acd3291f9be61474abab68b03cd1e2c2, type: 2}
+    - {fileID: 11400000, guid: 249efbc617d7f074096b8951e0f65a1f, type: 2}
+    - {fileID: 11400000, guid: 39d85fcefd9222d41b5b807d9276b235, type: 2}
+    - {fileID: 11400000, guid: a9840cd64d2f81d428a8e8617ecc452b, type: 2}
+    - {fileID: 11400000, guid: 320d6d0232fe27a4b9d6e60bacc4cae6, type: 2}
+    - {fileID: 11400000, guid: ffb7743219522864b89fc98b9f991ccd, type: 2}
+    - {fileID: 11400000, guid: 22c82d27bfb2aa349a5566d0631740e0, type: 2}
+    - {fileID: 11400000, guid: c10500f464ed5694da1424c46c225b36, type: 2}
+    - {fileID: 11400000, guid: 550b79ca5dadec64587bfd4e2e99c443, type: 2}
+    - {fileID: 11400000, guid: fcfe7dd285a70694c917a03190af7864, type: 2}
+    - {fileID: 11400000, guid: e51984fa4afb9d14385be8beeecf4fc6, type: 2}
+    - {fileID: 11400000, guid: 7df2b89e61109054183c47d2cb3961e4, type: 2}
+    - {fileID: 11400000, guid: 62e40979407e8884fa33981f0756e928, type: 2}
+    - {fileID: 11400000, guid: aa5a078cb436af446a8c77c48582a0e1, type: 2}
+    - {fileID: 11400000, guid: 985b92661509f5948912c75cb76b1a2d, type: 2}
+    - {fileID: 11400000, guid: 92ebb53763b260d4dad7af5cdf79c59e, type: 2}
+    - {fileID: 11400000, guid: 78a68e229becdc9468627fccce76bf78, type: 2}
+    - {fileID: 11400000, guid: 2eb2318ebc1f21343b430b9bd5c3cc60, type: 2}
+    - {fileID: 11400000, guid: ba6f37408f136a142a76147bdec64a06, type: 2}
+    - {fileID: 11400000, guid: f36134fefac7de54ba7337e30d117864, type: 2}
+    - {fileID: 11400000, guid: e9655c13fcfd3aa40a7d0dc56905512d, type: 2}
+    - {fileID: 11400000, guid: ca54ae31bb5230a428bb692db34817aa, type: 2}
+    - {fileID: 11400000, guid: 5da09c48d08984841b3a5d24215c730f, type: 2}
+    - {fileID: 11400000, guid: 60bcdc5188d92474289197221f3e6b7d, type: 2}
+    - {fileID: 11400000, guid: 6acbd1df64dee12449e57e4c45a367e1, type: 2}
+    - {fileID: 11400000, guid: f0b0b7997fbb3184da5b1191fa87094f, type: 2}
+  bowWeapons:
+    keys:
+    - WEAPON_BOW_MADEIRA_LVL_0
+    - WEAPON_BOW_MADEIRA_LVL_1
+    - WEAPON_BOW_MADEIRA_LVL_2
+    - WEAPON_BOW_MADEIRA_LVL_3
+    - WEAPON_BOW_MADEIRA_LVL_4
+    - WEAPON_BOW_MADEIRA_LVL_5
+    - WEAPON_BOW_MADEIRA_LVL_6
+    - WEAPON_BOW_MADEIRA_LVL_7
+    - WEAPON_BOW_MADEIRA_LVL_8
+    - WEAPON_BOW_MADEIRA_LVL_9
+    - WEAPON_BOW_MADEIRA_LVL_10
+    values:
+    - {fileID: 11400000, guid: 3505551bf5fb60745a4dcd190024bf4b, type: 2}
+    - {fileID: 11400000, guid: c148882159bf1394e9343ce32e05bd8d, type: 2}
+    - {fileID: 11400000, guid: c78ecd3b251bd10418125db526f33a10, type: 2}
+    - {fileID: 11400000, guid: 193cb1abb660187458f8246fcfb0095f, type: 2}
+    - {fileID: 11400000, guid: cbb7813d7dc0e1d478e5861b223ac4df, type: 2}
+    - {fileID: 11400000, guid: 6e77c4c871c823a45a5da6ad95b2dfc9, type: 2}
+    - {fileID: 11400000, guid: 20b3c0406dfa2c0419966396bb65a2e3, type: 2}
+    - {fileID: 11400000, guid: 69882f1f79804264a9cd55fd53308b39, type: 2}
+    - {fileID: 11400000, guid: da215ab17d92ebc43859565dca0f5d74, type: 2}
+    - {fileID: 11400000, guid: eb7e0ee334a765d43be2bdf2724e4b34, type: 2}
+    - {fileID: 11400000, guid: 6cb9c5f7b3bc35940b5e9aec85fc64e5, type: 2}
+  staffWeapons:
+    keys:
+    - WEAPON_STAFF_ROXO_LVL_0
+    - WEAPON_STAFF_ROXO_LVL_1
+    - WEAPON_STAFF_ROXO_LVL_2
+    - WEAPON_STAFF_ROXO_LVL_3
+    - WEAPON_STAFF_ROXO_LVL_4
+    - WEAPON_STAFF_ROXO_LVL_5
+    - WEAPON_STAFF_ROXO_LVL_6
+    - WEAPON_STAFF_ROXO_LVL_7
+    - WEAPON_STAFF_ROXO_LVL_8
+    - WEAPON_STAFF_ROXO_LVL_9
+    - WEAPON_STAFF_ROXO_LVL_10
+    - WEAPON_STAFF_AZUL_LVL_0
+    - WEAPON_STAFF_AZUL_LVL_1
+    - WEAPON_STAFF_AZUL_LVL_2
+    - WEAPON_STAFF_AZUL_LVL_3
+    - WEAPON_STAFF_AZUL_LVL_4
+    - WEAPON_STAFF_AZUL_LVL_5
+    - WEAPON_STAFF_AZUL_LVL_6
+    - WEAPON_STAFF_AZUL_LVL_7
+    - WEAPON_STAFF_AZUL_LVL_8
+    - WEAPON_STAFF_AZUL_LVL_9
+    - WEAPON_STAFF_AZUL_LVL_10
+    values:
+    - {fileID: 11400000, guid: 26e166f987ea93845a35a6e6e82e2697, type: 2}
+    - {fileID: 11400000, guid: bad87c72260e3e04a90c5a608467fb06, type: 2}
+    - {fileID: 11400000, guid: 9e7275ca998a746408bf4f6b04368b24, type: 2}
+    - {fileID: 11400000, guid: cf22811b6dc134b479bde6cd51868266, type: 2}
+    - {fileID: 11400000, guid: ad834c82b561e8546a57093eaea2f345, type: 2}
+    - {fileID: 11400000, guid: c78ad4bc409d92640b4ebc28309120d0, type: 2}
+    - {fileID: 11400000, guid: 17c3ff7237ce3ac4abbce2c0f10043c5, type: 2}
+    - {fileID: 11400000, guid: dd308bb8387820d4d80b38209fe4b30f, type: 2}
+    - {fileID: 11400000, guid: 1aaa31eb2419a46418d23d1b9b85e18c, type: 2}
+    - {fileID: 11400000, guid: 9c3e046120b11884e9e1d71528a1a0eb, type: 2}
+    - {fileID: 11400000, guid: 9ebf132960634624cb95257752372233, type: 2}
+    - {fileID: 11400000, guid: 57e237279b9bf924ba65ba986960d888, type: 2}
+    - {fileID: 11400000, guid: c5ff97d59d704624eb805ab56e31c56d, type: 2}
+    - {fileID: 11400000, guid: 575e74819d4546746a5cb98d8fa0202e, type: 2}
+    - {fileID: 11400000, guid: 524056dd7a9748745aff68f584753ded, type: 2}
+    - {fileID: 11400000, guid: d9a668096dc375f4489039e3baa01a29, type: 2}
+    - {fileID: 11400000, guid: 6d8d4bf38d7be23418d550198eb62d5d, type: 2}
+    - {fileID: 11400000, guid: 7dcbd8230799bec49a489e2d7f6b0dd0, type: 2}
+    - {fileID: 11400000, guid: 7b0b387ad995df640be38ee980c4da44, type: 2}
+    - {fileID: 11400000, guid: f248fa6b269859b45845edf15d871e5c, type: 2}
+    - {fileID: 11400000, guid: 677466caa1ce3db47bd13d170c2d5bfe, type: 2}
+    - {fileID: 11400000, guid: be5f265c0f04495488cc2b897fcbee25, type: 2}
+  inicialWeapons:
+    keys: 000000000100000002000000
+    values:
+    - {fileID: 11400000, guid: 648d0b841144a37439b23681bf9c9d8e, type: 2}
+    - {fileID: 11400000, guid: 3505551bf5fb60745a4dcd190024bf4b, type: 2}
+    - {fileID: 11400000, guid: 26e166f987ea93845a35a6e6e82e2697, type: 2}

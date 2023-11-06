@@ -1,10 +1,19 @@
 using Cainos.PixelArtPlatformer_VillageProps;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ProjetoTCC
 {
+    public enum PlayerType
+    { 
+        Curupira,
+        Saci,
+        Boto
+    }
+
     public class PlayerScript : MonoBehaviour
-    {
+    {  
+
         #region Variaveis Unity
         private Animator playerAnimator;
         private Rigidbody2D playerRb;
@@ -91,10 +100,6 @@ namespace ProjetoTCC
         #region Variaveis para as Armas
         //SISTEMA DE ARMAS
         [SerializeField]
-        private int weaponID;
-        [SerializeField]
-        private int currentWeaponID;
-        [SerializeField]
         private GameObject[] weapons, bows, staffs, arrows;
         [SerializeField]
         private GameObject prefabMagic;
@@ -128,7 +133,7 @@ namespace ProjetoTCC
 
             maxLife = _GameController.MaxLife;
             maxMana = _GameController.MaxMana;
-            weaponID = _GameController.WeaponID;
+            
 
             playerRb = GetComponent<Rigidbody2D>(); // ASSOSSIA O COMPONENTE A VARÁVEL
             playerAnimator = GetComponent<Animator>(); // ASSOSSIA O COMPONENTE A VARIÁVEL
@@ -149,7 +154,6 @@ namespace ProjetoTCC
                 o.SetActive(false);
             }
 
-            ChangeWeapon(weaponID);
         }
 
         void FixedUpdate() // TAXA DE ATUALIZAÇÃO FIXA DE 0.02
@@ -161,14 +165,6 @@ namespace ProjetoTCC
 
             isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.02f, whatIsGround);
             playerRb.velocity = new Vector2(h * speed, playerRb.velocity.y);
-        }
-
-        private void LateUpdate()
-        {
-            if (_GameController.WeaponID != _GameController.CurrentWeaponID)
-            {
-                ChangeWeapon(_GameController.WeaponID);
-            }
         }
 
         void Update()
@@ -241,19 +237,6 @@ namespace ProjetoTCC
                 standing.enabled = true;
             }
 
-            if(Input.GetKeyDown(KeyCode.Alpha1) && isAttacking == false)
-            {
-                ChangeWeapon(0);
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha2) && isAttacking == false)
-            {
-                ChangeWeapon(4);
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha3) && isAttacking == false)
-            {
-                ChangeWeapon(5);
-            }
-
             if (isAttacking == true && isGrounded == true)
             {
                 h = 0;
@@ -278,7 +261,7 @@ namespace ProjetoTCC
             playerAnimator.SetBool("grounded", isGrounded);
             playerAnimator.SetInteger("idAnimation", idAnimation);
             playerAnimator.SetFloat("speedY", playerRb.velocity.y);
-            playerAnimator.SetFloat("weaponClassID", _GameController.WeaponClassID[_GameController.CurrentWeaponID]);
+            playerAnimator.SetFloat("weaponClassID", (int)_GameController.CurrentWeapon.WeaponType);
 
             Interact();
 
@@ -445,59 +428,94 @@ namespace ProjetoTCC
             isInteractionAvailable = true;
         }
 
-        public void ChangeWeapon(int id)
+        public void ChangeWeapon(string id)
         {
-            WeaponData tempWeaponData;
-            weaponID = id;
+            var weapon = _GameController.WeaponProvider.GetWeaponById(id);
+            _GameController.CurrentWeapon = weapon;
 
-            switch(_GameController.WeaponClassID[weaponID])
+            switch (weapon.WeaponType)
             {
-                case 0: // Espadas, Machados, Martelos, Adagas, Maças
+                case WeaponType.Melee:
 
-                    weapons[0].GetComponent<SpriteRenderer>().sprite = _GameController.WeaponsSprites_1[weaponID];
-                    tempWeaponData = weapons[0].GetComponent<WeaponData>();
-                    tempWeaponData.Damage = _GameController.WeaponDamage[weaponID];
-                    tempWeaponData.DamageType = _GameController.WeaponDamageType[weaponID];
-
-
-                    weapons[1].GetComponent<SpriteRenderer>().sprite = _GameController.WeaponsSprites_2[weaponID];
-                    tempWeaponData = weapons[1].GetComponent<WeaponData>();
-                    tempWeaponData.Damage = _GameController.WeaponDamage[weaponID];
-                    tempWeaponData.DamageType = _GameController.WeaponDamageType[weaponID];
-
-                    weapons[2].GetComponent<SpriteRenderer>().sprite = _GameController.WeaponsSprites_3[weaponID];
-                    tempWeaponData = weapons[2].GetComponent<WeaponData>();
-                    tempWeaponData.Damage = _GameController.WeaponDamage[weaponID];
-                    tempWeaponData.DamageType = _GameController.WeaponDamageType[weaponID];
-
-                    _GameController.WeaponID = id;
+                    for (int i = 0; i < weapons.Length; i++)
+                    {
+                        if(weapon.AnimationIcons.Length > i)
+                        {
+                            weapons[i].GetComponent<SpriteRenderer>().sprite = weapon.AnimationIcons[i];
+                        }
+                    }
 
                     break;
 
-                case 1: // Arcos
+                case WeaponType.Bow:
 
-                    bows[0].GetComponent<SpriteRenderer>().sprite = _GameController.WeaponsSprites_1[weaponID];
-                    bows[1].GetComponent<SpriteRenderer>().sprite = _GameController.WeaponsSprites_2[weaponID];
-                    bows[2].GetComponent<SpriteRenderer>().sprite = _GameController.WeaponsSprites_3[weaponID];
-
-                    _GameController.WeaponID = id;
+                    for (int i = 0; i < bows.Length; i++)
+                    {
+                        if (weapon.AnimationIcons.Length > i)
+                        {
+                            bows[i].GetComponent<SpriteRenderer>().sprite = weapon.AnimationIcons[i];
+                        }
+                    }
 
                     break;
 
-                case 2: //Cajados
+                case WeaponType.Staff:
 
-                    staffs[0].GetComponent<SpriteRenderer>().sprite = _GameController.WeaponsSprites_1[weaponID];
-                    staffs[1].GetComponent<SpriteRenderer>().sprite = _GameController.WeaponsSprites_2[weaponID];
-                    staffs[2].GetComponent<SpriteRenderer>().sprite = _GameController.WeaponsSprites_3[weaponID];
-                    staffs[3].GetComponent<SpriteRenderer>().sprite = _GameController.WeaponsSprites_4[weaponID];
-
-                    _GameController.WeaponID = id;
+                    for (int i = 0; i < staffs.Length; i++)
+                    {
+                        if (weapon.AnimationIcons.Length > i)
+                        {
+                            staffs[i].GetComponent<SpriteRenderer>().sprite = weapon.AnimationIcons[i];
+                        }
+                    }
 
                     break;
 
             }
-            
-            _GameController.CurrentWeaponID = _GameController.WeaponID;
+        }
+
+        public void ChangeWeapon(CustomWeaponData weapon)
+        {
+
+            switch (weapon.WeaponType)
+            {
+                case WeaponType.Melee:
+
+                    for (int i = 0; i < weapons.Length; i++)
+                    {
+                        if (weapon.AnimationIcons.Length > i)
+                        {
+                            weapons[i].GetComponent<SpriteRenderer>().sprite = weapon.AnimationIcons[i];
+                        }
+                    }
+
+                    break;
+
+                case WeaponType.Bow:
+
+                    for (int i = 0; i < bows.Length; i++)
+                    {
+                        if (weapon.AnimationIcons.Length > i)
+                        {
+                            bows[i].GetComponent<SpriteRenderer>().sprite = weapon.AnimationIcons[i];
+                        }
+                    }
+
+                    break;
+
+                case WeaponType.Staff:
+
+                    for (int i = 0; i < staffs.Length; i++)
+                    {
+                        if (weapon.AnimationIcons.Length > i)
+                        {
+                            staffs[i].GetComponent<SpriteRenderer>().sprite = weapon.AnimationIcons[i];
+                        }
+                    }
+
+                    break;
+
+            }
         }
 
     }

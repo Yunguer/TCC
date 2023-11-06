@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 295ca286071ac614e8b39f88bc83d199, type: 3}
+  m_Name: MarteloDeSafira 9
+  m_EditorClassIdentifier: 
+  id: WEAPON_MELEE_MARTELOSAFIRA_LVL_9
+  weaponType: 0
+  name: Martelo de Safira
+  inventoryIcon: {fileID: -1589420306, guid: bd4a047e9cac00d4b8df38f0050bb838, type: 3}
+  animationIcons:
+  - {fileID: 1869586527, guid: 8672995140b52814fbd5ca2176d699e0, type: 3}
+  - {fileID: 2089519927, guid: 8672995140b52814fbd5ca2176d699e0, type: 3}
+  - {fileID: 2142135510, guid: 8672995140b52814fbd5ca2176d699e0, type: 3}
+  damage: 24
+  damageType: 2
+  level: 9

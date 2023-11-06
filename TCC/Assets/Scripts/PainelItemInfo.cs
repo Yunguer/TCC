@@ -62,7 +62,7 @@ namespace ProjetoTCC
         [SerializeField]
         private Button deleteBTN;
         [SerializeField]
-        private int weaponID;
+        private string weaponID;
         [SerializeField]
         private int upgrade;
         #endregion
@@ -83,12 +83,13 @@ namespace ProjetoTCC
             Item itemInfo = slotObject.GetComponent<Item>();
             weaponID = itemInfo.ItemID;
 
+            var weapon = _GameController.WeaponProvider.GetWeaponById(weaponID);
 
-            itemIMG.sprite = _GameController.InventoryIMG[weaponID];
-            itemName.text = _GameController.WeaponName[weaponID];
+            itemIMG.sprite = weapon.InventoryIcon;
+            itemName.text = weapon.name;
 
-            string damageType = _GameController.DamageTypes[_GameController.WeaponDamageType[weaponID]];
-            int damage = _GameController.WeaponDamage[weaponID];
+            string damageType = weapon.DamageType.ToString();
+            int damage = weapon.Damage;
 
             damageWeapon.text = "Dano: " + damage.ToString() + " de " + damageType;
 
@@ -101,7 +102,7 @@ namespace ProjetoTCC
             }
             else
             {
-                int weaponClassID = _GameController.WeaponClassID[weaponID];
+                int weaponClassID = (int)weapon.WeaponType;
                 int characterClassID = _GameController.CharacterClassID[_GameController.CharacterID];
 
                 if(weaponClassID == characterClassID)
@@ -119,7 +120,7 @@ namespace ProjetoTCC
 
         public void UpgradeButton()
         {
-            _GameController.UpgradeWeapon(weaponID);
+            _GameController.UpgradeWeapon(weaponID, slotID);
             LoadUpgrade();
         }
 
@@ -137,26 +138,24 @@ namespace ProjetoTCC
 
         void LoadUpgrade()
         {
-            upgrade = _GameController.WeaponUpgrade[weaponID];
+            int currentLevel = _GameController.WeaponProvider.GetWeaponById(weaponID).Level;
 
-            if(upgrade >= 10) 
-            { 
-                upgradeBTN.interactable = false; 
-            }
-            else 
-            { 
-                upgradeBTN.interactable = true; 
-            }
+            SetupUpgradeButton(currentLevel);
 
             foreach (GameObject a in upgrades)
             {
                 a.SetActive(false);
             }
 
-            for (int i = 0; i < upgrade; i++)
+            for (int i = 0; i < currentLevel; i++)
             {
                 upgrades[i].SetActive(true);
             }
+        }
+
+        private void SetupUpgradeButton(int currentLevel)
+        {
+            upgradeBTN.interactable = currentLevel < 10;
         }
     }
 }

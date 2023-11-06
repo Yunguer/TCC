@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 295ca286071ac614e8b39f88bc83d199, type: 3}
+  m_Name: EspadaDeMadeira
+  m_EditorClassIdentifier: 
+  id: WEAPON_MELEE_MADEIRA_LVL_0
+  weaponType: 0
+  name: Espada de Madeira
+  inventoryIcon: {fileID: 360013216, guid: bd4a047e9cac00d4b8df38f0050bb838, type: 3}
+  animationIcons:
+  - {fileID: 127225272, guid: d8be374962c2513478b8c94a5fdd7b5b, type: 3}
+  - {fileID: -1085701228, guid: d8be374962c2513478b8c94a5fdd7b5b, type: 3}
+  - {fileID: 930645262, guid: d8be374962c2513478b8c94a5fdd7b5b, type: 3}
+  damage: 5
+  damageType: 0
+  level: 0

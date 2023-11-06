@@ -101,7 +101,7 @@ namespace ProjetoTCC
                 slots[s].GetComponent<SlotInventory>().SlotObject = temp;
                 slots[s].interactable = true;
 
-                itensIcons[s].sprite = _GameController.InventoryIMG[itemInfo.ItemID];
+                itensIcons[s].sprite = _GameController.WeaponProvider.GetWeaponById(itemInfo.ItemID).InventoryIcon;
                 itensIcons[s].gameObject.SetActive(true);
 
                 s++;

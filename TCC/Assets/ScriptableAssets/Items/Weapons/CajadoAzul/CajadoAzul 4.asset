@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 295ca286071ac614e8b39f88bc83d199, type: 3}
+  m_Name: CajadoAzul 4
+  m_EditorClassIdentifier: 
+  id: WEAPON_STAFF_AZUL_LVL_4
+  weaponType: 0
+  name: Cajado Azul
+  inventoryIcon: {fileID: -1589420306, guid: bd4a047e9cac00d4b8df38f0050bb838, type: 3}
+  animationIcons:
+  - {fileID: -1950128077, guid: 6bf21bac8439945439663d37014ec5dc, type: 3}
+  - {fileID: 1720676654, guid: 6bf21bac8439945439663d37014ec5dc, type: 3}
+  - {fileID: -892915171, guid: 6bf21bac8439945439663d37014ec5dc, type: 3}
+  - {fileID: 876974162, guid: 6bf21bac8439945439663d37014ec5dc, type: 3}
+  damage: 14
+  damageType: 2
+  level: 4

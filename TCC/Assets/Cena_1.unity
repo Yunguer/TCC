@@ -8133,11 +8133,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 708a61ebb6247ed42a084c36ad41e7b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponProvider: {fileID: 11400000, guid: 74c737d135ea68047b6a3e32987be7a0, type: 2}
   currentGameState: 1
   damageTypes:
   - Normal
   - Fire
   - Water
+  - Earth
   damageFX:
   - {fileID: 3846625091335116415, guid: b28d4d00c23b3824ca07577f78a6d6ae, type: 3}
   - {fileID: 9191566685482199024, guid: e92d0059c827cbe4b9174368001ff9f6, type: 3}
@@ -8150,8 +8152,6 @@ MonoBehaviour:
   currentLife: 0
   maxMana: 10
   currentMana: 0
-  weaponID: 0
-  currentWeaponID: 0
   arrowQnt: 050000000a0000000f000000
   equipedArrowID: 2
   potionQnt: 0500000005000000
@@ -8162,12 +8162,11 @@ MonoBehaviour:
   - {fileID: 2800000, guid: f094f6c9de9e5ba40a86e5e88f46db37, type: 3}
   - {fileID: 2800000, guid: b238665017aa96b44bf4b37735f501a3, type: 3}
   characterClassID: 00000000000000000100000002000000
-  inicialWeaponID: 0
   inicialWeapon:
   - {fileID: 7998914962212620258, guid: 1e9a81b258abace42b4fc27bfddb143c, type: 3}
   - {fileID: 7998914962212620258, guid: 1e9a81b258abace42b4fc27bfddb143c, type: 3}
-  - {fileID: 7998914962212620258, guid: ae07a4d98e94bfd439e0753ae55d72f0, type: 3}
-  - {fileID: 7998914962212620258, guid: 5b8b5ed5c7fa0284ab07f33e36f317f9, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
   weaponName:
   - Espada de Madeira
   - Arco de Madeira
@@ -8331,7 +8330,7 @@ MonoBehaviour:
   upgradeBTN: {fileID: 1418332874}
   equipBTN: {fileID: 1237167170}
   deleteBTN: {fileID: 1383537140}
-  weaponID: 0
+  weaponID: 
   upgrade: 0
 --- !u!1001 &1173783154
 PrefabInstance:
@@ -13306,6 +13305,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1850554005360853388, guid: 8bd7320c0ecc80c4582ee3860f729fb3, type: 3}
+      propertyPath: damageModifier.Array.size
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4728178691036254317, guid: 8bd7320c0ecc80c4582ee3860f729fb3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.86
@@ -13352,7 +13355,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8416191624555427808, guid: 8bd7320c0ecc80c4582ee3860f729fb3, type: 3}
       propertyPath: weaponID
-      value: 0
+      value: WEAPON_MELEE_MADEIRA_LVL_0
       objectReference: {fileID: 0}
     - target: {fileID: 8416191624555427808, guid: 8bd7320c0ecc80c4582ee3860f729fb3, type: 3}
       propertyPath: leaveAlertDistance
@@ -13498,6 +13501,10 @@ PrefabInstance:
     - target: {fileID: 7081539691172623123, guid: 47552ab0e33614f489f5768b36a6ba69, type: 3}
       propertyPath: m_Layer
       value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7140163053570960817, guid: 47552ab0e33614f489f5768b36a6ba69, type: 3}
+      propertyPath: weaponID
+      value: WEAPON_MELEE_RUBI_LVL_0
       objectReference: {fileID: 0}
     - target: {fileID: 7369067527223067773, guid: 47552ab0e33614f489f5768b36a6ba69, type: 3}
       propertyPath: m_Layer

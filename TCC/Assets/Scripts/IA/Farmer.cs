@@ -74,7 +74,7 @@ namespace ProjetoTCC
         private GameObject[] weapons, bows, staffs;
 
         [SerializeField]
-        private int weaponID;
+        private string weaponID;
 
         [SerializeField]
         private int classID;
@@ -96,7 +96,7 @@ namespace ProjetoTCC
             {
                 Flip();
             }
-            ChangeWeapon(classID);
+            ChangeWeapon(weaponID);
 
         }
 
@@ -306,55 +306,47 @@ namespace ProjetoTCC
 
         }
 
-        public void ChangeWeapon(int id)
+        public void ChangeWeapon(string id)
         {
-            WeaponData tempWeaponData;
+            var weapon = _GameController.WeaponProvider.GetWeaponById(id);
 
-            switch (id)
+            switch (weapon.WeaponType)
             {
-                case 0: // Espadas, Machados, Martelos, Adagas, Maças
+                case WeaponType.Melee:
 
-                    weapons[0].GetComponent<SpriteRenderer>().sprite = _GameController.WeaponsSprites_1[weaponID];
-                    tempWeaponData = weapons[0].GetComponent<WeaponData>();
-                    tempWeaponData.Damage = _GameController.WeaponDamage[weaponID];
-                    tempWeaponData.DamageType = _GameController.WeaponDamageType[weaponID];
-
-
-                    weapons[1].GetComponent<SpriteRenderer>().sprite = _GameController.WeaponsSprites_2[weaponID];
-                    tempWeaponData = weapons[1].GetComponent<WeaponData>();
-                    tempWeaponData.Damage = _GameController.WeaponDamage[weaponID];
-                    tempWeaponData.DamageType = _GameController.WeaponDamageType[weaponID];
-
-                    weapons[2].GetComponent<SpriteRenderer>().sprite = _GameController.WeaponsSprites_3[weaponID];
-                    tempWeaponData = weapons[2].GetComponent<WeaponData>();
-                    tempWeaponData.Damage = _GameController.WeaponDamage[weaponID];
-                    tempWeaponData.DamageType = _GameController.WeaponDamageType[weaponID];
-
-                    _GameController.WeaponID = id;
+                    for (int i = 0; i < weapons.Length; i++)
+                    {
+                        if (weapon.AnimationIcons.Length > i)
+                        {
+                            weapons[i].GetComponent<SpriteRenderer>().sprite = weapon.AnimationIcons[i];
+                        }
+                    }
 
                     break;
 
-                case 1: // Arcos
+                case WeaponType.Bow:
 
-                    bows[0].GetComponent<SpriteRenderer>().sprite = _GameController.WeaponsSprites_1[weaponID];
-                    bows[1].GetComponent<SpriteRenderer>().sprite = _GameController.WeaponsSprites_2[weaponID];
-                    bows[2].GetComponent<SpriteRenderer>().sprite = _GameController.WeaponsSprites_3[weaponID];
-
-                    _GameController.WeaponID = id;
-
-                    break;
-
-                case 2: //Cajados
-
-                    staffs[0].GetComponent<SpriteRenderer>().sprite = _GameController.WeaponsSprites_1[weaponID];
-                    staffs[1].GetComponent<SpriteRenderer>().sprite = _GameController.WeaponsSprites_2[weaponID];
-                    staffs[2].GetComponent<SpriteRenderer>().sprite = _GameController.WeaponsSprites_3[weaponID];
-                    staffs[3].GetComponent<SpriteRenderer>().sprite = _GameController.WeaponsSprites_4[weaponID];
-
-                    _GameController.WeaponID = id;
+                    for (int i = 0; i < bows.Length; i++)
+                    {
+                        if (weapon.AnimationIcons.Length > i)
+                        {
+                            bows[i].GetComponent<SpriteRenderer>().sprite = weapon.AnimationIcons[i];
+                        }
+                    }
 
                     break;
 
+                case WeaponType.Staff:
+
+                    for (int i = 0; i < staffs.Length; i++)
+                    {
+                        if (weapon.AnimationIcons.Length > i)
+                        {
+                            staffs[i].GetComponent<SpriteRenderer>().sprite = weapon.AnimationIcons[i];
+                        }
+                    }
+
+                    break;
             }
         }
 
