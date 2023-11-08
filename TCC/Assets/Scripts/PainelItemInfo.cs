@@ -8,6 +8,8 @@ namespace ProjetoTCC
 {
     public class PainelItemInfo : MonoBehaviour
     {
+        public static System.Action OnItemClicked;
+
         private _GameController _GameController;
         private Inventory inventory;
 
@@ -26,19 +28,9 @@ namespace ProjetoTCC
                 slotID = value;
             }
         }
-        [SerializeField]
-        private GameObject slotObject;
-        public GameObject SlotObject
-        {
-            get
-            {
-                return slotObject;
-            }
-            set
-            {
-                slotObject = value;
-            }
-        }
+
+        private string itemID;
+        public string ItemID => itemID;
         #endregion
 
         [Header("Configuração da HUD do Item")]
@@ -62,8 +54,6 @@ namespace ProjetoTCC
         [SerializeField]
         private Button deleteBTN;
         [SerializeField]
-        private string weaponID;
-        [SerializeField]
         private int upgrade;
         #endregion
 
@@ -80,13 +70,11 @@ namespace ProjetoTCC
 
         public void LoadItemInfo()
         {
-            Item itemInfo = slotObject.GetComponent<Item>();
-            weaponID = itemInfo.ItemID;
-
-            var weapon = _GameController.WeaponProvider.GetWeaponById(weaponID);
+            itemID = inventory.InventoryItens[slotID];
+            var weapon = _GameController.WeaponProvider.GetWeaponById(itemID);
 
             itemIMG.sprite = weapon.InventoryIcon;
-            itemName.text = weapon.name;
+            itemName.text = weapon.Name;
 
             string damageType = weapon.DamageType.ToString();
             int damage = weapon.Damage;
@@ -120,15 +108,15 @@ namespace ProjetoTCC
 
         public void UpgradeButton()
         {
-            _GameController.UpgradeWeapon(weaponID, slotID);
+            _GameController.UpgradeWeapon(itemID, slotID);
             LoadUpgrade();
         }
 
         public void EquipButton()
         {
-            slotObject.SendMessage("UseItem", SendMessageOptions.DontRequireReceiver);
             inventory.ClearLoadedItens();
             _GameController.SwapItensInventory(slotID);
+            _GameController.UseItemWeapon(itemID);
         }
 
         public void DeleteButton()
@@ -138,7 +126,8 @@ namespace ProjetoTCC
 
         void LoadUpgrade()
         {
-            int currentLevel = _GameController.WeaponProvider.GetWeaponById(weaponID).Level;
+            itemID = inventory.InventoryItens[slotID];
+            int currentLevel = _GameController.WeaponProvider.GetWeaponById(itemID).Level;
 
             SetupUpgradeButton(currentLevel);
 
@@ -157,5 +146,7 @@ namespace ProjetoTCC
         {
             upgradeBTN.interactable = currentLevel < 10;
         }
+
+
     }
 }

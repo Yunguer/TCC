@@ -7,6 +7,7 @@ namespace ProjetoTCC
     public enum PlayerType
     { 
         Curupira,
+        Farmer,
         Saci,
         Boto
     }
@@ -16,6 +17,7 @@ namespace ProjetoTCC
 
         #region Variaveis Unity
         private Animator playerAnimator;
+        public Animator PlayerAnimator => playerAnimator;
         private Rigidbody2D playerRb;
         #endregion
 
@@ -49,19 +51,36 @@ namespace ProjetoTCC
 
         [Header("Configuração de Movimentação")]
         #region Variaveis de Mecânicas 
+        
         [SerializeField]
         private float speed; // VELOCIDADE DE MOVIMENTO DO PERSONAGEM
+        
         [SerializeField]
         private float jumpForce; // FORÇA APLICADA PARA GERAR O PULO DO PERSONAGEM
+        
         [SerializeField]
         private bool isGrounded; // INDICA SE O PERSONAGEM ESTÁ PISANDO EM ALGUMA SUPERFÍCE
+        
         [SerializeField]
         private bool isLookingLeft; // INDICA SE O PERSONAGEM ESTÁ VIRADO PARA A ESQUERDA
+        
         [SerializeField]
         private bool isAttacking;
-        public bool IsAttacking => isAttacking;// INDICAR SE O PERSONAGEM ESTÁ EXECUTANDO UM ATAQUE 
+        public bool IsAttacking// INDICAR SE O PERSONAGEM ESTÁ EXECUTANDO UM ATAQUE 
+        {
+            get
+            {
+                return isAttacking;
+            }
+            set
+            {
+                isAttacking = value;
+            }
+        }
+
         [SerializeField]
         private int idAnimation; // INDICA O ID DA ANIMAÇÃO
+        
         [SerializeField]
         private Collider2D standing, crounching; // COLISÃO EM PÉ E AGACHADO
         private float h, v; // VALORES HORIZONTAL E VERTICAL
@@ -416,10 +435,6 @@ namespace ProjetoTCC
                 case "Collectable":
                     col.gameObject.SendMessage("Collect", SendMessageOptions.DontRequireReceiver);
                     break;
-                case "Enemy":
-                    _GameController.CurrentLife -= 1;
-                    playerAnimator.SetTrigger("hit");
-                    break;
             }       
         }
 
@@ -433,6 +448,8 @@ namespace ProjetoTCC
             var weapon = _GameController.WeaponProvider.GetWeaponById(id);
             _GameController.CurrentWeapon = weapon;
 
+            
+
             switch (weapon.WeaponType)
             {
                 case WeaponType.Melee:
@@ -443,7 +460,13 @@ namespace ProjetoTCC
                         {
                             weapons[i].GetComponent<SpriteRenderer>().sprite = weapon.AnimationIcons[i];
                         }
+                        var weaponData = weapons[i].GetComponent<WeaponData>();
+
+                        weaponData.Damage = weapon.Damage;
+                        weaponData.DamageType = (int)weapon.DamageType;
                     }
+                    
+                    
 
                     break;
 
@@ -455,6 +478,10 @@ namespace ProjetoTCC
                         {
                             bows[i].GetComponent<SpriteRenderer>().sprite = weapon.AnimationIcons[i];
                         }
+                        var weaponData = bows[i].GetComponent<WeaponData>();
+
+                        weaponData.Damage = weapon.Damage;
+                        weaponData.DamageType = (int)weapon.DamageType;
                     }
 
                     break;
@@ -467,6 +494,10 @@ namespace ProjetoTCC
                         {
                             staffs[i].GetComponent<SpriteRenderer>().sprite = weapon.AnimationIcons[i];
                         }
+                        var weaponData = staffs[i].GetComponent<WeaponData>();
+
+                        weaponData.Damage = weapon.Damage;
+                        weaponData.DamageType = (int)weapon.DamageType;
                     }
 
                     break;
@@ -487,6 +518,11 @@ namespace ProjetoTCC
                         {
                             weapons[i].GetComponent<SpriteRenderer>().sprite = weapon.AnimationIcons[i];
                         }
+
+                        var weaponData = weapons[i].GetComponent<WeaponData>();
+
+                        weaponData.Damage = weapon.Damage;
+                        weaponData.DamageType = (int)weapon.DamageType;
                     }
 
                     break;
@@ -499,6 +535,11 @@ namespace ProjetoTCC
                         {
                             bows[i].GetComponent<SpriteRenderer>().sprite = weapon.AnimationIcons[i];
                         }
+
+                        var weaponData = bows[i].GetComponent<WeaponData>();
+
+                        weaponData.Damage = weapon.Damage;
+                        weaponData.DamageType = (int)weapon.DamageType;
                     }
 
                     break;
@@ -511,12 +552,55 @@ namespace ProjetoTCC
                         {
                             staffs[i].GetComponent<SpriteRenderer>().sprite = weapon.AnimationIcons[i];
                         }
+
+                        var weaponData = staffs[i].GetComponent<WeaponData>();
+
+                        weaponData.Damage = weapon.Damage;
+                        weaponData.DamageType = (int)weapon.DamageType;
                     }
 
                     break;
 
             }
         }
+
+        public void DeActivetWeaponObjects()
+        {
+            var weapon = _GameController.CurrentWeapon;
+
+            switch (weapon.WeaponType)
+            {
+                case WeaponType.Melee:
+
+                    for (int i = 0; i < weapons.Length; i++)
+                    {
+                        weapons[i].SetActive(false);
+                    }
+
+                    break;
+
+                case WeaponType.Bow:
+
+                    for (int i = 0; i < bows.Length; i++)
+                    {
+                        bows[i].SetActive(false);
+                    }
+
+                    break;
+
+                case WeaponType.Staff:
+
+                    for (int i = 0; i < staffs.Length; i++)
+                    {
+                        staffs[i].SetActive(false);
+                    }
+
+                    break;
+
+            }
+        }
+
+        
 
     }
 }

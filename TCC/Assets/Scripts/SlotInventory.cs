@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace ProjetoTCC
 {
@@ -10,18 +11,8 @@ namespace ProjetoTCC
         private PainelItemInfo painelItemInfo;
         
         [SerializeField]
-        private GameObject slotObject;
-        public GameObject SlotObject
-        {
-            get
-            {
-                return slotObject;
-            }
-            set
-            {
-                slotObject = value;
-            }
-        }
+        private Image slotIcon;
+
         [SerializeField]
         private int slotID;
 
@@ -29,6 +20,7 @@ namespace ProjetoTCC
         {
             _GameController = FindObjectOfType(typeof(_GameController)) as _GameController;
             painelItemInfo = FindObjectOfType(typeof(PainelItemInfo)) as PainelItemInfo;
+          
         }
 
         void Update()
@@ -36,15 +28,36 @@ namespace ProjetoTCC
 
         }
 
+        private void OnEnable()
+        {
+            PainelItemInfo.OnItemClicked += UseItem;
+            slotIcon.enabled = false;
+        }
+
+        private void OnDisable()
+        {
+            PainelItemInfo.OnItemClicked -= UseItem;
+        }
+
         public void UseItem()
         {
-            if(slotObject != null)
+            if(slotIcon != null)
             {
-                painelItemInfo.SlotObject = slotObject;
                 painelItemInfo.SlotID = slotID;
                 painelItemInfo.LoadItemInfo();
                 _GameController.OpenItenInfo();
             }
+        }
+
+        public void SetIcon(Sprite iconSprite)
+        {
+            slotIcon.enabled = true;
+            slotIcon.sprite = iconSprite;
+        }
+
+        public void SetEnableIcon(bool enable)
+        {
+            slotIcon.enabled = enable;
         }
     }
 }

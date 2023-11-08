@@ -12,17 +12,19 @@ namespace ProjetoTCC
 
         [Header("Inventario")]
         #region Variaveis do Inventario
+        
         [SerializeField]
         private Button[] slots;
-        [SerializeField]
-        private Image[] itensIcons;
+        
         [SerializeField]
         private TextMeshProUGUI qntHealth, qntMana, qntArrow1, qntArrow2, qntArrow3;
+        
         [SerializeField]
         private int qHealth, qMana, qArrow1, qArrow2, qArrow3;
+        
         [SerializeField]
-        private List<GameObject> inventoryItens;
-        public List<GameObject> InventoryItens
+        private List<string> inventoryItens;
+        public List<string> InventoryItens
         {
             get
             {
@@ -35,8 +37,8 @@ namespace ProjetoTCC
         }
 
         [SerializeField]
-        private List<GameObject> loadedItens;
-        public List<GameObject> LoadedItens
+        private List<string> loadedItens;
+        public List<string> LoadedItens
         {
             get
             {
@@ -55,11 +57,11 @@ namespace ProjetoTCC
             
             if(loadedItens == null)
             {
-                loadedItens = new List<GameObject>();
+                loadedItens = new List<string>();
             }
             if (inventoryItens == null)
             {
-                loadedItens = new List<GameObject>();
+                loadedItens = new List<string>();
             }
         }    
 
@@ -77,12 +79,6 @@ namespace ProjetoTCC
                 b.interactable = false;
             }
 
-            foreach(Image i in itensIcons)
-            {
-                i.sprite = null;
-                i.gameObject.SetActive(false);
-            }
-
             qntHealth.text = "x " + _GameController.PotionQnt[0].ToString();
             qntMana.text = "x " + _GameController.PotionQnt[1].ToString();
             qntArrow1.text = "x " + _GameController.ArrowQnt[0].ToString();
@@ -91,18 +87,14 @@ namespace ProjetoTCC
 
             int s = 0;
 
-            foreach(GameObject i in inventoryItens)
+            foreach(string i in inventoryItens)
             {
-                GameObject temp = Instantiate(i);
-                Item itemInfo = temp.GetComponent<Item>();
+                var weapon = _GameController.WeaponProvider.GetWeaponById(i);
 
-                loadedItens.Add(temp);
+                loadedItens.Add(i);
 
-                slots[s].GetComponent<SlotInventory>().SlotObject = temp;
+                slots[s].GetComponent<SlotInventory>().SetIcon(weapon.InventoryIcon);
                 slots[s].interactable = true;
-
-                itensIcons[s].sprite = _GameController.WeaponProvider.GetWeaponById(itemInfo.ItemID).InventoryIcon;
-                itensIcons[s].gameObject.SetActive(true);
 
                 s++;
             }
@@ -110,11 +102,6 @@ namespace ProjetoTCC
 
         public void ClearLoadedItens()
         {
-            foreach (GameObject li in loadedItens)
-            {
-                Destroy(li);
-            }
-
             loadedItens.Clear();
         }
     }

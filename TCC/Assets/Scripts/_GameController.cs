@@ -29,10 +29,6 @@ namespace ProjetoTCC
         #region Variaveis Para As Mecanicas de Dano
         
         [SerializeField]
-        private string[] damageTypes;
-        public string[] DamageTypes => damageTypes;
-        
-        [SerializeField]
         private GameObject[] damageFX;
         public GameObject[] DamageFX => damageFX;
         
@@ -189,44 +185,11 @@ namespace ProjetoTCC
         private int[] characterClassID;
         public int[] CharacterClassID => characterClassID;
 
-        [SerializeField]
-        private GameObject[] inicialWeapon;
-        public GameObject[] InicialWeapon => inicialWeapon;
         #endregion
 
         [Header("Banco de Dados de Armas")]
         #region Banco de Dados de Armas
-        [SerializeField]
-        private string[] weaponName;
-        public string[] WeaponName => weaponName;
-        [SerializeField]
-        private Sprite[] inventoryIMG;
-        public Sprite[] InventoryIMG => inventoryIMG;
-        [SerializeField]
-        private int[] weaponClassID; // 0 = Espada, Machado, Martelo, Adagas, Maça - 1 = Arcos - 2 = Cajados
-        public int[] WeaponClassID => weaponClassID;
-
-        [SerializeField]
-        private Sprite[] weaponsSprites_1;
-        public Sprite[] WeaponsSprites_1 => weaponsSprites_1;
-        [SerializeField]
-        private Sprite[] weaponsSprites_2;
-        public Sprite[] WeaponsSprites_2 => weaponsSprites_2;
-        [SerializeField]
-        private Sprite[] weaponsSprites_3;
-        public Sprite[] WeaponsSprites_3 => weaponsSprites_3;
-        [SerializeField]
-        private Sprite[] weaponsSprites_4;
-        public Sprite[] WeaponsSprites_4 => weaponsSprites_4;
-        [SerializeField]
-        private int[] weaponDamage;
-        public int[] WeaponDamage => weaponDamage;
-        [SerializeField]
-        private int[] weaponDamageType;
-        public int[] WeaponDamageType => weaponDamageType;
-        [SerializeField]
-        private int[] weaponUpgrade;
-        public int[] WeaponUpgrade => weaponUpgrade;
+     
         [SerializeField]
         private Sprite[] arrowIcon;
         public Sprite[] ArrowIcon => arrowIcon;
@@ -275,7 +238,7 @@ namespace ProjetoTCC
 
             playerScript.ChangeWeapon(currentWeapon);
 
-            inventory.InventoryItens.Add(inicialWeapon[characterID]);
+            inventory.InventoryItens.Add(currentWeapon.Id);
 
             currentLife = maxLife;
             currentMana = maxMana;
@@ -399,13 +362,13 @@ namespace ProjetoTCC
         {
             var weapon = weaponProvider.GetWeaponById(weaponID);
             var newWeaponId = $"{weaponID.Substring(0, weaponID.Length - 2)}_{weapon.Level+1}";
-            inventory.InventoryItens[slotID].GetComponent<Item>().ItemID = newWeaponId;
+            inventory.InventoryItens[slotID] = newWeaponId;
         }
 
         public void SwapItensInventory(int slotID)
         {
-            GameObject Item1 = inventory.InventoryItens[0];
-            GameObject Item2 = inventory.InventoryItens[slotID];
+            var Item1 = inventory.InventoryItens[0];
+            var Item2 = inventory.InventoryItens[slotID];
 
             inventory.InventoryItens[0] = Item2;
             inventory.InventoryItens[slotID] = Item1;
@@ -413,7 +376,7 @@ namespace ProjetoTCC
             ReturnGameplay();
         }
 
-        public void ColectItem(GameObject colectedObject)
+        public void ColectItem(string colectedObject)
         {
             inventory.InventoryItens.Add(colectedObject);
         }

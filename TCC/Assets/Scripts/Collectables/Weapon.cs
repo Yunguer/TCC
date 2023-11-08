@@ -15,7 +15,7 @@ namespace ProjetoTCC
         [Header("Objeto para Coletar")]
         #region Objeto a coletar
         [SerializeField]
-        private GameObject colectableWeapon;
+        private string colectableWeapon;
         #endregion
 
         #region Variavel Collider do Objeto

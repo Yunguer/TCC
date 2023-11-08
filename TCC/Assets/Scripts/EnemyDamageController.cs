@@ -119,6 +119,20 @@ namespace ProjetoTCC
             animator.SetBool("grounded", true);
         }
 
+        private void OnCollisionEnter2D(Collision2D col)
+        {
+            switch (col.gameObject.tag)
+            {
+                case "Player":
+                    if(!dead)
+                    {
+                        _GameController.CurrentLife -= 1;
+                        playerScript.PlayerAnimator.SetTrigger("hit");
+                    }
+                    break;
+            }
+        }
+
         void OnTriggerEnter2D(Collider2D col)
         {
             if (dead == true)
@@ -142,19 +156,13 @@ namespace ProjetoTCC
                         {
                             weaponDamage = weaponDamage * _GameController.CurrentWeapon.Damage;
                             damageType = (int)_GameController.CurrentWeapon.DamageType;
+                            print(damageType);
                         }
 
                         //danoTomado = danoArma + (danoArma * (ajusteDano[id]/100))
                         float danoTomado = weaponDamage + (weaponDamage * (damageModifier[damageType] / 100));
 
                         enemyLife -= Mathf.RoundToInt(danoTomado);
-
-                        if (enemyLife <= 0)
-                        {
-                            dead = true;
-                            animator.SetInteger("idAnimation", 3);
-                            StartCoroutine("Loot");
-                        }
 
                         if(isPlayerOnLeft)
                         {
@@ -171,16 +179,42 @@ namespace ProjetoTCC
                         GameObject knockTemp = Instantiate(knockForcePrefab, knockPosition.position, knockPosition.localRotation);
                         Destroy(knockTemp, 0.02f);
 
+                        if (enemyLife <= 0)
+                        {
+                            dead = true;
+                            animator.SetInteger("idAnimation", 3);
+                            StartCoroutine("Loot");
+                        }
+
                         StartCoroutine("Invulnerable");
                         this.gameObject.SendMessage("TookHit", SendMessageOptions.DontRequireReceiver);
+
+
                     }
                     break;
+
+                case "Player":
+                    if(!dead)
+                    {
+                        _GameController.CurrentLife -= 1;
+                        playerScript.PlayerAnimator.SetTrigger("hit");
+                    }
+                    break;
+
             }
 
         }
+        
 
         IEnumerator Loot()
         {
+            yield return new WaitForSeconds(0.4f);
+            var boxCol = gameObject.GetComponents<BoxCollider2D>();
+            boxCol[0].enabled = false;
+            boxCol[1].enabled = false;
+            gameObject.GetComponent<CircleCollider2D>().enabled = false;
+            gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
+
             yield return new WaitForSeconds(1);
             GameObject fxDeath = Instantiate(_GameController.DeathFX, groundCheck.position, transform.localRotation);
             yield return new WaitForSeconds(0.03f);

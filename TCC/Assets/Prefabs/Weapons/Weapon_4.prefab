@@ -44,4 +44,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae1f450764a34fc4d9e1c6774ce88737, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemID: 4
+  itemID: WEAPON_BOW_MADEIRA_LVL_0
