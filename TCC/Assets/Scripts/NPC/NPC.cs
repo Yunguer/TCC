@@ -50,6 +50,12 @@ namespace ProjetoTCC
         private List<string> dialogue_4;
 
         [SerializeField]
+        private List<string> dialogue_5;
+        
+        [SerializeField]
+        private List<string> dialogue_6;
+
+        [SerializeField]
         private List<string> answerQuestion;
 
         [SerializeField]
@@ -87,6 +93,11 @@ namespace ProjetoTCC
                 if(chatLines != null)
                 {
                     chatLines.Clear();
+                }
+
+                if(chatID == 3 && _GameController.Mission1 == true)
+                {
+                    chatID = 4;
                 }
 
                 PreparDialogue();
@@ -140,6 +151,10 @@ namespace ProjetoTCC
                     case 2:
                         chatID = 0;
                         break;
+
+                    case 4:
+                        chatID = 5;
+                        break;
                 }
 
                 npcCanvas.SetActive(false);
@@ -190,6 +205,26 @@ namespace ProjetoTCC
                     }
 
                     break;
+
+                case 4:
+
+                    foreach (string s in dialogue_5)
+                    {
+                        chatLines.Add(s);
+                    }
+
+                    break;
+
+                case 5:
+
+                    foreach (string s in dialogue_6)
+                    {
+                        chatLines.Add(s);
+                    }
+
+                    break;
+
+
             }
         }
 
@@ -247,6 +282,14 @@ namespace ProjetoTCC
 
                         case "dialogue_4":
                             dialogue_4.Add(f.InnerText);
+                            break;
+
+                        case "dialogue_5":
+                            dialogue_5.Add(f.InnerText);
+                            break;
+
+                        case "dialogue_6":
+                            dialogue_6.Add(f.InnerText);
                             break;
 
                         case "resposta_1":

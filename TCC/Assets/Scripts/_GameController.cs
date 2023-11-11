@@ -227,6 +227,13 @@ namespace ProjetoTCC
         private Button firstPainelItenInfo;
         #endregion
 
+        [Header("Missões")]
+        #region Variaveis para as Missões
+
+        private bool mission1 = true;
+        public bool Mission1 => mission1;
+        #endregion
+
         private void Start()
         {
             DontDestroyOnLoad(this.gameObject);

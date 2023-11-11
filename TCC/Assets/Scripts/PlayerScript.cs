@@ -190,6 +190,9 @@ namespace ProjetoTCC
         {
             if(_GameController.CurrentGameState == GameState.DIALOGO)
             {
+                playerRb.velocity = new Vector2(0, playerRb.velocity.y);
+                playerAnimator.SetInteger("idAnimation", 0);
+
                 if(Input.GetButtonDown("Fire1"))
                 {
                     objectInteraction.SendMessage("Talk", SendMessageOptions.DontRequireReceiver);
@@ -349,7 +352,6 @@ namespace ProjetoTCC
                         _GameController.ArrowQnt[_GameController.EquipedArrowID]--;
                         GameObject tempPrefab = Instantiate(_GameController.ArrowPrefab[_GameController.EquipedArrowID], spawnArrow.position, spawnArrow.localRotation);
                         tempPrefab.GetComponent<WeaponData>().Damage = _GameController.CurrentWeapon.Damage * tempPrefab.GetComponent<WeaponData>().Damage;
-                        print(tempPrefab.GetComponent<WeaponData>().Damage);
                         tempPrefab.GetComponent<WeaponData>().DamageType = (int)_GameController.CurrentWeapon.DamageType;
                         tempPrefab.transform.localScale = new Vector3(tempPrefab.transform.localScale.x * dir.x, tempPrefab.transform.localScale.y, tempPrefab.transform.localScale.z);
                         tempPrefab.GetComponent<Rigidbody2D>().velocity = new Vector2(5 * dir.x, 0);
