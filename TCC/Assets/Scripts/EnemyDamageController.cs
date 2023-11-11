@@ -152,13 +152,6 @@ namespace ProjetoTCC
                         float weaponDamage = weaponInfo.Damage;
                         int damageType = weaponInfo.DamageType;
 
-                        if(_GameController.CharacterClassID[_GameController.CharacterID] == 1)
-                        {
-                            weaponDamage = weaponDamage * _GameController.CurrentWeapon.Damage;
-                            damageType = (int)_GameController.CurrentWeapon.DamageType;
-                            print(damageType);
-                        }
-
                         //danoTomado = danoArma + (danoArma * (ajusteDano[id]/100))
                         float danoTomado = weaponDamage + (weaponDamage * (damageModifier[damageType] / 100));
 

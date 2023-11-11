@@ -347,8 +347,10 @@ namespace ProjetoTCC
                     if(_GameController.ArrowQnt[_GameController.EquipedArrowID] > 0)
                     {
                         _GameController.ArrowQnt[_GameController.EquipedArrowID]--;
-                        WeaponData ArrowWeaponData = _GameController.ArrowPrefab[_GameController.EquipedArrowID].GetComponent<WeaponData>();
                         GameObject tempPrefab = Instantiate(_GameController.ArrowPrefab[_GameController.EquipedArrowID], spawnArrow.position, spawnArrow.localRotation);
+                        tempPrefab.GetComponent<WeaponData>().Damage = _GameController.CurrentWeapon.Damage * tempPrefab.GetComponent<WeaponData>().Damage;
+                        print(tempPrefab.GetComponent<WeaponData>().Damage);
+                        tempPrefab.GetComponent<WeaponData>().DamageType = (int)_GameController.CurrentWeapon.DamageType;
                         tempPrefab.transform.localScale = new Vector3(tempPrefab.transform.localScale.x * dir.x, tempPrefab.transform.localScale.y, tempPrefab.transform.localScale.z);
                         tempPrefab.GetComponent<Rigidbody2D>().velocity = new Vector2(5 * dir.x, 0);
                         Destroy(tempPrefab, 2);
@@ -485,10 +487,6 @@ namespace ProjetoTCC
                         {
                             bows[i].GetComponent<SpriteRenderer>().sprite = weapon.AnimationIcons[i];
                         }
-                        var weaponData = bows[i].GetComponent<WeaponData>();
-
-                        weaponData.Damage = weapon.Damage;
-                        weaponData.DamageType = (int)weapon.DamageType;
                     }
 
                     break;
@@ -501,10 +499,6 @@ namespace ProjetoTCC
                         {
                             staffs[i].GetComponent<SpriteRenderer>().sprite = weapon.AnimationIcons[i];
                         }
-                        var weaponData = staffs[i].GetComponent<WeaponData>();
-
-                        weaponData.Damage = weapon.Damage;
-                        weaponData.DamageType = (int)weapon.DamageType;
                     }
 
                     break;
