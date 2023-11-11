@@ -188,6 +188,13 @@ namespace ProjetoTCC
 
         void Update()
         {
+            if(_GameController.CurrentGameState == GameState.DIALOGO)
+            {
+                if(Input.GetButtonDown("Fire1"))
+                {
+                    objectInteraction.SendMessage("Talk", SendMessageOptions.DontRequireReceiver);
+                }
+            }
 
             if (_GameController.CurrentGameState != GameState.GAMEPLAY)
             {
@@ -538,8 +545,6 @@ namespace ProjetoTCC
 
                         var weaponData = bows[i].GetComponent<WeaponData>();
 
-                        weaponData.Damage = weapon.Damage;
-                        weaponData.DamageType = (int)weapon.DamageType;
                     }
 
                     break;
@@ -555,8 +560,6 @@ namespace ProjetoTCC
 
                         var weaponData = staffs[i].GetComponent<WeaponData>();
 
-                        weaponData.Damage = weapon.Damage;
-                        weaponData.DamageType = (int)weapon.DamageType;
                     }
 
                     break;

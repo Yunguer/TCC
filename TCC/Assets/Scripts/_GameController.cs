@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System.Collections;
 
 namespace ProjetoTCC
 {
@@ -9,7 +10,9 @@ namespace ProjetoTCC
         PAUSE,
         GAMEPLAY,
         ITENS,
-        ITEM_INFO
+        ITEM_INFO,
+        DIALOGO,
+        FIM_DIALOGO
     }
 
     public class _GameController : MonoBehaviour
@@ -302,6 +305,10 @@ namespace ProjetoTCC
             {
                 Time.timeScale = 1;
             }
+            if (newState == GameState.FIM_DIALOGO)
+            {
+                StartCoroutine(nameof(DialogueEnd));
+            }
         }
 
         public void ButtonItensDown()
@@ -409,6 +416,12 @@ namespace ProjetoTCC
                         break;
                 }
             }
+        }
+
+        IEnumerator DialogueEnd()
+        {
+            yield return new WaitForEndOfFrame();
+            ChangeState(GameState.GAMEPLAY);
         }
     }
 }

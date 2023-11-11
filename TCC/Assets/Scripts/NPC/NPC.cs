@@ -10,6 +10,8 @@ namespace ProjetoTCC
 {
     public class NPC : MonoBehaviour
     {
+        private _GameController _GameController;
+
         [SerializeField]
         private string xmlName;
 
@@ -60,6 +62,8 @@ namespace ProjetoTCC
 
         void Start()
         {
+            _GameController = FindObjectOfType(typeof(_GameController)) as _GameController;
+
             npcCanvas.SetActive(false);
             answerPainel.SetActive(false);
             isTalking = false;
@@ -70,13 +74,14 @@ namespace ProjetoTCC
 
         void Update()
         {
-
+            
         }
 
         public void Interaction()
         {
-            if(isTalking == false)
+            if(_GameController.CurrentGameState == GameState.GAMEPLAY)
             {
+                _GameController.ChangeState(GameState.DIALOGO);
                 dialogueLineID = 0;
 
                 if(chatLines != null)
@@ -91,7 +96,12 @@ namespace ProjetoTCC
                 isTalking = true;
                 OnAnimationEnd();
             }
-            else if(isTalking == true && answeringQuestion == false)
+            
+        }
+
+        public void Talk()
+        {
+            if (isTalking == true && answeringQuestion == false)
             {
                 dialogueLineID += 1;
                 Dialogue();
@@ -134,6 +144,8 @@ namespace ProjetoTCC
 
                 npcCanvas.SetActive(false);
                 isTalking = false;
+
+                _GameController.ChangeState(GameState.FIM_DIALOGO);
             }
             
         }

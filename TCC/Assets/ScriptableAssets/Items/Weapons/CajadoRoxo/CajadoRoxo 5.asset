@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CajadoRoxo 5
   m_EditorClassIdentifier: 
   id: WEAPON_STAFF_ROXO_LVL_5
-  weaponType: 0
+  weaponType: 2
   name: Cajado Roxo
   inventoryIcon: {fileID: 1079188601, guid: bd4a047e9cac00d4b8df38f0050bb838, type: 3}
   animationIcons:
