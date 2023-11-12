@@ -2,6 +2,10 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using System.Collections;
+using System;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
+using System.Collections.Generic;
 
 namespace ProjetoTCC
 {
@@ -204,6 +208,8 @@ namespace ProjetoTCC
         [SerializeField]
         private GameObject[] arrowPrefab;
         public GameObject[] ArrowPrefab => arrowPrefab;
+
+        private List<string> inventoryItens;
         #endregion
 
         [Header("Paineis")]
@@ -430,5 +436,157 @@ namespace ProjetoTCC
             yield return new WaitForEndOfFrame();
             ChangeState(GameState.GAMEPLAY);
         }
+
+        public void Save()
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Create(Application.persistentDataPath + "/playerdata.dat");
+
+            PlayerData data = new PlayerData();
+            data.Gold = gold;
+            //data.CharacterId = characterID;
+            data.CurrentWeapon = currentWeapon;
+            data.EquipedArrow = equipedArrowID;
+            data.ArrowQnt = arrowQnt;
+            data.PotionQnt = potionQnt;
+
+            inventoryItens.Clear();
+
+            foreach(string i in inventory.InventoryItens)
+            {
+                inventoryItens.Add(i);
+            }
+
+            data.InventoryItens = inventoryItens;
+
+            bf.Serialize(file, data);
+            file.Close();
+        }
+
+        public void Load()
+        {
+            if(File.Exists(Application.persistentDataPath + "/playerdata.dat"))
+            {
+                BinaryFormatter bf = new BinaryFormatter();
+                FileStream file = File.Open(Application.persistentDataPath + "playerdata.dat", FileMode.Open);
+
+                PlayerData data = (PlayerData)bf.Deserialize(file);
+                file.Close();
+
+                gold = data.Gold;
+                //characterID = data.CharacterId;
+                currentWeapon = data.CurrentWeapon;
+                equipedArrowID = data.EquipedArrow;
+                arrowQnt = data.ArrowQnt;
+                potionQnt = data.PotionQnt;
+                inventoryItens = data.InventoryItens;
+
+                inventory.InventoryItens.Clear();
+
+                foreach (string i in inventoryItens)
+                {
+                    inventory.InventoryItens.Add(i);
+                }
+
+                file.Close();
+
+            }
+        }
     }
+
+    [Serializable]
+    class PlayerData
+    {
+        private int gold;
+        public int Gold
+        { 
+            get
+            {
+                return gold;
+            }
+            set
+            {
+                gold = value;
+            }
+        }
+
+        private int characterId;
+        public int CharacterId
+        {
+            get
+            {
+                return characterId;
+            }
+            set
+            {
+                characterId = value;
+            }
+        }
+
+        private CustomWeaponData currentWeapon;
+        public CustomWeaponData CurrentWeapon
+        {
+            get
+            {
+                return currentWeapon;
+            }
+            set
+            {
+                currentWeapon = value;
+            }
+        }
+
+        private int equipedArrow;
+        public int EquipedArrow
+        {
+            get
+            {
+                return equipedArrow;
+            }
+            set
+            {
+                equipedArrow = value;
+            }
+        }
+
+        private int[] arrowQnt;
+        public int[] ArrowQnt
+        {
+            get
+            {
+                return arrowQnt;
+            }
+            set
+            {
+                arrowQnt = value;
+            }
+        }
+        private int[] potionQnt;
+        public int[] PotionQnt
+        {
+            get
+            {
+                return potionQnt;
+            }
+            set
+            {
+                potionQnt = value;
+            }
+        }
+        private List<string> inventoryItens;
+        public List<string> InventoryItens
+        {
+            get
+            {
+                return inventoryItens;
+            }
+            set
+            {
+                inventoryItens = value;
+            }
+        }
+
+
+    }
+
 }

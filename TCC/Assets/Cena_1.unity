@@ -8093,7 +8093,7 @@ MonoBehaviour:
   maxMana: 10
   currentMana: 0
   arrowQnt: 050000000a0000000f000000
-  equipedArrowID: 2
+  equipedArrowID: 0
   potionQnt: 0500000005000000
   characterName: []
   spriteSheetsName:
@@ -10554,6 +10554,8 @@ MonoBehaviour:
   dialogue_2: []
   dialogue_3: []
   dialogue_4: []
+  dialogue_5: []
+  dialogue_6: []
   answerQuestion: []
   chatLines: []
 --- !u!1 &1491880704
