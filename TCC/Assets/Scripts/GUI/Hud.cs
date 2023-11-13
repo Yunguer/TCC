@@ -100,22 +100,32 @@ namespace ProjetoTCC
                     }
                 }
                 arrowIcon.sprite = _GameController.ArrowIcon[_GameController.EquipedArrowID];
-                arrowQnt.text = "x " + _GameController.ArrowQnt[_GameController.EquipedArrowID].ToString();
+                if(_GameController.ArrowQnt != null)
+                {
+                    arrowQnt.text = "x " + _GameController.ArrowQnt[_GameController.EquipedArrowID].ToString();
+                }
             }
-            healthPotionQnt.text = _GameController.PotionQnt[0].ToString();
+            if(_GameController.PotionQnt != null)
+            {
+                healthPotionQnt.text = _GameController.PotionQnt[0].ToString();
+            }
+            
         }
 
         void BoxPotionPosition()
         { 
-            if(_GameController.PotionQnt[0] > 0)
+            if(_GameController.PotionQnt != null)
             {
-                healthBox.GetComponent<RectTransform>().anchoredPosition = pos1;
-                manaBox.GetComponent<RectTransform>().anchoredPosition = pos2;
-            }
-            else
-            {
-                healthBox.GetComponent<RectTransform>().anchoredPosition = pos2;
-                manaBox.GetComponent<RectTransform>().anchoredPosition = pos1;
+                if (_GameController.PotionQnt[0] > 0)
+                {
+                    healthBox.GetComponent<RectTransform>().anchoredPosition = pos1;
+                    manaBox.GetComponent<RectTransform>().anchoredPosition = pos2;
+                }
+                else
+                {
+                    healthBox.GetComponent<RectTransform>().anchoredPosition = pos2;
+                    manaBox.GetComponent<RectTransform>().anchoredPosition = pos1;
+                }
             }
         }
 
@@ -224,14 +234,18 @@ namespace ProjetoTCC
                 hpBar[0].enabled = false;
             }
 
-            if(_GameController.PotionQnt[0] > 0)
+            if(_GameController.PotionQnt != null)
             {
-                healthBox.SetActive(true);
+                if (_GameController.PotionQnt[0] > 0)
+                {
+                    healthBox.SetActive(true);
+                }
+                else
+                {
+                    healthBox.SetActive(false);
+                }
             }
-            else
-            {
-                healthBox.SetActive(false);
-            }
+            
 
         }
         void ManaBarController()

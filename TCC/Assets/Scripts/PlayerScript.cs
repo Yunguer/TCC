@@ -290,20 +290,28 @@ namespace ProjetoTCC
             playerAnimator.SetBool("grounded", isGrounded);
             playerAnimator.SetInteger("idAnimation", idAnimation);
             playerAnimator.SetFloat("speedY", playerRb.velocity.y);
-            playerAnimator.SetFloat("weaponClassID", (int)_GameController.CurrentWeapon.WeaponType);
+            if(_GameController.CurrentWeapon != null)
+            {
+                playerAnimator.SetFloat("weaponClassID", (int)_GameController.CurrentWeapon.WeaponType);
+            }
+            
 
             Interact();
 
-            if(_GameController.ArrowQnt[_GameController.EquipedArrowID] > 0)
+            if(_GameController.ArrowQnt != null)
             {
-                arrows[0].SetActive(true);
-                arrows[1].SetActive(true);
+                if (_GameController.ArrowQnt[_GameController.EquipedArrowID] > 0)
+                {
+                    arrows[0].SetActive(true);
+                    arrows[1].SetActive(true);
+                }
+                else
+                {
+                    arrows[0].SetActive(false);
+                    arrows[1].SetActive(false);
+                }
             }
-            else
-            {
-                arrows[0].SetActive(false);
-                arrows[1].SetActive(false);
-            }
+            
         }
 
 

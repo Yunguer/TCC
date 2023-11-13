@@ -6,6 +6,8 @@ using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
+using ProjetoTCC.OdinSerializer;
 
 namespace ProjetoTCC
 {
@@ -248,16 +250,13 @@ namespace ProjetoTCC
             pausePainel.SetActive(false);
             itensPainel.SetActive(false);
             itensInfoPainel.SetActive(false);
-            characterID = PlayerPrefs.GetInt("titleCharacterID");
 
-            currentWeapon = weaponProvider.GetInicialWeaponByCharacterId((PlayerType)characterID);
 
-            playerScript.ChangeWeapon(currentWeapon);
-
-            inventory.InventoryItens.Add(currentWeapon.Id);
-
-            currentLife = maxLife;
-            currentMana = maxMana;
+            var hasLoad = Load(PlayerPrefs.GetString("slot"));
+            if(!hasLoad)
+            {
+                NewGame();
+            }
         }
 
         void Update()
@@ -281,6 +280,11 @@ namespace ProjetoTCC
 
         public void ValidateWeapon()
         {
+            if(currentWeapon == null)
+            {
+                currentWeapon = weaponProvider.GetInicialWeaponByCharacterId((PlayerType)characterID);
+                return;
+            }
             var weapon = WeaponProvider.GetWeaponById(currentWeapon.Id);
             if ((int)weapon.WeaponType != characterClassID[characterID])
             {
@@ -439,154 +443,126 @@ namespace ProjetoTCC
 
         public void Save()
         {
-            BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Create(Application.persistentDataPath + "/playerdata.dat");
+            string saveFileName = PlayerPrefs.GetString("slot");
 
             PlayerData data = new PlayerData();
-            data.Gold = gold;
-            //data.CharacterId = characterID;
-            data.CurrentWeapon = currentWeapon;
-            data.EquipedArrow = equipedArrowID;
-            data.ArrowQnt = arrowQnt;
-            data.PotionQnt = potionQnt;
+            data.gold = gold;
+            data.characterId = PlayerPrefs.GetInt("titleCharacterID");
+            data.currentWeapon = currentWeapon;
+            data.equipedArrow = equipedArrowID;
+            data.arrowQnt = arrowQnt;
+            data.potionQnt = potionQnt;
 
-            inventoryItens.Clear();
+            if (inventoryItens != null)
+            {
+                inventoryItens.Clear();
+            }
+            else
+            {
+                inventoryItens = new List<string>();
+            }
 
-            foreach(string i in inventory.InventoryItens)
+            foreach (string i in inventory.InventoryItens)
             {
                 inventoryItens.Add(i);
             }
 
-            data.InventoryItens = inventoryItens;
+            data.inventoryItens = inventoryItens;
 
-            bf.Serialize(file, data);
-            file.Close();
+            byte[] bytes = SerializationUtility.SerializeValue(data, DataFormat.Binary);
+            File.WriteAllBytes(Application.persistentDataPath + "/" + saveFileName, bytes);
         }
 
-        public void Load()
+        public bool Load(string slot)
         {
-            if(File.Exists(Application.persistentDataPath + "/playerdata.dat"))
+            if (File.Exists(Application.persistentDataPath + "/" + slot))
             {
-                BinaryFormatter bf = new BinaryFormatter();
-                FileStream file = File.Open(Application.persistentDataPath + "playerdata.dat", FileMode.Open);
 
-                PlayerData data = (PlayerData)bf.Deserialize(file);
-                file.Close();
+                byte[] bytes = File.ReadAllBytes(Application.persistentDataPath + "/" + slot);
+                var data = SerializationUtility.DeserializeValue<PlayerData>(bytes, DataFormat.Binary);
 
-                gold = data.Gold;
-                //characterID = data.CharacterId;
-                currentWeapon = data.CurrentWeapon;
-                equipedArrowID = data.EquipedArrow;
-                arrowQnt = data.ArrowQnt;
-                potionQnt = data.PotionQnt;
-                inventoryItens = data.InventoryItens;
+                PlayerPrefs.SetInt("titleCharacterID", data.characterId);
 
-                inventory.InventoryItens.Clear();
+                gold = data.gold;
+                characterID = data.characterId;
+                currentWeapon = data.currentWeapon;
+                equipedArrowID = data.equipedArrow;
+                arrowQnt = data.arrowQnt;
+                potionQnt = data.potionQnt;
+                inventoryItens = data.inventoryItens;
+                currentLife = maxLife;
+                currentMana = maxMana;
 
-                foreach (string i in inventoryItens)
+
+                if (inventory.InventoryItens != null)
                 {
-                    inventory.InventoryItens.Add(i);
+                    inventory.InventoryItens.Clear();
+                }
+                else
+                {
+                    inventory.InventoryItens = new List<string>();
                 }
 
-                file.Close();
 
+                if (inventoryItens != null)
+                {
+                    foreach (string i in inventoryItens)
+                    {
+                        inventory.InventoryItens.Add(i);
+                    }
+                }
+
+                SceneManager.LoadScene("Cena_1");
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
+
+        public void NewGame()
+        {
+            characterID = PlayerPrefs.GetInt("titleCharacterID");
+
+            currentWeapon = weaponProvider.GetInicialWeaponByCharacterId((PlayerType)characterID);
+
+            //playerScript.ChangeWeapon(currentWeapon);
+
+            currentLife = maxLife;
+            currentMana = maxMana;
+
+            gold = 0;
+
+            arrowQnt = new int[3];
+
+            arrowQnt[0] = 25;
+            arrowQnt[1] = 0;
+            arrowQnt[2] = 0;
+
+            potionQnt = new int[2];
+
+            potionQnt[0] = 10;
+            potionQnt[1] = 10;
+
+            Save();
+            Load(PlayerPrefs.GetString("slot"));
+        }
+
+        
     }
 
     [Serializable]
     class PlayerData
     {
-        private int gold;
-        public int Gold
-        { 
-            get
-            {
-                return gold;
-            }
-            set
-            {
-                gold = value;
-            }
-        }
-
-        private int characterId;
-        public int CharacterId
-        {
-            get
-            {
-                return characterId;
-            }
-            set
-            {
-                characterId = value;
-            }
-        }
-
-        private CustomWeaponData currentWeapon;
-        public CustomWeaponData CurrentWeapon
-        {
-            get
-            {
-                return currentWeapon;
-            }
-            set
-            {
-                currentWeapon = value;
-            }
-        }
-
-        private int equipedArrow;
-        public int EquipedArrow
-        {
-            get
-            {
-                return equipedArrow;
-            }
-            set
-            {
-                equipedArrow = value;
-            }
-        }
-
-        private int[] arrowQnt;
-        public int[] ArrowQnt
-        {
-            get
-            {
-                return arrowQnt;
-            }
-            set
-            {
-                arrowQnt = value;
-            }
-        }
-        private int[] potionQnt;
-        public int[] PotionQnt
-        {
-            get
-            {
-                return potionQnt;
-            }
-            set
-            {
-                potionQnt = value;
-            }
-        }
-        private List<string> inventoryItens;
-        public List<string> InventoryItens
-        {
-            get
-            {
-                return inventoryItens;
-            }
-            set
-            {
-                inventoryItens = value;
-            }
-        }
-
-
+        public int gold;
+        public int characterId;
+        public CustomWeaponData currentWeapon;
+        public int equipedArrow;
+        public int[] arrowQnt;
+        public int[] potionQnt;
+        public List<string> inventoryItens;
+        
     }
 
 }

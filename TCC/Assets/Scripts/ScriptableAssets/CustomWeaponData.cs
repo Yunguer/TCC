@@ -54,6 +54,19 @@ namespace ProjetoTCC
         private int level;
         public int Level => level;
 
+        public void SetData(CustomWeaponData customWeaponData)
+        {
+            this.id = customWeaponData.Id;
+            this.weaponType = customWeaponData.WeaponType;
+            this.name = customWeaponData.Name;
+            this.inventoryIcon = customWeaponData.InventoryIcon;
+            this.animationIcons = customWeaponData.AnimationIcons;
+            this.damage = customWeaponData.Damage;
+            this.damageType = customWeaponData.DamageType;
+            this.level = customWeaponData.Level;
+
+        }
+
     }
 
 }
