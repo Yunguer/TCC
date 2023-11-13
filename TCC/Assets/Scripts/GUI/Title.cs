@@ -131,6 +131,33 @@ namespace ProjetoTCC
         }
 
 
+        public void DeleteSave(int slot)
+        {
+            switch (slot)
+            {
+                case 1:
+                    if(File.Exists(Application.persistentDataPath + "/playerdata1.dat"))
+                    {
+                        File.Delete(Application.persistentDataPath + "/playerdata1.dat");
+                    }
+                    break;
+                case 2:
+                    if (File.Exists(Application.persistentDataPath + "/playerdata2.dat"))
+                    {
+                        File.Delete(Application.persistentDataPath + "/playerdata2.dat");
+                    }
+                    break;
+                case 3:
+                    if (File.Exists(Application.persistentDataPath + "/playerdata3.dat"))
+                    {
+                        File.Delete(Application.persistentDataPath + "/playerdata3.dat");
+                    }
+                    break;
+            }
+
+            VerifySavedGame();
+        }
+
     }
 
 }
