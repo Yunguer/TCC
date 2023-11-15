@@ -178,7 +178,7 @@ MonoBehaviour:
   inicialWeapons:
     keys: 00000000010000000200000003000000
     values:
-    - {fileID: 11400000, guid: a9840cd64d2f81d428a8e8617ecc452b, type: 2}
+    - {fileID: 11400000, guid: 78e2fdbb0933cfb4f965c20ed9345a01, type: 2}
     - {fileID: 11400000, guid: 648d0b841144a37439b23681bf9c9d8e, type: 2}
     - {fileID: 11400000, guid: 3505551bf5fb60745a4dcd190024bf4b, type: 2}
     - {fileID: 11400000, guid: 26e166f987ea93845a35a6e6e82e2697, type: 2}

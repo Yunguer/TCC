@@ -109,7 +109,7 @@ namespace ProjetoTCC
         public void UpgradeButton()
         {
             _GameController.UpgradeWeapon(itemID, slotID);
-            LoadUpgrade();
+            LoadItemInfo();
         }
 
         public void EquipButton()

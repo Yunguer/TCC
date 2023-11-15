@@ -55,6 +55,8 @@ namespace ProjetoTCC
             slotIcon.sprite = iconSprite;
         }
 
+
+
         public void SetEnableIcon(bool enable)
         {
             slotIcon.enabled = enable;

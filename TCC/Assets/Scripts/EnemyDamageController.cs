@@ -201,6 +201,7 @@ namespace ProjetoTCC
 
         IEnumerator Loot()
         {
+
             yield return new WaitForSeconds(0.4f);
             var boxCol = gameObject.GetComponents<BoxCollider2D>();
             boxCol[0].enabled = false;

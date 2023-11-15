@@ -246,7 +246,6 @@ namespace ProjetoTCC
         {
             DontDestroyOnLoad(this.gameObject);
             inventory = FindObjectOfType(typeof(Inventory)) as Inventory;
-            playerScript = FindObjectOfType(typeof(PlayerScript)) as PlayerScript;
             pausePainel.SetActive(false);
             itensPainel.SetActive(false);
             itensInfoPainel.SetActive(false);
@@ -350,6 +349,10 @@ namespace ProjetoTCC
 
         public void UseItemWeapon(string weaponID)
         {
+            if(playerScript == null)
+            {
+                playerScript = FindObjectOfType(typeof(PlayerScript)) as PlayerScript;
+            }
             playerScript.ChangeWeapon(weaponID);
         }
 
@@ -376,8 +379,7 @@ namespace ProjetoTCC
 
         public void DeleteItem(int slotID)
         {
-            inventory.InventoryItens.RemoveAt(slotID);
-            inventory.LoadInventory();
+            inventory.ClearSlot(slotID);
             itensInfoPainel.SetActive(false);
             firstPainelItens.Select();
         }
@@ -386,7 +388,8 @@ namespace ProjetoTCC
         {
             var weapon = weaponProvider.GetWeaponById(weaponID);
             var newWeaponId = $"{weaponID.Substring(0, weaponID.Length - 2)}_{weapon.Level+1}";
-            inventory.InventoryItens[slotID] = newWeaponId;
+            inventory.UpdateSlot(newWeaponId, slotID);
+            
         }
 
         public void SwapItensInventory(int slotID)
@@ -527,8 +530,6 @@ namespace ProjetoTCC
 
             currentWeapon = weaponProvider.GetInicialWeaponByCharacterId((PlayerType)characterID);
 
-            //playerScript.ChangeWeapon(currentWeapon);
-
             currentLife = maxLife;
             currentMana = maxMana;
 
@@ -544,6 +545,10 @@ namespace ProjetoTCC
 
             potionQnt[0] = 10;
             potionQnt[1] = 10;
+
+            inventory.InventoryItens.Add(currentWeapon.Id);
+
+            equipedArrowID = 0;
 
             Save();
             Load(PlayerPrefs.GetString("slot"));

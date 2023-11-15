@@ -50,7 +50,6 @@ namespace ProjetoTCC
 
         void Start()
         {
-            playerScript = FindObjectOfType(typeof(PlayerScript)) as PlayerScript;
             _GameController = FindObjectOfType(typeof(_GameController)) as _GameController;
 
             mpHUD.SetActive(false);
@@ -63,9 +62,9 @@ namespace ProjetoTCC
             pos2 = box2.anchoredPosition;
         }
 
-
         void Update()
         {
+
             LifeBarController();
             if (mpHUD.activeSelf == true)
             {
@@ -77,7 +76,12 @@ namespace ProjetoTCC
 
             if (arrowHUD.activeSelf == true)
             {
-                if(Input.GetButtonDown("ButtonLeft") && playerScript.IsAttacking == false)
+                if (playerScript == null)
+                {
+                    playerScript = FindObjectOfType(typeof(PlayerScript)) as PlayerScript;
+                }
+
+                if (Input.GetButtonDown("ButtonLeft") && playerScript.IsAttacking == false)
                 {
                     if(_GameController.EquipedArrowID == 0)
                     {

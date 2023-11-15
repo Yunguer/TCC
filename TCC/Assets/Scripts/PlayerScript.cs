@@ -173,6 +173,8 @@ namespace ProjetoTCC
                 o.SetActive(false);
             }
 
+            ChangeWeapon(_GameController.WeaponProvider.GetWeaponById(_GameController.CurrentWeapon.Id));
+
         }
 
         void FixedUpdate() // TAXA DE ATUALIZAÇÃO FIXA DE 0.02

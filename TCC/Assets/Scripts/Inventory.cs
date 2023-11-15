@@ -92,7 +92,6 @@ namespace ProjetoTCC
                 var weapon = _GameController.WeaponProvider.GetWeaponById(i);
 
                 loadedItens.Add(i);
-
                 slots[s].GetComponent<SlotInventory>().SetIcon(weapon.InventoryIcon);
                 slots[s].interactable = true;
 
@@ -103,6 +102,22 @@ namespace ProjetoTCC
         public void ClearLoadedItens()
         {
             loadedItens.Clear();
+        }
+
+        public void ClearSlot(int slotID)
+        {
+            InventoryItens.RemoveAt(slotID);
+
+            slots[slotID].GetComponent<SlotInventory>().SetEnableIcon(false);
+
+            LoadInventory();
+        }
+
+        public void UpdateSlot(string itemID, int slotID)
+        {
+            InventoryItens[slotID] = itemID;
+            LoadInventory();
+            
         }
     }
 }

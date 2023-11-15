@@ -105,6 +105,10 @@ namespace ProjetoTCC
         { 
             if(enemyDamageController.TookHit == true)
             {
+                foreach (GameObject o in weapons)
+                {
+                    o.SetActive(false);
+                }
                 return;
             }
 
