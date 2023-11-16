@@ -189,7 +189,7 @@ Transform:
   m_GameObject: {fileID: 19502972}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 13.16, y: 0.47500002, z: -10}
+  m_LocalPosition: {x: -11.28, y: 0.47500002, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4575,7 +4575,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.16, y: 0.47500002, z: -10}
+  m_LocalPosition: {x: -11.28, y: 0.47500002, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5199,7 +5199,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 100
   m_TargetDisplay: 0
 --- !u!1 &709737215
 GameObject:
@@ -9997,6 +9997,7 @@ GameObject:
   - component: {fileID: 1490856261}
   - component: {fileID: 1490856260}
   - component: {fileID: 1490856263}
+  - component: {fileID: 1490856264}
   m_Layer: 9
   m_Name: NPC
   m_TagString: Untagged
@@ -10090,7 +10091,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1929001754, guid: 696b34f9e0980a64d87055ee9141347a, type: 3}
+  m_Sprite: {fileID: -572901588, guid: cb21c0f11de824545832c31876045809, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -10110,7 +10111,7 @@ Transform:
   m_GameObject: {fileID: 1490856259}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.227816, y: -1.52, z: 0}
+  m_LocalPosition: {x: -13.227816, y: -1.553, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -10145,6 +10146,27 @@ MonoBehaviour:
   dialogue_6: []
   answerQuestion: []
   chatLines: []
+--- !u!95 &1490856264
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1490856259}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d65e3f9700e495f439c85897df808df6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1491880704
 GameObject:
   m_ObjectHideFlags: 0
@@ -12677,7 +12699,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4348656148397354855, guid: 47552ab0e33614f489f5768b36a6ba69, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13.16
+      value: -11.28
       objectReference: {fileID: 0}
     - target: {fileID: 4348656148397354855, guid: 47552ab0e33614f489f5768b36a6ba69, type: 3}
       propertyPath: m_LocalPosition.y
