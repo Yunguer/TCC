@@ -61,6 +61,12 @@ namespace ProjetoTCC
 
         private int shootCount = 0;
 
+        [SerializeField]
+        private Transform groundCheck;
+
+        private bool isTouchingGround;
+        private int idAnimation;
+
 
         // Start is called before the first frame update
         void Start()
@@ -69,7 +75,7 @@ namespace ProjetoTCC
             bossAnimator = GetComponent<Animator>();
             //playerPosition = FindObjectOfType<PlayerScript>().transform;
 
-            currentBossRoutine = BossRoutine.B;
+            currentBossRoutine = BossRoutine.A;
             movesetId = 0;
             currentTime = 0;
             waitTime = 3;
@@ -138,6 +144,7 @@ namespace ProjetoTCC
                     switch (movesetId)
                     {
                         case 0:
+
                             currentTime += Time.deltaTime;
                             if (currentTime >= waitTime)
                             {
@@ -150,6 +157,7 @@ namespace ProjetoTCC
                             break;
 
                         case 1:
+
                             if (transform.position.x <= target.position.x)
                             {
                                 movesetId = 2;
@@ -161,6 +169,7 @@ namespace ProjetoTCC
                             break;
 
                         case 2:
+
                             currentTime += Time.deltaTime;
                             if (currentTime >= waitTime)
                             {
@@ -174,29 +183,311 @@ namespace ProjetoTCC
                             break;
 
                         case 3:
+
                             if (transform.position.x >= target.position.x)
                             {
                                 h = 0;
-
                                 movesetId = 4;
                                 bossRb.AddForce(new Vector2(0, 350));
+                                idAnimation = 0;
                             }
                             break;
 
                         case 4:
-                                Invoke(nameof(FireAtack), 2);
+
+                            Invoke(nameof(FireAtack), 2);
+                            currentTime = 0;
+                            waitTime = 3;
                             break;
+                        
                         case 5:
+
                             shootCount = 0;
+                            currentTime += Time.deltaTime;
+                            if (currentTime >= waitTime)
+                            {
+                                movesetId = 6;
+                                needToMove = false;
+                                bossRb.AddForce(new Vector2(165, 250));
+                                idAnimation = 0;
+                                currentTime = 0;
+                                waitTime = 1;
+                            }
+                            break;
+                        
+                        case 6:
+
+                            currentTime += Time.deltaTime;
+                            if(currentTime >= waitTime)
+                            {
+                                if (isTouchingGround)
+                                {
+                                    target = wayPoints[2];
+                                    h = -1;
+                                    needToMove = true;
+                                    movesetId = 7;
+                                    currentTime = 0;
+                                    waitTime = 2;
+                                }
+                            }
+                            
+                            break;
+
+                        case 7:
+                            if (transform.position.x <= target.position.x)
+                            {
+                                h = 0;
+                                currentTime += Time.deltaTime;
+                                if(currentTime >= waitTime)
+                                {
+                                    int rand = Random.Range(0, 100);
+                                    rand = 60;
+                                    if (rand < 50)
+                                    {
+                                        target = wayPoints[0];
+                                        h = 1;
+                                        movesetId = 8;
+                                    }
+                                    else
+                                    {
+                                        target = wayPoints[1];
+                                        h = -1;
+                                        movesetId = 9;
+                                    }
+                                }
+                            }
+
+                            break;
+
+                        case 8: 
+                            if(transform.position.x >= target.position.x)
+                            {
+                                movesetId = 0;
+                                currentTime = 0;
+                                waitTime = 3;
+                                h = 0;
+                                currentBossRoutine = BossRoutine.A;
+                            }
+
+                            break;
+
+                        case 9: 
+
+                            if (transform.position.x <= target.position.x)
+                            {
+                                movesetId = 0;
+                                currentTime = 0;
+                                waitTime = 3;
+                                h = 0;
+                                currentBossRoutine = BossRoutine.C;
+                            }
                             break;
                     }
 
                     break;
 
                 case BossRoutine.C:
+
+                    switch(movesetId)
+                    {
+                        case 0:
+
+                            currentTime += Time.deltaTime;
+                            if (currentTime >= waitTime)
+                            {
+                                movesetId = 1;
+                                target = wayPoints[0];
+                                h = 1;
+                                needToMove = true;
+                            }
+
+                            break;
+
+                        case 1:
+
+                            if (transform.position.x >= target.position.x)
+                            {
+                                movesetId = 2;
+                                currentTime = 0;
+                                waitTime = 3;
+                                h = 0;
+                            }
+
+                            break;
+
+                        case 2:
+
+                            currentTime += Time.deltaTime;
+                            if (currentTime >= waitTime)
+                            {
+                                movesetId = 3;
+                                target = wayPoints[1];
+                                h = -1;
+                                needToMove = true;
+
+                            }
+
+                            break;
+
+                        case 3:
+                            if (transform.position.x <= target.position.x)
+                            {
+                                h = 0;
+                                currentBossRoutine = BossRoutine.D;
+                                movesetId = 0;
+                                currentTime = 0;
+                                waitTime = 3;
+                            }
+                            break;
+                    }
+
                     break;
 
-                case BossRoutine.D:
+               case BossRoutine.D:
+
+                    switch (movesetId)
+                    {
+                        case 0:
+
+                            currentTime += Time.deltaTime;
+                            if (currentTime >= waitTime)
+                            {
+                                movesetId = 1;
+                                target = wayPoints[0];
+                                h = 1;
+                                needToMove = true;
+                            }
+
+                            break;
+
+                        case 1:
+
+                            if (transform.position.x >= target.position.x)
+                            {
+                                movesetId = 2;
+                                currentTime = 0;
+                                waitTime = 3;
+                                h = 0;
+                            }
+
+                            break;
+
+                        case 2:
+
+                            currentTime += Time.deltaTime;
+                            if (currentTime >= waitTime)
+                            {
+                                movesetId = 3;
+                                target = wayPoints[2];
+                                h = -1;
+                                needToMove = true;
+
+                            }
+
+                            break;
+
+                        case 3:
+
+                            if (transform.position.x <= target.position.x)
+                            {
+                                h = 0;
+                                movesetId = 4;
+                                bossRb.AddForce(new Vector2(0, 350));
+                                idAnimation = 0;
+                            }
+                            break;
+
+                        case 4:
+
+                            Invoke(nameof(FireAtack), 2);
+                            currentTime = 0;
+                            waitTime = 3;
+                            break;
+
+                        case 5:
+
+                            shootCount = 0;
+                            currentTime += Time.deltaTime;
+                            if (currentTime >= waitTime)
+                            {
+                                movesetId = 6;
+                                needToMove = false;
+                                bossRb.AddForce(new Vector2(-165, 250));
+                                idAnimation = 0;
+                                currentTime = 0;
+                                waitTime = 1;
+                            }
+                            break;
+
+                        case 6:
+
+                            currentTime += Time.deltaTime;
+                            if (currentTime >= waitTime)
+                            {
+                                if (isTouchingGround)
+                                {
+                                    target = wayPoints[2];
+                                    h = 1;
+                                    needToMove = true;
+                                    movesetId = 7;
+                                    currentTime = 0;
+                                    waitTime = 2;
+                                }
+                            }
+
+                            break;
+
+                        case 7:
+                            if (transform.position.x >= target.position.x)
+                            {
+                                h = 0;
+                                currentTime += Time.deltaTime;
+                                if (currentTime >= waitTime)
+                                {
+                                    int rand = Random.Range(0, 100);
+                                    rand = 60;
+                                    if (rand < 50)
+                                    {
+                                        target = wayPoints[0];
+                                        h = 1;
+                                        movesetId = 8;
+                                    }
+                                    else
+                                    {
+                                        target = wayPoints[1];
+                                        h = -1;
+                                        movesetId = 9;
+                                    }
+                                }
+                            }
+
+                            break;
+
+                        case 8:
+                            if (transform.position.x >= target.position.x)
+                            {
+                                movesetId = 0;
+                                currentTime = 0;
+                                waitTime = 3;
+                                h = 0;
+                                currentBossRoutine = BossRoutine.A;
+                            }
+
+                            break;
+
+                        case 9:
+
+                            if (transform.position.x <= target.position.x)
+                            {
+                                movesetId = 0;
+                                currentTime = 0;
+                                waitTime = 3;
+                                h = 0;
+                                currentBossRoutine = BossRoutine.C;
+                            }
+                            break;
+                    }
+
                     break;
                 
             }
@@ -215,7 +506,13 @@ namespace ProjetoTCC
                 bossRb.velocity = new Vector2(h * speed, bossRb.velocity.y);
             }
 
+
+            isTouchingGround = Physics2D.OverlapCircle(groundCheck.position, 0.02f);
+
+            bossAnimator.SetBool("jump", isTouchingGround);
             bossAnimator.SetInteger("horizontal", h);
+            bossAnimator.SetInteger("idAnimation", idAnimation);
+            bossAnimator.SetFloat("speedY", bossRb.velocity.y);
         }
 
         void Flip()
