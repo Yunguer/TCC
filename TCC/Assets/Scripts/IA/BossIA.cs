@@ -445,7 +445,6 @@ namespace ProjetoTCC
                                 if (currentTime >= waitTime)
                                 {
                                     int rand = Random.Range(0, 100);
-                                    rand = 60;
                                     if (rand < 50)
                                     {
                                         target = wayPoints[0];

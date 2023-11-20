@@ -198,11 +198,9 @@ namespace ProjetoTCC
                     Speed = baseSpeed;
                     break;
                 case EnemyState.ALERT:
-                    print("alerta");
                     Speed = 0;
                     break;
                 case EnemyState.ATTACKING:
-                    print("ataque");
                     animator.SetTrigger("atack");
                     break;
                 case EnemyState.RETREAT:
