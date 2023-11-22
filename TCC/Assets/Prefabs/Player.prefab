@@ -139,7 +139,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 768
   speed: 2
-  jumpForce: 230
+  jumpForce: 275
   isGrounded: 0
   isLookingLeft: 0
   isAttacking: 0
@@ -153,8 +153,6 @@ MonoBehaviour:
   objectInteraction: {fileID: 0}
   interactionBaloon: {fileID: 4264149103790941703}
   interactionBaloonKey: {fileID: 8689039532638663033}
-  weaponID: 8
-  currentWeaponID: 0
   weapons:
   - {fileID: 8411005505220318688}
   - {fileID: 5091905498149451231}

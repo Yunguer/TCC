@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: CajadoAzul 6
   m_EditorClassIdentifier: 
   id: WEAPON_STAFF_AZUL_LVL_6
-  weaponType: 0
+  weaponType: 2
   name: Cajado Azul
-  inventoryIcon: {fileID: -1589420306, guid: bd4a047e9cac00d4b8df38f0050bb838, type: 3}
+  inventoryIcon: {fileID: -1773889020, guid: bd4a047e9cac00d4b8df38f0050bb838, type: 3}
   animationIcons:
   - {fileID: -1950128077, guid: 6bf21bac8439945439663d37014ec5dc, type: 3}
   - {fileID: 1720676654, guid: 6bf21bac8439945439663d37014ec5dc, type: 3}

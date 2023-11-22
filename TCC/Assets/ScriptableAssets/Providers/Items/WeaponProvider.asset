@@ -116,6 +116,17 @@ MonoBehaviour:
     - WEAPON_BOW_MADEIRA_LVL_8
     - WEAPON_BOW_MADEIRA_LVL_9
     - WEAPON_BOW_MADEIRA_LVL_10
+    - WEAPON_BOW_PRATA_LVL_0
+    - WEAPON_BOW_PRATA_LVL_1
+    - WEAPON_BOW_PRATA_LVL_2
+    - WEAPON_BOW_PRATA_LVL_3
+    - WEAPON_BOW_PRATA_LVL_4
+    - WEAPON_BOW_PRATA_LVL_5
+    - WEAPON_BOW_PRATA_LVL_6
+    - WEAPON_BOW_PRATA_LVL_7
+    - WEAPON_BOW_PRATA_LVL_8
+    - WEAPON_BOW_PRATA_LVL_9
+    - WEAPON_BOW_PRATA_LVL_10
     values:
     - {fileID: 11400000, guid: 3505551bf5fb60745a4dcd190024bf4b, type: 2}
     - {fileID: 11400000, guid: c148882159bf1394e9343ce32e05bd8d, type: 2}
@@ -128,6 +139,17 @@ MonoBehaviour:
     - {fileID: 11400000, guid: da215ab17d92ebc43859565dca0f5d74, type: 2}
     - {fileID: 11400000, guid: eb7e0ee334a765d43be2bdf2724e4b34, type: 2}
     - {fileID: 11400000, guid: 6cb9c5f7b3bc35940b5e9aec85fc64e5, type: 2}
+    - {fileID: 11400000, guid: 8cce951bbf1c6a8409d6a17bfaf0d6b5, type: 2}
+    - {fileID: 11400000, guid: 026d41471b490f64aaa7049fdf4a4f54, type: 2}
+    - {fileID: 11400000, guid: 41d005d3291218e4ca6a41d202850f06, type: 2}
+    - {fileID: 11400000, guid: 5cbc28d08f908bf4dab4d347dc8cbb21, type: 2}
+    - {fileID: 11400000, guid: 3080bbe9bc696ef4b973555f9bf9853f, type: 2}
+    - {fileID: 11400000, guid: c909242e1dd1421439ea2b397752ab7a, type: 2}
+    - {fileID: 11400000, guid: ab8f27bb6a783d54e82fc6bd42b75457, type: 2}
+    - {fileID: 11400000, guid: 692f0eaf24bdccf41b4257ea68f78354, type: 2}
+    - {fileID: 11400000, guid: 6bbd030986ec44349b2044f7a7d742a4, type: 2}
+    - {fileID: 11400000, guid: bdea3018192fbb1479d5b282c6d9f408, type: 2}
+    - {fileID: 11400000, guid: 518f2bec94dda6a4184a9a53d9e12698, type: 2}
   staffWeapons:
     keys:
     - WEAPON_STAFF_ROXO_LVL_0
