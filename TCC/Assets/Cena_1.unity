@@ -37300,9 +37300,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1814032471876721375, guid: 8621030c35319a6438468a666c7a0e98, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 3250149655474865320, guid: 8621030c35319a6438468a666c7a0e98, type: 3}
       propertyPath: m_Name
       value: BossController
+      objectReference: {fileID: 0}
+    - target: {fileID: 3391671568823592796, guid: 8621030c35319a6438468a666c7a0e98, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3391671568823592796, guid: 8621030c35319a6438468a666c7a0e98, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 3686261359064363116, guid: 8621030c35319a6438468a666c7a0e98, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5260417061322663014, guid: 8621030c35319a6438468a666c7a0e98, type: 3}
       propertyPath: teste
@@ -37347,6 +37363,22 @@ PrefabInstance:
     - target: {fileID: 6056433574205162952, guid: 8621030c35319a6438468a666c7a0e98, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6992657854790098529, guid: 8621030c35319a6438468a666c7a0e98, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8600937243119124957, guid: 8621030c35319a6438468a666c7a0e98, type: 3}
+      propertyPath: m_Radius
+      value: 0.507288
+      objectReference: {fileID: 0}
+    - target: {fileID: 8600937243119124957, guid: 8621030c35319a6438468a666c7a0e98, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8600937243119124957, guid: 8621030c35319a6438468a666c7a0e98, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.45
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
