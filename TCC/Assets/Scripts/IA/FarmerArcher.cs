@@ -4,16 +4,8 @@ using UnityEngine;
 
 namespace ProjetoTCC
 {
-    public enum EnemyState 
-    { 
-        STOPPED,
-        ALERT,
-        PATROL,
-        ATTACKING,
-        RETREAT
-    }
 
-    public class Farmer : MonoBehaviour
+    public class FarmerArcher : MonoBehaviour
     {
         private _GameController _GameController;
         private EnemyDamageController enemyDamageController;
@@ -23,7 +15,7 @@ namespace ProjetoTCC
 #pragma warning disable CS0108 // O membro oculta o membro herdado; nova palavra-chave ausente
         private Rigidbody2D rigidbody2D;
 #pragma warning restore CS0108 // O membro oculta o membro herdado; nova palavra-chave ausente
-        
+
         private Animator animator;
 
         [SerializeField]
@@ -32,7 +24,7 @@ namespace ProjetoTCC
 
         [Header("Configuração para a Movimentação da IA")]
         #region Variaveis para a Movimentação da IA
-        
+
         [SerializeField]
         private float changeRoteDistance;
 
@@ -52,13 +44,13 @@ namespace ProjetoTCC
         private float leaveAlertDistance;
 
         private Vector3 dir = Vector3.right;
-        
+
         [SerializeField]
         private float baseSpeed;
-        
+
         [SerializeField]
         private float Speed;
-        
+
         [SerializeField]
         private bool isLookingLeft;
 
@@ -91,8 +83,8 @@ namespace ProjetoTCC
             rigidbody2D = GetComponent<Rigidbody2D>();
             animator = GetComponent<Animator>();
             isAlertOnHit = false;
-           
-            if(!isLookingLeft)
+
+            if (!isLookingLeft)
             {
                 Flip();
             }
@@ -104,7 +96,7 @@ namespace ProjetoTCC
 
         void Update()
         {
-            
+
 
             if (enemyDamageController.TookHit == true)
             {
@@ -115,7 +107,7 @@ namespace ProjetoTCC
                 return;
             }
 
-            if(currentEnemyState != EnemyState.ATTACKING && currentEnemyState != EnemyState.RETREAT)
+            if (currentEnemyState != EnemyState.ATTACKING && currentEnemyState != EnemyState.RETREAT)
             {
                 UnityEngine.Debug.DrawRay(transform.position, dir * seeCharacterDistance, Color.red);
                 RaycastHit2D hitCharacter = Physics2D.Raycast(transform.position, dir, seeCharacterDistance, characterLayer);
@@ -125,7 +117,7 @@ namespace ProjetoTCC
                     ChangeState(EnemyState.ALERT);
                 }
             }
-           
+
             if (currentEnemyState == EnemyState.PATROL)
             {
                 RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, changeRoteDistance, obstaclesLayer);
@@ -177,7 +169,7 @@ namespace ProjetoTCC
                 animator.SetInteger("idAnimation", 1);
             }
 
-            
+
             animator.SetFloat("classID", classID);
 
         }
@@ -199,7 +191,7 @@ namespace ProjetoTCC
         {
             currentEnemyState = newState;
 
-            switch(newState)
+            switch (newState)
             {
                 case EnemyState.STOPPED:
                     Speed = 0;
@@ -213,26 +205,17 @@ namespace ProjetoTCC
                     break;
                 case EnemyState.ATTACKING:
                     animator.SetTrigger("atack");
+                    StartCoroutine(nameof(AwaitToToAttack));
+                    
                     break;
                 case EnemyState.RETREAT:
-                    Flip();
+                    var isLookingToPlayer = enemyDamageController.IsPlayerOnLeft ? isLookingLeft : !isLookingLeft;
+                    if(isLookingToPlayer)
+                    {
+                        Flip();
+                    }
                     Speed = baseSpeed * 2;
                     StartCoroutine(nameof(Retreat));
-                    break;
-            }       
-        }
-
-        public void Attack(int atk)
-        {
-            switch (atk)
-            {
-                case 0:
-                    isAttacking = false;
-                    weapons[2].SetActive(false);
-                    ChangeState(EnemyState.RETREAT);
-                    break;
-                case 1:
-                    isAttacking = true;
                     break;
             }
         }
@@ -245,7 +228,7 @@ namespace ProjetoTCC
 
                     isAttacking = false;
                     bows[2].SetActive(false);
-                    ChangeState(EnemyState.RETREAT);
+                    
                     break;
 
                 case 1:
@@ -284,17 +267,6 @@ namespace ProjetoTCC
                     //_GameController.CurrentMana = _GameController.CurrentMana - 1;
                     break;
             }
-        }
-
-        void WeaponControl(int id)
-        {
-            foreach (GameObject o in weapons)
-            {
-                o.SetActive(false);
-            }
-
-            weapons[id].SetActive(true);
-
         }
 
         void BowControl(int id)
@@ -368,8 +340,8 @@ namespace ProjetoTCC
             isAlertOnHit = true;
             var isLookingToPlayer = enemyDamageController.IsPlayerOnLeft ? isLookingLeft : !isLookingLeft;
             float dist = transform.position.x - playerScript.transform.position.x;
-            
-            ChangeState(EnemyState.ALERT);
+
+            ChangeState(EnemyState.RETREAT);
             if (Mathf.Abs(dist) >= leaveAlertDistance)
             {
                 StartCoroutine(nameof(AwaitToLeaveAlert));
@@ -386,8 +358,11 @@ namespace ProjetoTCC
         IEnumerator Idle()
         {
             yield return new WaitForSeconds(waitingTimeIdle);
-            Flip();
-            ChangeState(EnemyState.PATROL);
+            if(!isAlertOnHit && currentEnemyState != EnemyState.RETREAT)
+            {
+                Flip();
+                ChangeState(EnemyState.PATROL);
+            }
         }
 
         IEnumerator Retreat()
@@ -395,6 +370,15 @@ namespace ProjetoTCC
             yield return new WaitForSeconds(waitingTimeRetreat);
             Flip();
             ChangeState(EnemyState.ALERT);
+        }
+
+        IEnumerator AwaitToToAttack()
+        {
+            yield return new WaitForSeconds(2);
+            if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Atack") && currentEnemyState != EnemyState.RETREAT)
+            {
+                ChangeState(EnemyState.ALERT);
+            }
         }
     }
 }

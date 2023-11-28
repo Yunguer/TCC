@@ -19,6 +19,30 @@ namespace ProjetoTCC
         private Animator playerAnimator;
         public Animator PlayerAnimator => playerAnimator;
         private Rigidbody2D playerRb;
+        public Rigidbody2D PlayerRb
+        {
+            get
+            {
+                return playerRb;
+            }
+            set
+            {
+                playerRb = value;
+            }
+        }
+
+        private SpriteRenderer pRender;
+        public SpriteRenderer PRender
+        {
+            get
+            {
+                return pRender;
+            }
+            set
+            {
+                pRender = value;
+            }
+        }
         #endregion
 
         #region Comunicação Entre Scripts
@@ -60,10 +84,12 @@ namespace ProjetoTCC
         
         [SerializeField]
         private bool isGrounded; // INDICA SE O PERSONAGEM ESTÁ PISANDO EM ALGUMA SUPERFÍCE
+        public bool IsGrounded => isGrounded;
         
         [SerializeField]
         private bool isLookingLeft; // INDICA SE O PERSONAGEM ESTÁ VIRADO PARA A ESQUERDA
-        
+        public bool IsLookingLeft => isLookingLeft;
+
         [SerializeField]
         private bool isAttacking;
         public bool IsAttacking// INDICAR SE O PERSONAGEM ESTÁ EXECUTANDO UM ATAQUE 
@@ -126,6 +152,56 @@ namespace ProjetoTCC
         private Transform spawnArrow, spawnMagic;
         #endregion
 
+        [Header("Configuração de Dano")]
+        #region Variaveis para Dano Tomado
+        
+        [SerializeField]
+        private Color[] characterColor; // CONTROLE DE COR DO PERSONAGEM
+        public Color[] CharacterColor => characterColor;
+
+        [SerializeField]
+        private Transform vfxPosition;
+        public Transform VfxPosition => vfxPosition;
+
+        [SerializeField]
+        private GameObject knockForcePrefab; //FORÇA DE REPULSÃO
+        public GameObject KnockForcePrefab => knockForcePrefab;
+
+        [SerializeField]
+        private Transform knockPosition; // PONTO DE ORIGEM DA FORÇA
+        public Transform KnockPosition => knockPosition;
+
+        [SerializeField]
+        private float knockX; // VALOR PADRÃO DO POSITION X
+        public float KnockX => knockX;
+
+        private float kxTemp;
+        public float KxTemp
+        {
+            get
+            {
+                return kxTemp;
+            }
+            set
+            {
+                kxTemp = value;
+            }
+        }
+
+        private bool tookHit;
+        public bool TookHit
+        {
+            get
+            {
+                return tookHit;
+            }
+            set
+            {
+                tookHit = value;
+            }
+        }
+        #endregion
+
 
         private void OnEnable() // FUNÇÃO PARA EXECUTAR A ANIMAÇÃO DOS OBJETOS UMA VEZ
         {
@@ -152,8 +228,11 @@ namespace ProjetoTCC
 
             maxLife = _GameController.MaxLife;
             maxMana = _GameController.MaxMana;
-            
 
+            tookHit = false;
+
+
+            pRender = GetComponent<SpriteRenderer>();
             playerRb = GetComponent<Rigidbody2D>(); // ASSOSSIA O COMPONENTE A VARÁVEL
             playerAnimator = GetComponent<Animator>(); // ASSOSSIA O COMPONENTE A VARIÁVEL
 
@@ -185,7 +264,7 @@ namespace ProjetoTCC
             }
 
             isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.02f, whatIsGround);
-            playerRb.velocity = new Vector2(h * speed, playerRb.velocity.y);
+              
         }
 
         void Update()
@@ -313,7 +392,12 @@ namespace ProjetoTCC
                     arrows[1].SetActive(false);
                 }
             }
-            
+
+            if (!tookHit)
+            {
+                playerRb.velocity = new Vector2(h * speed, playerRb.velocity.y);
+            }
+
         }
 
 

@@ -32,6 +32,7 @@ namespace ProjetoTCC
         #region Variaveis para movimentação
         [SerializeField]
         private bool isLookingLeft, isPlayerOnLeft; //VARIAVES DE CHECAGEM DE POSIÇÃO PARA O KNOCKBACK
+        public bool IsPlayerOnLeft => isPlayerOnLeft;
         public bool IsLookingLeft
         {
             get
@@ -97,6 +98,7 @@ namespace ProjetoTCC
                 isPlayerOnLeft = false;
             }
 
+            //INIMIGO
             if (isLookingLeft == true && isPlayerOnLeft == true)
             {
                 kxTemp = knockX;
@@ -126,8 +128,74 @@ namespace ProjetoTCC
                 case "Player":
                     if(!dead)
                     {
-                        _GameController.CurrentLife -= 1;
-                        playerScript.PlayerAnimator.SetTrigger("hit");
+                        if (!dead)
+                        {
+                            if (playerScript.TookHit == false)
+                            {
+                                playerScript.TookHit = true;
+                                playerScript.PlayerRb.velocity = new Vector2(0, playerScript.PlayerRb.velocity.y);
+                                _GameController.CurrentLife -= 1;
+                                playerScript.PlayerAnimator.SetTrigger("hit");
+
+                                if (isPlayerOnLeft && !playerScript.IsLookingLeft)
+                                {
+                                    GameObject fxTemp = Instantiate(_GameController.DamageFX[0], playerScript.VfxPosition.position, playerScript.transform.localRotation);
+                                    Destroy(fxTemp, 1);
+                                }
+                                else if (isPlayerOnLeft && playerScript.IsLookingLeft)
+                                {
+                                    GameObject fxTemp = Instantiate(_GameController.DamageFX[0], vfxPosition.position, transform.localRotation);
+                                    fxTemp.transform.localScale = new Vector3(fxTemp.transform.localScale.x * -1, fxTemp.transform.localScale.y, fxTemp.transform.localScale.z);
+                                    Destroy(fxTemp, 1);
+                                }
+                                else if (!isPlayerOnLeft && !playerScript.IsLookingLeft)
+                                {
+                                    GameObject fxTemp = Instantiate(_GameController.DamageFX[0], playerScript.VfxPosition.position, playerScript.transform.localRotation);
+                                    fxTemp.transform.localScale = new Vector3(fxTemp.transform.localScale.x * -1, fxTemp.transform.localScale.y, fxTemp.transform.localScale.z);
+                                    Destroy(fxTemp, 1);
+                                }
+                                else if (!isPlayerOnLeft && playerScript.IsLookingLeft)
+                                {
+                                    GameObject fxTemp = Instantiate(_GameController.DamageFX[0], playerScript.VfxPosition.position, playerScript.transform.localRotation);
+                                    fxTemp.transform.localScale = new Vector3(fxTemp.transform.localScale.x * -1, fxTemp.transform.localScale.y, fxTemp.transform.localScale.z);
+                                    Destroy(fxTemp, 1);
+                                }
+
+                                if (isPlayerOnLeft && playerScript.IsLookingLeft)
+                                {
+                                    playerScript.KxTemp = playerScript.KnockX * -1;
+                                    print(playerScript.KxTemp);
+                                }
+                                else if (isPlayerOnLeft && !playerScript.IsLookingLeft)
+                                {
+                                    playerScript.KxTemp = playerScript.KnockX;
+                                    print(playerScript.KxTemp);
+                                }
+                                else if (!isPlayerOnLeft && playerScript.IsLookingLeft)
+                                {
+                                    playerScript.KxTemp = playerScript.KnockX;
+                                    print(playerScript.KxTemp);
+                                }
+                                else if (!isPlayerOnLeft && !playerScript.IsLookingLeft)
+                                {
+                                    playerScript.KxTemp = playerScript.KnockX * -1;
+                                    print(playerScript.KxTemp);
+                                }
+
+                                playerScript.KnockPosition.localPosition = new Vector3(playerScript.KxTemp, playerScript.KnockPosition.localPosition.y, 0);
+
+                                GameObject knockTemp = Instantiate(playerScript.KnockForcePrefab, playerScript.KnockPosition.position, playerScript.KnockPosition.localRotation);
+                                Destroy(knockTemp, 0.02f);
+
+                                if (enemyLife <= 0)
+                                {
+                                    //qnd morrer
+                                }
+
+                                StartCoroutine(nameof(InvulnerablePlayer));
+                            }
+                        }
+                        break;
                     }
                     break;
             }
@@ -146,6 +214,7 @@ namespace ProjetoTCC
                     if (tookHit == false)
                     {
                         tookHit = true;
+                        
                         WeaponData weaponInfo = col.gameObject.GetComponent<WeaponData>();
                         animator.SetTrigger("hit");
 
@@ -172,6 +241,8 @@ namespace ProjetoTCC
                         GameObject knockTemp = Instantiate(knockForcePrefab, knockPosition.position, knockPosition.localRotation);
                         Destroy(knockTemp, 0.02f);
 
+                        this.gameObject.SendMessage("TookHit", SendMessageOptions.DontRequireReceiver);
+
                         if (enemyLife <= 0)
                         {
                             dead = true;
@@ -180,8 +251,6 @@ namespace ProjetoTCC
                         }
 
                         StartCoroutine("Invulnerable");
-                        this.gameObject.SendMessage("TookHit", SendMessageOptions.DontRequireReceiver);
-
 
                     }
                     break;
@@ -189,8 +258,70 @@ namespace ProjetoTCC
                 case "Player":
                     if(!dead)
                     {
-                        _GameController.CurrentLife -= 1;
-                        playerScript.PlayerAnimator.SetTrigger("hit");
+                        if(playerScript.TookHit == false)
+                        {
+                            playerScript.TookHit = true;
+                            playerScript.PlayerRb.velocity = new Vector2(0, playerScript.PlayerRb.velocity.y);
+                            _GameController.CurrentLife -= 1;
+                            playerScript.PlayerAnimator.SetTrigger("hit");
+
+                            if (isPlayerOnLeft && !playerScript.IsLookingLeft)
+                            {
+                                GameObject fxTemp = Instantiate(_GameController.DamageFX[0], playerScript.VfxPosition.position, playerScript.transform.localRotation); 
+                                Destroy(fxTemp, 1);
+                            }
+                            else if (isPlayerOnLeft && playerScript.IsLookingLeft)
+                            {
+                                GameObject fxTemp = Instantiate(_GameController.DamageFX[0], vfxPosition.position, transform.localRotation);
+                                fxTemp.transform.localScale = new Vector3(fxTemp.transform.localScale.x * -1, fxTemp.transform.localScale.y, fxTemp.transform.localScale.z);
+                                Destroy(fxTemp, 1);
+                            }
+                            else if(!isPlayerOnLeft && !playerScript.IsLookingLeft)
+                            {
+                                GameObject fxTemp = Instantiate(_GameController.DamageFX[0], playerScript.VfxPosition.position, playerScript.transform.localRotation);
+                                fxTemp.transform.localScale = new Vector3(fxTemp.transform.localScale.x * -1, fxTemp.transform.localScale.y, fxTemp.transform.localScale.z);
+                                Destroy(fxTemp, 1);
+                            }
+                            else if (!isPlayerOnLeft && playerScript.IsLookingLeft)
+                            {
+                                GameObject fxTemp = Instantiate(_GameController.DamageFX[0], playerScript.VfxPosition.position, playerScript.transform.localRotation);
+                                fxTemp.transform.localScale = new Vector3(fxTemp.transform.localScale.x * -1, fxTemp.transform.localScale.y, fxTemp.transform.localScale.z);
+                                Destroy(fxTemp, 1);
+                            }
+
+                            if (isPlayerOnLeft && playerScript.IsLookingLeft)
+                            {
+                                playerScript.KxTemp = playerScript.KnockX * -1;
+                                print(playerScript.KxTemp);
+                            }
+                            else if (isPlayerOnLeft && !playerScript.IsLookingLeft)
+                            {
+                                playerScript.KxTemp = playerScript.KnockX;
+                                print(playerScript.KxTemp);
+                            }
+                            else if (!isPlayerOnLeft && playerScript.IsLookingLeft)
+                            {
+                                playerScript.KxTemp = playerScript.KnockX;
+                                print(playerScript.KxTemp);
+                            }
+                            else if (!isPlayerOnLeft && !playerScript.IsLookingLeft)
+                            {
+                                playerScript.KxTemp = playerScript.KnockX * -1;
+                                print(playerScript.KxTemp);
+                            }
+
+                            playerScript.KnockPosition.localPosition = new Vector3(playerScript.KxTemp, playerScript.KnockPosition.localPosition.y, 0);
+
+                            GameObject knockTemp = Instantiate(playerScript.KnockForcePrefab, playerScript.KnockPosition.position, playerScript.KnockPosition.localRotation);
+                            Destroy(knockTemp, 0.02f);
+
+                            if (enemyLife <= 0)
+                            {
+                                //qnd morrer
+                            }
+
+                            StartCoroutine(nameof(InvulnerablePlayer));
+                        }
                     }
                     break;
 
@@ -235,6 +366,14 @@ namespace ProjetoTCC
             yield return new WaitForSeconds(0.1f);
 
             tookHit = false;
+        }
+
+        IEnumerator InvulnerablePlayer()
+        {
+            playerScript.PRender.color = playerScript.CharacterColor[1];
+            yield return new WaitForSeconds(0.4f);
+            playerScript.PRender.color = playerScript.CharacterColor[0];
+            playerScript.TookHit = false;
         }
     }
 }
