@@ -209,6 +209,9 @@ namespace ProjetoTCC
             EntranceWay.OnAnimationEnded += OnInteractionAnimationEnded;
             NextScene.OnAnimationEnded += OnInteractionAnimationEnded;
             NPC.OnAnimationEnded += OnInteractionAnimationEnded;
+            NPC_START.OnAnimationEnded += OnInteractionAnimationEnded;
+            NPC_BOSS.OnAnimationEnded += OnInteractionAnimationEnded;
+
         }
 
         private void OnDisable() // FUNÇÃO PARA EXECUTAR A ANIMAÇÃO DOS OBJETOS UMA VEZ
@@ -217,6 +220,7 @@ namespace ProjetoTCC
             EntranceWay.OnAnimationEnded -= OnInteractionAnimationEnded;
             NextScene.OnAnimationEnded -= OnInteractionAnimationEnded;
             NPC.OnAnimationEnded -= OnInteractionAnimationEnded;
+            NPC_BOSS.OnAnimationEnded -= OnInteractionAnimationEnded;
         }
 
         void Start()

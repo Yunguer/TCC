@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 namespace ProjetoTCC
 {
-    public class NPC : MonoBehaviour
+    public class NPC_BOSS : MonoBehaviour
     {
         private _GameController _GameController;
 
@@ -39,7 +39,7 @@ namespace ProjetoTCC
 
         [SerializeField]
         private List<string> dialogue_1;
-        
+
         [SerializeField]
         private List<string> dialogue_2;
 
@@ -51,7 +51,7 @@ namespace ProjetoTCC
 
         [SerializeField]
         private List<string> dialogue_5;
-        
+
         [SerializeField]
         private List<string> dialogue_6;
 
@@ -80,26 +80,21 @@ namespace ProjetoTCC
 
         void Update()
         {
-            
+
         }
 
         public void Interaction()
         {
-            if(_GameController.CurrentGameState == GameState.GAMEPLAY)
+            if (_GameController.CurrentGameState == GameState.GAMEPLAY)
             {
                 _GameController.ChangeState(GameState.DIALOGO);
                 dialogueLineID = 0;
 
-                if(chatLines != null)
+                if (chatLines != null)
                 {
                     chatLines.Clear();
                 }
 
-                if(chatID == 3 && _GameController.Mission1 == true)
-                {
-                    chatID = 4;
-                    _GameController.PotionQnt[0] = _GameController.PotionQnt[0] + 10;
-                }
 
                 PreparDialogue();
 
@@ -108,7 +103,7 @@ namespace ProjetoTCC
                 isTalking = true;
                 OnAnimationEnd();
             }
-            
+
         }
 
         public void Talk()
@@ -123,11 +118,11 @@ namespace ProjetoTCC
 
         public void Dialogue()
         {
-            if(dialogueLineID < chatLines.Count)
+            if (dialogueLineID < chatLines.Count)
             {
                 textBox.text = chatLines[dialogueLineID];
 
-                if(chatID == 0 && dialogueLineID == 2)
+                if (chatID == 0 && dialogueLineID == 2)
                 {
                     textButtonA.text = answerQuestion[0];
                     textButtonB.text = answerQuestion[1];
@@ -139,22 +134,18 @@ namespace ProjetoTCC
             }
             else
             {
-                switch(chatID)
+                switch (chatID)
                 {
                     case 0:
 
                         break;
 
                     case 1:
-                        chatID = 3;
+                        chatID = 5;
                         break;
 
                     case 2:
                         chatID = 0;
-                        break;
-
-                    case 4:
-                        chatID = 5;
                         break;
                 }
 
@@ -163,7 +154,7 @@ namespace ProjetoTCC
 
                 _GameController.ChangeState(GameState.FIM_DIALOGO);
             }
-            
+
         }
 
         public void PreparDialogue()
@@ -192,24 +183,6 @@ namespace ProjetoTCC
                 case 2:
 
                     foreach (string s in dialogue_3)
-                    {
-                        chatLines.Add(s);
-                    }
-
-                    break;
-
-                case 3:
-
-                    foreach (string s in dialogue_4)
-                    {
-                        chatLines.Add(s);
-                    }
-
-                    break;
-
-                case 4:
-
-                    foreach (string s in dialogue_5)
                     {
                         chatLines.Add(s);
                     }
@@ -261,13 +234,13 @@ namespace ProjetoTCC
             XmlDocument xmlDocument = new XmlDocument();
             xmlDocument.LoadXml(xmlData.text);
 
-            foreach(XmlNode dialogue in xmlDocument["chats"].ChildNodes)
+            foreach (XmlNode dialogue in xmlDocument["chats"].ChildNodes)
             {
                 string dialogueName = dialogue.Attributes["name"].Value;
 
-                foreach(XmlNode f in dialogue["lines"].ChildNodes)
+                foreach (XmlNode f in dialogue["lines"].ChildNodes)
                 {
-                    switch(dialogueName)
+                    switch (dialogueName)
                     {
                         case "dialogue_1":
                             dialogue_1.Add(f.InnerText);
@@ -279,14 +252,6 @@ namespace ProjetoTCC
 
                         case "dialogue_3":
                             dialogue_3.Add(f.InnerText);
-                            break;
-
-                        case "dialogue_4":
-                            dialogue_4.Add(f.InnerText);
-                            break;
-
-                        case "dialogue_5":
-                            dialogue_5.Add(f.InnerText);
                             break;
 
                         case "dialogue_6":

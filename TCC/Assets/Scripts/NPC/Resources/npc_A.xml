@@ -5,9 +5,9 @@
 	<dialogue name="dialogue_1">
 		<lines>
 		
-			<line>Oi, meu nome é Pedro!</line>
-			<line>Eu tenho uma missão para você!</line>
-			<line>Você aceita?</line>
+			<line>Olá, me chamo Iepê!</line>
+			<line>Eu tenho um pedido para você, há um campo de exploradores ilegais a frente, estão desmatando a floresta!</line>
+			<line>Poderia derrota-los por favor?</line>
 		</lines>
 	</dialogue>
 
@@ -15,9 +15,9 @@
 	<dialogue name="dialogue_2">
 		<lines>
 
-			<line>Fico feliz em saber que você irá me ajudar!</line>
-			<line>Ao terminar a missão volte a falar comigo!</line>
-			<line>Até Logo!</line>
+			<line>Fico feliz em saber que você podera me ajudar!</line>
+			<line>Ao derrota-los volte a falar comigo, te entregarei uma recompensa!</line>
+			<line>Até mais!</line>
 		</lines>
 	</dialogue>
 
@@ -33,7 +33,7 @@
 	<dialogue name="dialogue_4">
 		<lines>
 
-			<line>Volte a falar comigo quando terminar a missão</line>
+			<line>Volte a falar comigo quando terminar de derrota-los.</line>
 			<line>Até Logo!</line>
 		</lines>
 	</dialogue>
@@ -41,8 +41,8 @@
 	<dialogue name="dialogue_5">
 		<lines>
 
-			<line>Vejo que terminou sua missão com sucesso</line>
-			<line>Receba sua recompensa!</line>
+			<line>Vejo que você os derrotou, muito obrigado!</line>
+			<line>Aqui está sua recompensa! São algumas poções de vida para continuar seu caminho.</line>
 			<line>Até Logo!</line>
 		</lines>
 	</dialogue>
@@ -56,7 +56,7 @@
 	<dialogue name="resposta_1">
 		<lines>
 
-			<line>Sim, eu aceito a missão!</line>
+			<line>Sim, eu posso te ajudar!</line>
 			<line>Não, eu já tenho outras coisas para fazer!</line>
 		</lines>
 	</dialogue>

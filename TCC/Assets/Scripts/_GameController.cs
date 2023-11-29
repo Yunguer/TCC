@@ -18,7 +18,8 @@ namespace ProjetoTCC
         ITENS,
         ITEM_INFO,
         DIALOGO,
-        FIM_DIALOGO
+        FIM_DIALOGO,
+        START
     }
 
     public class _GameController : MonoBehaviour
@@ -233,13 +234,37 @@ namespace ProjetoTCC
         private Button firstPainelItens;
         [SerializeField]
         private Button firstPainelItenInfo;
+        [SerializeField]
+        private GameObject startPainel;
         #endregion
 
         [Header("Missões")]
         #region Variaveis para as Missões
 
-        private bool mission1 = true;
-        public bool Mission1 => mission1;
+        private bool mission1 = false;
+        public bool Mission1
+        {
+            get
+            {
+                return mission1;
+            }
+            set
+            {
+                mission1 = value;
+            }
+        }
+        private int mission1Count = 0;
+        public int Mission1Count
+        {
+            get
+            {
+                return mission1Count;
+            }
+            set
+            {
+                mission1Count = value;
+            }
+        }
         #endregion
 
         private void Start()
@@ -263,18 +288,31 @@ namespace ProjetoTCC
             string s = Gold.ToString("N0");
             goldTXT.text = s.Replace(",",".");
 
-            if(Input.GetButtonDown("Cancel") && currentGameState != GameState.ITENS && currentGameState != GameState.ITEM_INFO)
+
+            
+            if(Input.anyKeyDown)
             {
-                PauseGame();
+                if ((Input.GetKeyDown(KeyCode.Escape) && currentGameState == GameState.START))
+                {
+                    startPainel.SetActive(false);
+                    ChangeState(GameState.GAMEPLAY);
+                }
+
+                if (Input.GetKeyDown(KeyCode.Escape) && currentGameState != GameState.ITENS && currentGameState != GameState.ITEM_INFO && currentGameState != GameState.START)
+                {
+                    PauseGame();
+                }
+                else if (Input.GetKeyDown(KeyCode.Escape) && currentGameState == GameState.ITENS)
+                {
+                    ClosePainel();
+                }
+                else if (Input.GetKeyDown(KeyCode.Escape) && currentGameState == GameState.ITEM_INFO)
+                {
+                    CloseItemInfo();
+                }
             }
-            else if(Input.GetButtonDown("Cancel") && currentGameState == GameState.ITENS)
-            {
-                ClosePainel();
-            }
-            else if (Input.GetButtonDown("Cancel") && currentGameState == GameState.ITEM_INFO)
-            {
-                CloseItemInfo();
-            }
+
+            
         }
 
         public void ValidateWeapon()
@@ -550,8 +588,12 @@ namespace ProjetoTCC
 
             equipedArrowID = 0;
 
+            startPainel.SetActive(true);
+           
+
             Save();
             Load(PlayerPrefs.GetString("slot"));
+            ChangeState(GameState.START);
         }
 
         

@@ -10,6 +10,7 @@ namespace ProjetoTCC
     {
         #region Comunicação Entre Scripts
         private _GameController _GameController;
+        private Inventory inventory;
         #endregion
 
         [Header("Objeto para Coletar")]
@@ -27,6 +28,7 @@ namespace ProjetoTCC
         {
             InvokeActivateCollider();
             _GameController = FindObjectOfType(typeof(_GameController)) as _GameController;
+            inventory = FindObjectOfType(typeof(Inventory)) as Inventory;
             boxCollider2D = gameObject.GetComponent<BoxCollider2D>();
         }
 
@@ -34,9 +36,13 @@ namespace ProjetoTCC
         {
             if(!colected)
             {
-                _GameController.ColectItem(colectableWeapon);
-                Destroy(this.gameObject);
-                colected = true;
+                if(inventory.InventoryItens.Count <10)
+                {
+                    _GameController.ColectItem(colectableWeapon);
+                    Destroy(this.gameObject);
+                    colected = true;
+                }
+                
             }
         }
 

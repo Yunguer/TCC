@@ -97,7 +97,6 @@ namespace ProjetoTCC
         void Update()
         {
 
-
             if (enemyDamageController.TookHit == true)
             {
                 foreach (GameObject o in weapons)
@@ -209,13 +208,16 @@ namespace ProjetoTCC
                     
                     break;
                 case EnemyState.RETREAT:
-                    var isLookingToPlayer = enemyDamageController.IsPlayerOnLeft ? isLookingLeft : !isLookingLeft;
-                    if(isLookingToPlayer)
+                    if(enemyDamageController.EnemyLife > 0)
                     {
-                        Flip();
+                        var isLookingToPlayer = enemyDamageController.IsPlayerOnLeft ? isLookingLeft : !isLookingLeft;
+                        if (isLookingToPlayer)
+                        {
+                            Flip();
+                        }
+                        Speed = baseSpeed * 2;
+                        StartCoroutine(nameof(Retreat));
                     }
-                    Speed = baseSpeed * 2;
-                    StartCoroutine(nameof(Retreat));
                     break;
             }
         }
@@ -338,13 +340,16 @@ namespace ProjetoTCC
         public void TookHit()
         {
             isAlertOnHit = true;
-            var isLookingToPlayer = enemyDamageController.IsPlayerOnLeft ? isLookingLeft : !isLookingLeft;
-            float dist = transform.position.x - playerScript.transform.position.x;
-
-            ChangeState(EnemyState.RETREAT);
-            if (Mathf.Abs(dist) >= leaveAlertDistance)
+            if(enemyDamageController.EnemyLife > 0)
             {
-                StartCoroutine(nameof(AwaitToLeaveAlert));
+                var isLookingToPlayer = enemyDamageController.IsPlayerOnLeft ? isLookingLeft : !isLookingLeft;
+                float dist = transform.position.x - playerScript.transform.position.x;
+
+                ChangeState(EnemyState.RETREAT);
+                if (Mathf.Abs(dist) >= leaveAlertDistance)
+                {
+                    StartCoroutine(nameof(AwaitToLeaveAlert));
+                }
             }
             isAlertOnHit = false;
         }

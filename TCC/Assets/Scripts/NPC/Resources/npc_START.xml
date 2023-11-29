@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<chats>
+
+	<dialogue name="dialogue_1">
+		<lines>
+		
+			<line>Desculpa te acordar, meu nome é Naurú!</line>
+			<line>Há exploradores ilegais invadindo a floresta, aparentemente estão em busca da Cucura-Purumã a árvore da vida, precisamos da sua ajuda para derrota-los.</line>
+			<line>Você poderia nós ajudar?</line>
+		</lines>
+	</dialogue>
+
+
+	<dialogue name="dialogue_2">
+		<lines>
+
+			<line>Fico feliz em saber que você podera nós ajudar! Te darei algumas dicas.</line>
+			<line>Para andar e agachar utilize as setas do teclado, para atacar aperte o botão CTRL (Control), para pular aperte o espaço, para utilizar as poções use os botões númericos 1 e 2 e por ultimo para trocar de flechas utilize o botão Q e E.</line>
+			<line>Boa sorte!</line>
+		</lines>
+	</dialogue>
+
+	<dialogue name="dialogue_3">
+		<lines>
+
+			<line>Mas precisamos muito da sua ajuda!</line>
+			<line>Se mudar de ideia, fale comigo novamente!</line>
+			<line>Até Logo!</line>
+		</lines>
+	</dialogue>
+
+	<dialogue name="dialogue_4">
+		<lines>
+			<line>Boa sorte!</line>
+		</lines>
+	</dialogue>
+
+	<dialogue name="resposta_1">
+		<lines>
+
+			<line>Sim, defenderei a floresta!</line>
+			<line>Não, preciso dormir mais um pouco.</line>
+		</lines>
+	</dialogue>
+	
+	
+</chats>

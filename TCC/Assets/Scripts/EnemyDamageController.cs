@@ -17,11 +17,13 @@ namespace ProjetoTCC
         #region Variavies para mecanicas de dano
         [SerializeField]
         private int enemyLife;
+        public int EnemyLife => enemyLife;
         [SerializeField]
         private float[] damageModifier; //SISTEMA DE RESISTENCIA/FRAQUESA CONTRA DETERMINADO TIPO DE DANO
         private bool tookHit; // VERIFICAÇÃO PARA SE LEVOU UM HIT
         public bool TookHit => tookHit;
         private bool dead; // INDICA SE ESTÁ MORTO
+        public bool Dead => dead;
         [SerializeField]
         private Color[] characterColor; // CONTROLE DE COR DO PERSONAGEM
         [SerializeField]

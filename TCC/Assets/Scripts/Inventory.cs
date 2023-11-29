@@ -107,8 +107,10 @@ namespace ProjetoTCC
         public void ClearSlot(int slotID)
         {
             InventoryItens.RemoveAt(slotID);
+            var ct = inventoryItens.Count;
 
             slots[slotID].GetComponent<SlotInventory>().SetEnableIcon(false);
+            slots[ct].GetComponent<SlotInventory>().SetEnableIcon(false);
 
             LoadInventory();
         }

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<chats>
+
+	<dialogue name="dialogue_1">
+		<lines>
+		
+			<line>Prazer, me chamo Waurá!</line>
+			<line>Eu tenho um pedido muito importante para você, aparentemente a Mula-Sem-Cabeça está sendo controlada pelos fazendeiros e está atacando os animais da floresta!</line>
+			<line>Poderia ajuda-la?</line>
+		</lines>
+	</dialogue>
+
+
+	<dialogue name="dialogue_2">
+		<lines>
+
+			<line>Muito obrigada, você será de grande ajuda!</line>
+			<line>Precisamos salva-la para evitar que mais animais se machuquem!</line>
+		</lines>
+	</dialogue>
+
+	<dialogue name="dialogue_3">
+		<lines>
+
+			<line>Tem certeza? precisamos muito de sua ajuda!</line>
+			<line>Se mudar de ideia, volte a falar comigo!</line>
+			<line>Até Logo!</line>
+		</lines>
+	</dialogue>
+
+	<dialogue name="dialogue_6">
+		<lines>
+			<line>Boa sorte na luta!</line>
+		</lines>
+	</dialogue>
+
+	<dialogue name="resposta_1">
+		<lines>
+
+			<line>Claro, pode deixar comigo!</line>
+			<line>Não, preciso resolver outras coisas antes!</line>
+		</lines>
+	</dialogue>
+	
+	
+</chats>
