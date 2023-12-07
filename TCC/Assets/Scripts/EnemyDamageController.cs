@@ -189,7 +189,7 @@ namespace ProjetoTCC
                                 GameObject knockTemp = Instantiate(playerScript.KnockForcePrefab, playerScript.KnockPosition.position, playerScript.KnockPosition.localRotation);
                                 Destroy(knockTemp, 0.02f);
 
-                                if (enemyLife <= 0)
+                                if (_GameController.CurrentLife <= 0)
                                 {
                                     //qnd morrer
                                 }
@@ -317,7 +317,7 @@ namespace ProjetoTCC
                             GameObject knockTemp = Instantiate(playerScript.KnockForcePrefab, playerScript.KnockPosition.position, playerScript.KnockPosition.localRotation);
                             Destroy(knockTemp, 0.02f);
 
-                            if (enemyLife <= 0)
+                            if (_GameController.CurrentLife <= 0)
                             {
                                 //qnd morrer
                             }

@@ -292,11 +292,6 @@ namespace ProjetoTCC
             
             if(Input.anyKeyDown)
             {
-                if ((Input.GetKeyDown(KeyCode.Escape) && currentGameState == GameState.START))
-                {
-                    startPainel.SetActive(false);
-                    ChangeState(GameState.GAMEPLAY);
-                }
 
                 if (Input.GetKeyDown(KeyCode.Escape) && currentGameState != GameState.ITENS && currentGameState != GameState.ITEM_INFO && currentGameState != GameState.START)
                 {
@@ -309,6 +304,12 @@ namespace ProjetoTCC
                 else if (Input.GetKeyDown(KeyCode.Escape) && currentGameState == GameState.ITEM_INFO)
                 {
                     CloseItemInfo();
+                }
+
+                if ((Input.GetKeyDown(KeyCode.Escape) && currentGameState == GameState.START))
+                {
+                    startPainel.SetActive(false);
+                    ChangeState(GameState.GAMEPLAY);
                 }
             }
 
