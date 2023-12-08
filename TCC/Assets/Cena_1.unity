@@ -910,7 +910,7 @@ Transform:
   m_GameObject: {fileID: 19502972}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -13.58, y: 0.15000021, z: -10}
+  m_LocalPosition: {x: 25.292, y: 3.1590004, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4934,12 +4934,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3924273355648036506, guid: 853db15b38042434095f9c122ef24899, type: 3}
       propertyPath: maxQnt
-      value: 9
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3924273355648036506, guid: 853db15b38042434095f9c122ef24899, type: 3}
       propertyPath: minQnt
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3924273355648036506, guid: 853db15b38042434095f9c122ef24899, type: 3}
+      propertyPath: loots.Array.data[0]
+      value: 
+      objectReference: {fileID: 2308103583905300454, guid: f81c91d5897b4f04ebd818f0ff4ae539, type: 3}
     - target: {fileID: 4619910109717095602, guid: 853db15b38042434095f9c122ef24899, type: 3}
       propertyPath: m_IsTrigger
       value: 1
@@ -5595,12 +5599,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3924273355648036506, guid: 853db15b38042434095f9c122ef24899, type: 3}
       propertyPath: maxQnt
-      value: 9
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3924273355648036506, guid: 853db15b38042434095f9c122ef24899, type: 3}
       propertyPath: minQnt
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3924273355648036506, guid: 853db15b38042434095f9c122ef24899, type: 3}
+      propertyPath: loots.Array.data[0]
+      value: 
+      objectReference: {fileID: 2308103583905300454, guid: dc64382c612c133469c34d55243fb8cc, type: 3}
     - target: {fileID: 4619910109717095602, guid: 853db15b38042434095f9c122ef24899, type: 3}
       propertyPath: m_IsTrigger
       value: 1
@@ -14904,6 +14912,10 @@ PrefabInstance:
       propertyPath: minQnt
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 3924273355648036506, guid: 853db15b38042434095f9c122ef24899, type: 3}
+      propertyPath: loots.Array.data[0]
+      value: 
+      objectReference: {fileID: 4230285499877545577, guid: 19394a69bc36d104998810ddad4f6621, type: 3}
     - target: {fileID: 4619910109717095602, guid: 853db15b38042434095f9c122ef24899, type: 3}
       propertyPath: m_IsTrigger
       value: 1
@@ -17000,7 +17012,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.255964, y: 0.16485703, z: -10}
+  m_LocalPosition: {x: 25.292, y: 3.1590004, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -17138,12 +17150,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3924273355648036506, guid: 853db15b38042434095f9c122ef24899, type: 3}
       propertyPath: maxQnt
-      value: 9
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3924273355648036506, guid: 853db15b38042434095f9c122ef24899, type: 3}
       propertyPath: minQnt
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3924273355648036506, guid: 853db15b38042434095f9c122ef24899, type: 3}
+      propertyPath: loots.Array.data[0]
+      value: 
+      objectReference: {fileID: 2308103583905300454, guid: ebadb80bc96c6e6439791a54900d03cd, type: 3}
     - target: {fileID: 4619910109717095602, guid: 853db15b38042434095f9c122ef24899, type: 3}
       propertyPath: m_IsTrigger
       value: 1
@@ -23656,12 +23672,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3924273355648036506, guid: 853db15b38042434095f9c122ef24899, type: 3}
       propertyPath: maxQnt
-      value: 9
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3924273355648036506, guid: 853db15b38042434095f9c122ef24899, type: 3}
       propertyPath: minQnt
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3924273355648036506, guid: 853db15b38042434095f9c122ef24899, type: 3}
+      propertyPath: loots.Array.data[0]
+      value: 
+      objectReference: {fileID: 2308103583905300454, guid: f81c91d5897b4f04ebd818f0ff4ae539, type: 3}
     - target: {fileID: 4619910109717095602, guid: 853db15b38042434095f9c122ef24899, type: 3}
       propertyPath: m_IsTrigger
       value: 1
@@ -28862,6 +28882,7 @@ Transform:
   - {fileID: 824435492}
   - {fileID: 531493002}
   - {fileID: 1507628438}
+  - {fileID: 1754894314}
   - {fileID: 165446328}
   - {fileID: 332350696}
   - {fileID: 1111008843}
@@ -38492,12 +38513,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3924273355648036506, guid: 853db15b38042434095f9c122ef24899, type: 3}
       propertyPath: maxQnt
-      value: 9
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3924273355648036506, guid: 853db15b38042434095f9c122ef24899, type: 3}
       propertyPath: minQnt
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3924273355648036506, guid: 853db15b38042434095f9c122ef24899, type: 3}
+      propertyPath: loots.Array.data[0]
+      value: 
+      objectReference: {fileID: 2308103583905300454, guid: e86d3721674d9ef438efc5a94b692d46, type: 3}
     - target: {fileID: 4619910109717095602, guid: 853db15b38042434095f9c122ef24899, type: 3}
       propertyPath: m_IsTrigger
       value: 1
@@ -38636,12 +38661,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3924273355648036506, guid: 853db15b38042434095f9c122ef24899, type: 3}
       propertyPath: maxQnt
-      value: 9
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3924273355648036506, guid: 853db15b38042434095f9c122ef24899, type: 3}
       propertyPath: minQnt
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3924273355648036506, guid: 853db15b38042434095f9c122ef24899, type: 3}
+      propertyPath: loots.Array.data[0]
+      value: 
+      objectReference: {fileID: 2308103583905300454, guid: ebadb80bc96c6e6439791a54900d03cd, type: 3}
     - target: {fileID: 4619910109717095602, guid: 853db15b38042434095f9c122ef24899, type: 3}
       propertyPath: m_IsTrigger
       value: 1
@@ -42645,6 +42674,80 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6930122694965717509, guid: 853db15b38042434095f9c122ef24899, type: 3}
   m_PrefabInstance: {fileID: 1754003826}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1754894313
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1015597879}
+    m_Modifications:
+    - target: {fileID: 3924273355648036506, guid: 853db15b38042434095f9c122ef24899, type: 3}
+      propertyPath: maxQnt
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3924273355648036506, guid: 853db15b38042434095f9c122ef24899, type: 3}
+      propertyPath: minQnt
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4619910109717095602, guid: 853db15b38042434095f9c122ef24899, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6930122694965717508, guid: 853db15b38042434095f9c122ef24899, type: 3}
+      propertyPath: m_Name
+      value: Golden Chest (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6930122694965717509, guid: 853db15b38042434095f9c122ef24899, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 99.697
+      objectReference: {fileID: 0}
+    - target: {fileID: 6930122694965717509, guid: 853db15b38042434095f9c122ef24899, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6930122694965717509, guid: 853db15b38042434095f9c122ef24899, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6930122694965717509, guid: 853db15b38042434095f9c122ef24899, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6930122694965717509, guid: 853db15b38042434095f9c122ef24899, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6930122694965717509, guid: 853db15b38042434095f9c122ef24899, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6930122694965717509, guid: 853db15b38042434095f9c122ef24899, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6930122694965717509, guid: 853db15b38042434095f9c122ef24899, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6930122694965717509, guid: 853db15b38042434095f9c122ef24899, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6930122694965717509, guid: 853db15b38042434095f9c122ef24899, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 853db15b38042434095f9c122ef24899, type: 3}
+--- !u!4 &1754894314 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6930122694965717509, guid: 853db15b38042434095f9c122ef24899, type: 3}
+  m_PrefabInstance: {fileID: 1754894313}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1756618506
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -46424,12 +46527,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3924273355648036506, guid: 853db15b38042434095f9c122ef24899, type: 3}
       propertyPath: maxQnt
-      value: 9
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3924273355648036506, guid: 853db15b38042434095f9c122ef24899, type: 3}
       propertyPath: minQnt
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3924273355648036506, guid: 853db15b38042434095f9c122ef24899, type: 3}
+      propertyPath: loots.Array.data[0]
+      value: 
+      objectReference: {fileID: 2308103583905300454, guid: ebadb80bc96c6e6439791a54900d03cd, type: 3}
     - target: {fileID: 4619910109717095602, guid: 853db15b38042434095f9c122ef24899, type: 3}
       propertyPath: m_IsTrigger
       value: 1
@@ -49397,11 +49504,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4348656148397354855, guid: 47552ab0e33614f489f5768b36a6ba69, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -13.58
+      value: 25.292
       objectReference: {fileID: 0}
     - target: {fileID: 4348656148397354855, guid: 47552ab0e33614f489f5768b36a6ba69, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.55
+      value: 1.459
       objectReference: {fileID: 0}
     - target: {fileID: 4348656148397354855, guid: 47552ab0e33614f489f5768b36a6ba69, type: 3}
       propertyPath: m_LocalPosition.z

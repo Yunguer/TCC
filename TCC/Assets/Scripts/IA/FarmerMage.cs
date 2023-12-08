@@ -258,7 +258,7 @@ namespace ProjetoTCC
                 case 2:
                     GameObject tempPrefab = Instantiate(prefabMagic, spawnMagic.position, spawnMagic.localRotation);
                     tempPrefab.GetComponent<Rigidbody2D>().velocity = new Vector2(3 * dir.x, 0);
-                    Destroy(tempPrefab, 1);
+                    Destroy(tempPrefab, 2);
                     break;
             }
         }

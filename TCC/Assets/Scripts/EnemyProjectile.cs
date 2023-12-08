@@ -98,8 +98,10 @@ namespace ProjetoTCC
                     break;
 
                 case "Ground":
-                    spriteRenderer.sprite = null;
-                    Destroy(this.gameObject, 1);
+                    if(alreadyHit == false)
+                    {
+                        Destroy(this.gameObject);
+                    }
                     break;
             }
 

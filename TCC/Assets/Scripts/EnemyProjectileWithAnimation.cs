@@ -95,6 +95,13 @@ namespace ProjetoTCC
                     }
                     break;
 
+                case "Ground":
+                    if(alreadyHit == false)
+                    {
+                        Destroy(this.gameObject);
+                    }
+                    
+                    break;
 
             }
 
