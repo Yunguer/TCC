@@ -29,7 +29,7 @@ namespace ProjetoTCC
                     if (playerScript.TookHit == false && alreadyHit == false)
                     {
                         alreadyHit = true;
-                        //animator.enabled = false;
+                        animator.enabled = false;
                         spriteRenderer.sprite = null;
                         playerScript.TookHit = true;
                         playerScript.PlayerRb.velocity = new Vector2(0, playerScript.PlayerRb.velocity.y);
