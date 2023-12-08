@@ -1305,7 +1305,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2367810696286983472}
   - component: {fileID: 680067582951117537}
-  - component: {fileID: 5812126144984131871}
   - component: {fileID: 6655476435143018942}
   - component: {fileID: 2422726649265608432}
   - component: {fileID: 1275780546543661844}
@@ -1313,6 +1312,7 @@ GameObject:
   - component: {fileID: 6196961894963318725}
   - component: {fileID: 7553659233745899198}
   - component: {fileID: 238792057394200084}
+  - component: {fileID: 3686472271247475543}
   m_Layer: 6
   m_Name: FarmerMG
   m_TagString: Enemy
@@ -1395,50 +1395,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5812126144984131871
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7562351171527682467}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44d0d8a7ac7d10e42841f1bfd98424f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentEnemyState: 0
-  changeRoteDistance: 0.5
-  obstaclesLayer:
-    serializedVersion: 2
-    m_Bits: 3072
-  seeCharacterDistance: 3
-  characterLayer:
-    serializedVersion: 2
-    m_Bits: 2048
-  atackDistance: 0.8
-  leaveAlertDistance: 4
-  baseSpeed: 1
-  Speed: 0
-  isLookingLeft: 0
-  waitingTimeIdle: 1
-  waitingTimeRetreat: 2
-  weapons:
-  - {fileID: 733999561258086233}
-  - {fileID: 8497840150437315399}
-  - {fileID: 33352109677450337}
-  bows:
-  - {fileID: 692822323793968972}
-  - {fileID: 4897914704890399377}
-  - {fileID: 8885034356646247200}
-  staffs:
-  - {fileID: 2766872382808210121}
-  - {fileID: 6747103966591024609}
-  - {fileID: 8727288264451215299}
-  - {fileID: 2487631236366060699}
-  weaponID: WEAPON_STAFF_ROXO_LVL_0
-  classID: 2
-  isAlertOnHit: 0
 --- !u!95 &6655476435143018942
 Animator:
   serializedVersion: 5
@@ -1658,6 +1614,52 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPlayer: 0
   spriteSheetName: Farmer_Mage
+--- !u!114 &3686472271247475543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7562351171527682467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b2ee092b91271442873abce19a0dbb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentEnemyState: 0
+  changeRoteDistance: 0.5
+  obstaclesLayer:
+    serializedVersion: 2
+    m_Bits: 3072
+  seeCharacterDistance: 7
+  characterLayer:
+    serializedVersion: 2
+    m_Bits: 2048
+  atackDistance: 5
+  leaveAlertDistance: 8
+  baseSpeed: 1
+  Speed: 0
+  isLookingLeft: 0
+  waitingTimeIdle: 1
+  waitingTimeRetreat: 2
+  weapons:
+  - {fileID: 733999561258086233}
+  - {fileID: 8497840150437315399}
+  - {fileID: 33352109677450337}
+  bows:
+  - {fileID: 692822323793968972}
+  - {fileID: 4897914704890399377}
+  - {fileID: 8885034356646247200}
+  staffs:
+  - {fileID: 2766872382808210121}
+  - {fileID: 6747103966591024609}
+  - {fileID: 8727288264451215299}
+  - {fileID: 2487631236366060699}
+  weaponID: WEAPON_STAFF_ROXO_LVL_0
+  classID: 2
+  isAlertOnHit: 0
+  prefabMagic: {fileID: 6156043517464787329, guid: 9a9fc3dbdcfe27b4a94daad2a7789fc8, type: 3}
+  spawnMagic: {fileID: 1749472856572952568}
 --- !u!1 &7758989131825811737
 GameObject:
   m_ObjectHideFlags: 0

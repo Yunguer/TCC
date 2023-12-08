@@ -256,7 +256,7 @@ namespace ProjetoTCC
                 o.SetActive(false);
             }
 
-            ChangeWeapon(_GameController.WeaponProvider.GetWeaponById(_GameController.CurrentWeapon.Id));
+            ChangeWeapon(_GameController.WeaponProvider.GetWeaponById(_GameController.CurrentWeaponId));
 
         }
 
@@ -475,10 +475,12 @@ namespace ProjetoTCC
                 case 2:
                     if(_GameController.CurrentMana >= 1)
                     {
-                        GameObject tempPrefab = Instantiate(prefabMagic, spawnMagic.position, spawnMagic.localRotation);
-                        tempPrefab.GetComponent<Rigidbody2D>().velocity = new Vector2(3 * dir.x, 0);
-                        Destroy(tempPrefab, 1);
                         _GameController.CurrentMana = _GameController.CurrentMana - 1;
+                        GameObject tempPrefab = Instantiate(prefabMagic, spawnMagic.position, spawnMagic.localRotation);
+                        tempPrefab.GetComponent<WeaponData>().Damage = _GameController.CurrentWeapon.Damage;
+                        tempPrefab.GetComponent<WeaponData>().DamageType = (int)_GameController.CurrentWeapon.DamageType;
+                        tempPrefab.GetComponent<Rigidbody2D>().velocity = new Vector2(3 * dir.x, 0);
+                        Destroy(tempPrefab, 1);     
                     }
                     break;
             }

@@ -25,6 +25,8 @@ namespace ProjetoTCC
                 Destroy(this.gameObject);
             }
         }
+
+
     }
 
 }

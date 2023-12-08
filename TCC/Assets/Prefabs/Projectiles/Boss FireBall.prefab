@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 7429983751206754040}
   - component: {fileID: 1140061840479210611}
   - component: {fileID: 2086370719124090861}
-  - component: {fileID: -6947131757035525783}
   - component: {fileID: 2952602944049471889}
+  - component: {fileID: -8317874647820941063}
   m_Layer: 0
   m_Name: Boss FireBall
   m_TagString: Enemy
@@ -160,21 +160,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.3629629, y: 0.39696538}
   m_EdgeRadius: 0
---- !u!114 &-6947131757035525783
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 190173388558696640}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2fff03f7f8effc47ad316923e0a119c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  destroyLayer:
-    serializedVersion: 2
-    m_Bits: 2304
 --- !u!95 &2952602944049471889
 Animator:
   serializedVersion: 5
@@ -196,3 +181,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-8317874647820941063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 190173388558696640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2fff03f7f8effc47ad316923e0a119c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyLayer:
+    serializedVersion: 2
+    m_Bits: 2304

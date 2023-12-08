@@ -125,6 +125,7 @@ namespace ProjetoTCC
             }
         }
       
+        [SerializeField]
         private CustomWeaponData currentWeapon;
         public CustomWeaponData CurrentWeapon
         {
@@ -137,6 +138,10 @@ namespace ProjetoTCC
                 currentWeapon = value;
             }
         }
+
+        private string currentWeaponId;
+        public string CurrentWeaponId => currentWeaponId;
+
         
         [SerializeField]
         private int[] arrowQnt; // 0 - FLECHA COMUM 1 - FLECHA DE FERRO 2 - FLECHA DE OURO
@@ -281,6 +286,8 @@ namespace ProjetoTCC
             {
                 NewGame();
             }
+
+            currentWeapon = weaponProvider.GetWeaponById(currentWeaponId);
         }
 
         void Update()
@@ -490,7 +497,7 @@ namespace ProjetoTCC
             PlayerData data = new PlayerData();
             data.gold = gold;
             data.characterId = PlayerPrefs.GetInt("titleCharacterID");
-            data.currentWeapon = currentWeapon;
+            data.currentWeaponId = currentWeapon.Id;
             data.equipedArrow = equipedArrowID;
             data.arrowQnt = arrowQnt;
             data.potionQnt = potionQnt;
@@ -527,7 +534,7 @@ namespace ProjetoTCC
 
                 gold = data.gold;
                 characterID = data.characterId;
-                currentWeapon = data.currentWeapon;
+                currentWeaponId = data.currentWeaponId;
                 equipedArrowID = data.equipedArrow;
                 arrowQnt = data.arrowQnt;
                 potionQnt = data.potionQnt;
@@ -568,6 +575,7 @@ namespace ProjetoTCC
             characterID = PlayerPrefs.GetInt("titleCharacterID");
 
             currentWeapon = weaponProvider.GetInicialWeaponByCharacterId((PlayerType)characterID);
+            currentWeaponId = currentWeapon.Id;
 
             currentLife = maxLife;
             currentMana = maxMana;
@@ -605,7 +613,7 @@ namespace ProjetoTCC
     {
         public int gold;
         public int characterId;
-        public CustomWeaponData currentWeapon;
+        public string currentWeaponId;
         public int equipedArrow;
         public int[] arrowQnt;
         public int[] potionQnt;

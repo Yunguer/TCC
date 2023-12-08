@@ -1823,6 +1823,8 @@ MonoBehaviour:
   weaponID: WEAPON_BOW_MADEIRA_LVL_0
   classID: 1
   isAlertOnHit: 0
+  ArrowPrefab: {fileID: 190173388558696640, guid: f52ba2e23e28e37449fa4aac40b55fda, type: 3}
+  spawnArrow: {fileID: 1531905515392948301}
 --- !u!1 &7981187062115813651
 GameObject:
   m_ObjectHideFlags: 0

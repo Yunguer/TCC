@@ -74,6 +74,12 @@ namespace ProjetoTCC
         [SerializeField]
         private bool isAlertOnHit;
 
+        [SerializeField]
+        private GameObject ArrowPrefab;
+
+        [SerializeField]
+        private Transform spawnArrow;
+
         #endregion
         void Start()
         {
@@ -145,17 +151,23 @@ namespace ProjetoTCC
 
                 var isClose = Mathf.Abs(dist) <= atackDistance;
                 var isAlert = Mathf.Abs(dist) <= leaveAlertDistance || isAlertOnHit;
+                var yDistance = Mathf.Abs(playerScript.transform.position.y - gameObject.transform.position.y);
 
-                if (isClose && isLookingToPlayer)
+                if (isClose && isLookingToPlayer && yDistance < 0.7)
                 {
                     ChangeState(EnemyState.ATTACKING);
                 }
-                else if (!isAlert || !isLookingToPlayer)
+                else if (!isAlert || !isLookingToPlayer || yDistance > 0.7)
                 {
                     print("Saiu alerta");
                     ChangeState(EnemyState.STOPPED);
                     isAlertOnHit = false;
                 }
+            }
+
+            if (enemyDamageController.EnemyLife <= 0)
+            {
+                ChangeState(EnemyState.DEAD);
             }
 
             rigidbody2D.velocity = new Vector2(Speed, rigidbody2D.velocity.y);
@@ -196,17 +208,20 @@ namespace ProjetoTCC
                     Speed = 0;
                     StartCoroutine(nameof(Idle));
                     break;
+
                 case EnemyState.PATROL:
                     Speed = baseSpeed;
                     break;
+
                 case EnemyState.ALERT:
                     Speed = 0;
                     break;
+
                 case EnemyState.ATTACKING:
                     animator.SetTrigger("atack");
                     StartCoroutine(nameof(AwaitToToAttack));
-                    
                     break;
+
                 case EnemyState.RETREAT:
                     if(enemyDamageController.EnemyLife > 0)
                     {
@@ -218,6 +233,10 @@ namespace ProjetoTCC
                         Speed = baseSpeed * 2;
                         StartCoroutine(nameof(Retreat));
                     }
+                    break;
+
+                case EnemyState.DEAD:
+                    Speed = 0;
                     break;
             }
         }
@@ -239,34 +258,11 @@ namespace ProjetoTCC
                     break;
 
                 case 2:
-                    //WeaponData ArrowWeaponData = _GameController.ArrowPrefab[_GameController.EquipedArrowID].GetComponent<WeaponData>();
-                    //GameObject tempPrefab = Instantiate(_GameController.ArrowPrefab[_GameController.EquipedArrowID], spawnArrow.position, spawnArrow.localRotation);
-                    //tempPrefab.transform.localScale = new Vector3(tempPrefab.transform.localScale.x * dir.x, tempPrefab.transform.localScale.y, tempPrefab.transform.localScale.z);
-                    //tempPrefab.GetComponent<Rigidbody2D>().velocity = new Vector2(5 * dir.x, 0);
-                    //Destroy(tempPrefab, 2);
+                    GameObject tempPrefab = Instantiate(ArrowPrefab, spawnArrow.position, spawnArrow.localRotation);
+                    tempPrefab.transform.localScale = new Vector3(tempPrefab.transform.localScale.x * dir.x, tempPrefab.transform.localScale.y, tempPrefab.transform.localScale.z);
+                    tempPrefab.GetComponent<Rigidbody2D>().velocity = new Vector2(5 * dir.x, 0);
+                    Destroy(tempPrefab, 2);
 
-                    break;
-            }
-        }
-
-        public void StaffAttack(int atk)
-        {
-            switch (atk)
-            {
-                case 0:
-                    isAttacking = false;
-                    staffs[3].SetActive(false);
-                    ChangeState(EnemyState.RETREAT);
-                    break;
-                case 1:
-                    isAttacking = true;
-                    break;
-
-                case 2:
-                    //GameObject tempPrefab = Instantiate(prefabMagic, spawnMagic.position, spawnMagic.localRotation);
-                    //tempPrefab.GetComponent<Rigidbody2D>().velocity = new Vector2(3 * dir.x, 0);
-                    //Destroy(tempPrefab, 1);
-                    //_GameController.CurrentMana = _GameController.CurrentMana - 1;
                     break;
             }
         }
@@ -282,16 +278,6 @@ namespace ProjetoTCC
 
         }
 
-        void StaffControl(int id)
-        {
-            foreach (GameObject o in staffs)
-            {
-                o.SetActive(false);
-            }
-
-            staffs[id].SetActive(true);
-
-        }
 
         public void ChangeWeapon(string id)
         {
@@ -363,7 +349,7 @@ namespace ProjetoTCC
         IEnumerator Idle()
         {
             yield return new WaitForSeconds(waitingTimeIdle);
-            if(!isAlertOnHit && currentEnemyState != EnemyState.RETREAT)
+            if(!isAlertOnHit && currentEnemyState != EnemyState.RETREAT && enemyDamageController.EnemyLife > 0)
             {
                 Flip();
                 ChangeState(EnemyState.PATROL);

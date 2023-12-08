@@ -4,17 +4,8 @@ using UnityEngine;
 
 namespace ProjetoTCC
 {
-    public enum EnemyState 
-    { 
-        STOPPED,
-        ALERT,
-        PATROL,
-        ATTACKING,
-        RETREAT,
-        DEAD
-    }
 
-    public class Farmer : MonoBehaviour
+    public class FarmerMage : MonoBehaviour
     {
         private _GameController _GameController;
         private EnemyDamageController enemyDamageController;
@@ -24,7 +15,7 @@ namespace ProjetoTCC
 #pragma warning disable CS0108 // O membro oculta o membro herdado; nova palavra-chave ausente
         private Rigidbody2D rigidbody2D;
 #pragma warning restore CS0108 // O membro oculta o membro herdado; nova palavra-chave ausente
-        
+
         private Animator animator;
 
         [SerializeField]
@@ -33,7 +24,7 @@ namespace ProjetoTCC
 
         [Header("Configuração para a Movimentação da IA")]
         #region Variaveis para a Movimentação da IA
-        
+
         [SerializeField]
         private float changeRoteDistance;
 
@@ -53,13 +44,13 @@ namespace ProjetoTCC
         private float leaveAlertDistance;
 
         private Vector3 dir = Vector3.right;
-        
+
         [SerializeField]
         private float baseSpeed;
-        
+
         [SerializeField]
         private float Speed;
-        
+
         [SerializeField]
         private bool isLookingLeft;
 
@@ -82,6 +73,12 @@ namespace ProjetoTCC
 
         [SerializeField]
         private bool isAlertOnHit;
+        
+        [SerializeField]
+        private GameObject prefabMagic;
+        
+        [SerializeField]
+        private Transform spawnMagic;
 
         #endregion
         void Start()
@@ -92,8 +89,8 @@ namespace ProjetoTCC
             rigidbody2D = GetComponent<Rigidbody2D>();
             animator = GetComponent<Animator>();
             isAlertOnHit = false;
-           
-            if(!isLookingLeft)
+
+            if (!isLookingLeft)
             {
                 Flip();
             }
@@ -105,7 +102,6 @@ namespace ProjetoTCC
 
         void Update()
         {
-            
 
             if (enemyDamageController.TookHit == true)
             {
@@ -116,7 +112,7 @@ namespace ProjetoTCC
                 return;
             }
 
-            if(currentEnemyState != EnemyState.ATTACKING && currentEnemyState != EnemyState.RETREAT)
+            if (currentEnemyState != EnemyState.ATTACKING && currentEnemyState != EnemyState.RETREAT)
             {
                 UnityEngine.Debug.DrawRay(transform.position, dir * seeCharacterDistance, Color.red);
                 RaycastHit2D hitCharacter = Physics2D.Raycast(transform.position, dir, seeCharacterDistance, characterLayer);
@@ -126,7 +122,7 @@ namespace ProjetoTCC
                     ChangeState(EnemyState.ALERT);
                 }
             }
-           
+
             if (currentEnemyState == EnemyState.PATROL)
             {
                 RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, changeRoteDistance, obstaclesLayer);
@@ -155,17 +151,24 @@ namespace ProjetoTCC
 
                 var isClose = Mathf.Abs(dist) <= atackDistance;
                 var isAlert = Mathf.Abs(dist) <= leaveAlertDistance || isAlertOnHit;
+                var yDistance = Mathf.Abs(playerScript.transform.position.y - gameObject.transform.position.y);
 
-                if (isClose && isLookingToPlayer)
+                if (isClose && isLookingToPlayer && yDistance < 0.7)
                 {
                     ChangeState(EnemyState.ATTACKING);
+                    print(yDistance);
                 }
-                else if (!isAlert || !isLookingToPlayer)
+                else if (!isAlert || !isLookingToPlayer || yDistance > 0.7)
                 {
                     print("Saiu alerta");
                     ChangeState(EnemyState.STOPPED);
                     isAlertOnHit = false;
                 }
+            }
+
+            if(enemyDamageController.EnemyLife <= 0)
+            {
+                ChangeState(EnemyState.DEAD);
             }
 
             rigidbody2D.velocity = new Vector2(Speed, rigidbody2D.velocity.y);
@@ -178,7 +181,7 @@ namespace ProjetoTCC
                 animator.SetInteger("idAnimation", 1);
             }
 
-            
+
             animator.SetFloat("classID", classID);
 
         }
@@ -200,52 +203,74 @@ namespace ProjetoTCC
         {
             currentEnemyState = newState;
 
-            switch(newState)
+            switch (newState)
             {
                 case EnemyState.STOPPED:
                     Speed = 0;
                     StartCoroutine(nameof(Idle));
                     break;
+
                 case EnemyState.PATROL:
                     Speed = baseSpeed;
                     break;
+
                 case EnemyState.ALERT:
                     Speed = 0;
                     break;
+
                 case EnemyState.ATTACKING:
                     animator.SetTrigger("atack");
+                    StartCoroutine(nameof(AwaitToToAttack));
                     break;
+
                 case EnemyState.RETREAT:
-                    Flip();
-                    Speed = baseSpeed * 2;
-                    StartCoroutine(nameof(Retreat));
+                    if (enemyDamageController.EnemyLife > 0)
+                    {
+                        var isLookingToPlayer = enemyDamageController.IsPlayerOnLeft ? isLookingLeft : !isLookingLeft;
+                        if (isLookingToPlayer)
+                        {
+                            Flip();
+                        }
+                        Speed = baseSpeed * 2;
+                        StartCoroutine(nameof(Retreat));
+                    }
                     break;
-            }       
+
+                case EnemyState.DEAD:
+                    Speed = 0;
+                    break;
+            }
         }
 
-        public void Attack(int atk)
+        public void StaffAttack(int atk)
         {
             switch (atk)
             {
                 case 0:
                     isAttacking = false;
-                    weapons[2].SetActive(false);
-                    ChangeState(EnemyState.RETREAT);
+                    staffs[3].SetActive(false);
                     break;
+
                 case 1:
                     isAttacking = true;
+                    break;
+
+                case 2:
+                    GameObject tempPrefab = Instantiate(prefabMagic, spawnMagic.position, spawnMagic.localRotation);
+                    tempPrefab.GetComponent<Rigidbody2D>().velocity = new Vector2(3 * dir.x, 0);
+                    Destroy(tempPrefab, 1);
                     break;
             }
         }
 
-        void WeaponControl(int id)
+        void StaffControl(int id)
         {
-            foreach (GameObject o in weapons)
+            foreach (GameObject o in staffs)
             {
                 o.SetActive(false);
             }
 
-            weapons[id].SetActive(true);
+            staffs[id].SetActive(true);
 
         }
 
@@ -296,13 +321,16 @@ namespace ProjetoTCC
         public void TookHit()
         {
             isAlertOnHit = true;
-            var isLookingToPlayer = enemyDamageController.IsPlayerOnLeft ? isLookingLeft : !isLookingLeft;
-            float dist = transform.position.x - playerScript.transform.position.x;
-            
-            ChangeState(EnemyState.ALERT);
-            if (Mathf.Abs(dist) >= leaveAlertDistance)
+            if (enemyDamageController.EnemyLife > 0)
             {
-                StartCoroutine(nameof(AwaitToLeaveAlert));
+                var isLookingToPlayer = enemyDamageController.IsPlayerOnLeft ? isLookingLeft : !isLookingLeft;
+                float dist = transform.position.x - playerScript.transform.position.x;
+
+                ChangeState(EnemyState.RETREAT);
+                if (Mathf.Abs(dist) >= leaveAlertDistance)
+                {
+                    StartCoroutine(nameof(AwaitToLeaveAlert));
+                }
             }
             isAlertOnHit = false;
         }
@@ -316,8 +344,11 @@ namespace ProjetoTCC
         IEnumerator Idle()
         {
             yield return new WaitForSeconds(waitingTimeIdle);
-            Flip();
-            ChangeState(EnemyState.PATROL);
+            if (!isAlertOnHit && currentEnemyState != EnemyState.RETREAT && enemyDamageController.EnemyLife > 0)
+            {
+                Flip();
+                ChangeState(EnemyState.PATROL);
+            }
         }
 
         IEnumerator Retreat()
@@ -325,6 +356,15 @@ namespace ProjetoTCC
             yield return new WaitForSeconds(waitingTimeRetreat);
             Flip();
             ChangeState(EnemyState.ALERT);
+        }
+
+        IEnumerator AwaitToToAttack()
+        {
+            yield return new WaitForSeconds(2);
+            if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Atack") && currentEnemyState != EnemyState.RETREAT)
+            {
+                ChangeState(EnemyState.ALERT);
+            }
         }
     }
 }

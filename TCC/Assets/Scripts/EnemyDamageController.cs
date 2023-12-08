@@ -146,7 +146,7 @@ namespace ProjetoTCC
                                 }
                                 else if (isPlayerOnLeft && playerScript.IsLookingLeft)
                                 {
-                                    GameObject fxTemp = Instantiate(_GameController.DamageFX[0], vfxPosition.position, transform.localRotation);
+                                    GameObject fxTemp = Instantiate(_GameController.DamageFX[0], playerScript.VfxPosition.position, transform.localRotation);
                                     fxTemp.transform.localScale = new Vector3(fxTemp.transform.localScale.x * -1, fxTemp.transform.localScale.y, fxTemp.transform.localScale.z);
                                     Destroy(fxTemp, 1);
                                 }
@@ -274,7 +274,7 @@ namespace ProjetoTCC
                             }
                             else if (isPlayerOnLeft && playerScript.IsLookingLeft)
                             {
-                                GameObject fxTemp = Instantiate(_GameController.DamageFX[0], vfxPosition.position, transform.localRotation);
+                                GameObject fxTemp = Instantiate(_GameController.DamageFX[0], playerScript.VfxPosition.position, transform.localRotation);
                                 fxTemp.transform.localScale = new Vector3(fxTemp.transform.localScale.x * -1, fxTemp.transform.localScale.y, fxTemp.transform.localScale.z);
                                 Destroy(fxTemp, 1);
                             }

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3552618982142668384}
   - component: {fileID: 9035891930414984548}
   - component: {fileID: 9161084388947680092}
-  - component: {fileID: -7112094515428866375}
+  - component: {fileID: 4304037378537742433}
   m_Layer: 0
   m_Name: MagicA
   m_TagString: Weapon
@@ -186,7 +186,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &-7112094515428866375
+--- !u!114 &4304037378537742433
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -200,4 +200,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destroyLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 2304
