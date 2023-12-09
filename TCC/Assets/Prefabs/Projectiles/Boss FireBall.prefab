@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1140061840479210611}
   - component: {fileID: 2086370719124090861}
   - component: {fileID: 2952602944049471889}
-  - component: {fileID: -8317874647820941063}
+  - component: {fileID: 6179611302932030635}
   m_Layer: 0
   m_Name: Boss FireBall
   m_TagString: Enemy
@@ -181,7 +181,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &-8317874647820941063
+--- !u!114 &6179611302932030635
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -190,9 +190,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 190173388558696640}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2fff03f7f8effc47ad316923e0a119c, type: 3}
+  m_Script: {fileID: 11500000, guid: 62163aad1ca06ca4b9874d2abfcc2a8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyLayer:
-    serializedVersion: 2
-    m_Bits: 2304

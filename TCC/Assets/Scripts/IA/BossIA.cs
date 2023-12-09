@@ -7,15 +7,29 @@ namespace ProjetoTCC
 {
     public class BossIA : MonoBehaviour
     {
-        private enum BossRoutine
+        public enum BossRoutine
         {
             A, 
             B,
             C,
-            D
+            D,
+            E
         }
 
         private BossRoutine currentBossRoutine;
+        public BossRoutine CurrentBossRoutine
+        {
+            get
+            {
+                return currentBossRoutine;
+            }
+            set
+            {
+                currentBossRoutine = value;
+            }
+        }
+
+        private BossDamageController bossDamageController;
 
         private Rigidbody2D bossRb;
         
@@ -67,15 +81,19 @@ namespace ProjetoTCC
         private bool isTouchingGround;
         private int idAnimation;
 
+        private EnemyProjectileWithAnimation enemyProjectileWithAnimation;
+
 
         // Start is called before the first frame update
         void Start()
         {
             bossRb = GetComponent<Rigidbody2D>();
             bossAnimator = GetComponent<Animator>();
+            enemyProjectileWithAnimation = GetComponent<EnemyProjectileWithAnimation>();
+            bossDamageController = FindObjectOfType(typeof(BossDamageController)) as BossDamageController;
             //playerPosition = FindObjectOfType<PlayerScript>().transform;
 
-            currentBossRoutine = BossRoutine.A;
+            currentBossRoutine = BossRoutine.E;
             movesetId = 0;
             currentTime = 0;
             waitTime = 3;
@@ -488,6 +506,11 @@ namespace ProjetoTCC
                     }
 
                     break;
+
+                case BossRoutine.E:
+
+                    h = 0;
+                    break;
                 
             }
 
@@ -508,9 +531,18 @@ namespace ProjetoTCC
 
             isTouchingGround = Physics2D.OverlapCircle(groundCheck.position, 0.02f);
 
+            //if(bossDamageController.EnemyLife <= 0)
+            //{
+            //    idAnimation = 3;
+            //    bossAnimator.SetInteger("idAnimation", idAnimation);
+            //}
+
             bossAnimator.SetBool("jump", isTouchingGround);
             bossAnimator.SetInteger("horizontal", h);
-            bossAnimator.SetInteger("idAnimation", idAnimation);
+            if (bossDamageController.EnemyLife > 0)
+            {
+                bossAnimator.SetInteger("idAnimation", idAnimation);
+            }
             bossAnimator.SetFloat("speedY", bossRb.velocity.y);
         }
 
@@ -538,7 +570,7 @@ namespace ProjetoTCC
                 CancelInvoke(nameof(MoveToPlayer));
                 tempFireBall = Instantiate(fireBall, fireBallSpawnPosition.position, fireBallSpawnPosition.localRotation);  
                 targetDirection = (teste.transform.position - tempFireBall.transform.position).normalized;
-                InvokeRepeating(nameof(MoveToPlayer), 0, 1 / 30f);
+                InvokeRepeating(nameof(MoveToPlayer), 0, 1 / 90f);
                 Destroy(tempFireBall, 3f);
             }
             
@@ -547,6 +579,5 @@ namespace ProjetoTCC
                 movesetId = 5;
             }
         }
-
     }
 }
