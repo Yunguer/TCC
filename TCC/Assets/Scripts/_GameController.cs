@@ -435,7 +435,7 @@ namespace ProjetoTCC
             var weapon = weaponProvider.GetWeaponById(weaponID);
             var newWeaponId = $"{weaponID.Substring(0, weaponID.Length - 2)}_{weapon.Level+1}";
             inventory.UpdateSlot(newWeaponId, slotID);
-            
+            gold -= 3;
         }
 
         public void SwapItensInventory(int slotID)

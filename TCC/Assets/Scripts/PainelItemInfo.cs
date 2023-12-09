@@ -65,7 +65,14 @@ namespace ProjetoTCC
 
         void Update()
         {
-
+            if(_GameController.Gold < 3)
+            {
+                upgradeBTN.enabled = false;
+            }
+            else if(_GameController.Gold >= 3)
+            {
+                upgradeBTN.enabled = true;
+            }
         }
 
         public void LoadItemInfo()

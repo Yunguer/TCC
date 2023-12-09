@@ -236,6 +236,7 @@ namespace ProjetoTCC
             tookHit = false;
 
 
+
             pRender = GetComponent<SpriteRenderer>();
             playerRb = GetComponent<Rigidbody2D>(); // ASSOSSIA O COMPONENTE A VARÁVEL
             playerAnimator = GetComponent<Animator>(); // ASSOSSIA O COMPONENTE A VARIÁVEL
@@ -326,7 +327,27 @@ namespace ProjetoTCC
                 idAnimation = 0;
             }
 
-            if (Input.GetButtonDown("Fire1") && v >= 0 && isAttacking == false && objectInteraction == null)
+            if(tookHit)
+            {
+                playerAnimator.ResetTrigger("atack");
+                IsAttacking = false;
+                for (int i = 0; i < weapons.Length; i++)
+                {
+                    weapons[i].SetActive(false);
+                }
+
+                for (int i = 0; i < bows.Length; i++)
+                {
+                    bows[i].SetActive(false);
+                }
+
+                for (int i = 0; i < staffs.Length; i++)
+                {
+                    staffs[i].SetActive(false);
+                }
+            }
+
+            if (Input.GetButtonDown("Fire1") && v >= 0 && isAttacking == false && objectInteraction == null && !tookHit)
             {
                 playerAnimator.SetTrigger("atack");
             }
@@ -698,8 +719,6 @@ namespace ProjetoTCC
 
             }
         }
-
-        
 
     }
 }

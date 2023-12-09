@@ -320,6 +320,8 @@ namespace ProjetoTCC
 
         public void TookHit()
         {
+            Invoke(nameof(DeactiveWeapon), 0.1f);
+
             isAlertOnHit = true;
             if (enemyDamageController.EnemyLife > 0)
             {
@@ -333,6 +335,7 @@ namespace ProjetoTCC
                 }
             }
             isAlertOnHit = false;
+
         }
 
         IEnumerator AwaitToLeaveAlert()
@@ -354,7 +357,10 @@ namespace ProjetoTCC
         IEnumerator Retreat()
         {
             yield return new WaitForSeconds(waitingTimeRetreat);
-            Flip();
+            if (enemyDamageController.EnemyLife > 0)
+            {
+                Flip();
+            }
             ChangeState(EnemyState.ALERT);
         }
 
@@ -364,6 +370,14 @@ namespace ProjetoTCC
             if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Atack") && currentEnemyState != EnemyState.RETREAT)
             {
                 ChangeState(EnemyState.ALERT);
+            }
+        }
+
+        public void DeactiveWeapon()
+        {
+            for (int i = 0; i < staffs.Length; i++)
+            {
+                staffs[i].SetActive(false);
             }
         }
     }

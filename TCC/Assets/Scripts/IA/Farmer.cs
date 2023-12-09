@@ -83,6 +83,10 @@ namespace ProjetoTCC
         [SerializeField]
         private bool isAlertOnHit;
 
+        private Rigidbody2D rb;
+
+        private Transform player;
+
         #endregion
         void Start()
         {
@@ -91,9 +95,12 @@ namespace ProjetoTCC
             playerScript = FindObjectOfType(typeof(PlayerScript)) as PlayerScript;
             rigidbody2D = GetComponent<Rigidbody2D>();
             animator = GetComponent<Animator>();
+            rb = GetComponent<Rigidbody2D>();
             isAlertOnHit = false;
-           
-            if(!isLookingLeft)
+            player = GameObject.FindGameObjectWithTag("Player").transform;
+
+
+            if (!isLookingLeft)
             {
                 Flip();
             }
@@ -149,6 +156,23 @@ namespace ProjetoTCC
 
             if (currentEnemyState == EnemyState.ALERT && playerScript.IsGrounded)
             {
+                if(enemyDamageController.EnemyLife > 0)
+                {
+                    if (player.position.x < gameObject.transform.position.x)
+                    {
+                        Speed = (baseSpeed * -1) * 1.5f;
+                    }
+                    else if (player.position.x > gameObject.transform.position.x)
+                    {
+                        Speed = baseSpeed * 1.5f;
+                    }
+
+                    Vector2 target = new Vector2(player.position.x, rb.position.y);
+                    Vector2 newPos = Vector2.MoveTowards(rb.position, target, Speed * Time.fixedDeltaTime);
+
+                    rb.MovePosition(newPos);
+                }
+                
                 float dist = transform.position.x - playerScript.transform.position.x;
 
                 var isLookingToPlayer = enemyDamageController.IsPlayerOnLeft ? isLookingLeft : !isLookingLeft;
@@ -214,6 +238,7 @@ namespace ProjetoTCC
                     break;
                 case EnemyState.ATTACKING:
                     animator.SetTrigger("atack");
+                    Speed = 0;
                     break;
                 case EnemyState.RETREAT:
                     Flip();
@@ -295,6 +320,8 @@ namespace ProjetoTCC
 
         public void TookHit()
         {
+            Invoke(nameof(DeactiveWeapon), 0.1f);
+
             isAlertOnHit = true;
             var isLookingToPlayer = enemyDamageController.IsPlayerOnLeft ? isLookingLeft : !isLookingLeft;
             float dist = transform.position.x - playerScript.transform.position.x;
@@ -325,6 +352,14 @@ namespace ProjetoTCC
             yield return new WaitForSeconds(waitingTimeRetreat);
             Flip();
             ChangeState(EnemyState.ALERT);
+        }
+
+        public void DeactiveWeapon()
+        {
+            for (int i = 0; i < weapons.Length; i++)
+            {
+                weapons[i].SetActive(false);
+            }
         }
     }
 }
