@@ -207,7 +207,7 @@ namespace ProjetoTCC
         {
             SimpleChest.OnAnimationEnded += OnInteractionAnimationEnded;
             EntranceWay.OnAnimationEnded += OnInteractionAnimationEnded;
-            NextScene.OnAnimationEnded += OnInteractionAnimationEnded;
+            FinishGame.OnAnimationEnded += OnInteractionAnimationEnded;
             NPC.OnAnimationEnded += OnInteractionAnimationEnded;
             NPC_START.OnAnimationEnded += OnInteractionAnimationEnded;
             NPC_BOSS.OnAnimationEnded += OnInteractionAnimationEnded;
@@ -219,7 +219,7 @@ namespace ProjetoTCC
         {
             SimpleChest.OnAnimationEnded -= OnInteractionAnimationEnded;
             EntranceWay.OnAnimationEnded -= OnInteractionAnimationEnded;
-            NextScene.OnAnimationEnded -= OnInteractionAnimationEnded;
+            FinishGame.OnAnimationEnded -= OnInteractionAnimationEnded;
             NPC.OnAnimationEnded -= OnInteractionAnimationEnded;
             NPC_BOSS.OnAnimationEnded -= OnInteractionAnimationEnded;
             NPC_POS_BOSS.OnAnimationEnded -= OnInteractionAnimationEnded;
@@ -655,6 +655,7 @@ namespace ProjetoTCC
 
                         weaponData.Damage = weapon.Damage;
                         weaponData.DamageType = (int)weapon.DamageType;
+                        _GameController.CurrentWeapon = weapon;
                     }
 
                     break;
@@ -669,7 +670,7 @@ namespace ProjetoTCC
                         }
 
                         var weaponData = bows[i].GetComponent<WeaponData>();
-
+                        _GameController.CurrentWeapon = weapon;
                     }
 
                     break;
@@ -684,7 +685,7 @@ namespace ProjetoTCC
                         }
 
                         var weaponData = staffs[i].GetComponent<WeaponData>();
-
+                        _GameController.CurrentWeapon = weapon;
                     }
 
                     break;

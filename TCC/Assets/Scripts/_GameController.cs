@@ -20,7 +20,8 @@ namespace ProjetoTCC
         DIALOGO,
         FIM_DIALOGO,
         START,
-        DEATH
+        DEATH,
+        COMPLETED
     }
 
     public class _GameController : MonoBehaviour
@@ -31,6 +32,7 @@ namespace ProjetoTCC
 
         private PlayerScript playerScript;
         private Inventory inventory;
+        private PainelItemInfo painelItemInfo;
 
         [SerializeField]
         private GameState currentGameState;
@@ -242,6 +244,9 @@ namespace ProjetoTCC
         private Button firstPainelItenInfo;
         [SerializeField]
         private GameObject startPainel;
+        [SerializeField]
+        private GameObject completeGamePainel;
+        public GameObject CompleteGamePainel => completeGamePainel;
         #endregion
 
         [Header("Missões")]
@@ -283,6 +288,7 @@ namespace ProjetoTCC
             pausePainel.SetActive(false);
             itensPainel.SetActive(false);
             itensInfoPainel.SetActive(false);
+            painelItemInfo = FindObjectOfType(typeof(PainelItemInfo)) as PainelItemInfo;
 
 
             var hasLoad = Load(PlayerPrefs.GetString("slot"));
@@ -304,7 +310,7 @@ namespace ProjetoTCC
             if(Input.anyKeyDown)
             {
 
-                if (Input.GetKeyDown(KeyCode.Escape) && currentGameState != GameState.ITENS && currentGameState != GameState.ITEM_INFO && currentGameState != GameState.START)
+                if (Input.GetKeyDown(KeyCode.Escape) && currentGameState != GameState.ITENS && currentGameState != GameState.ITEM_INFO && currentGameState != GameState.START && currentGameState != GameState.DEATH && currentGameState != GameState.COMPLETED)
                 {
                     PauseGame();
                 }
@@ -328,6 +334,8 @@ namespace ProjetoTCC
             {
                 StartCoroutine(nameof(Death));   
             }
+
+            
         }
 
         public void ValidateWeapon()
@@ -379,6 +387,10 @@ namespace ProjetoTCC
                 StartCoroutine(nameof(DialogueEnd));
             }
             if(newState == GameState.DEATH)
+            {
+                Time.timeScale = 0;
+            }
+            if (newState == GameState.COMPLETED)
             {
                 Time.timeScale = 0;
             }
@@ -445,8 +457,27 @@ namespace ProjetoTCC
         {
             var weapon = weaponProvider.GetWeaponById(weaponID);
             var newWeaponId = $"{weaponID.Substring(0, weaponID.Length - 2)}_{weapon.Level+1}";
-            inventory.UpdateSlot(newWeaponId, slotID);
-            gold -= 3;
+            var newWeapon = weaponProvider.GetWeaponById(newWeaponId);
+
+            if (playerScript == null)
+            {
+                playerScript = FindObjectOfType(typeof(PlayerScript)) as PlayerScript;
+            }
+
+            if (weapon.Level < 10)
+            {
+                inventory.UpdateSlot(newWeaponId, slotID);
+                if (slotID == 0)
+                {
+                    playerScript.ChangeWeapon(newWeapon);
+                }
+                gold -= 15;
+            }
+            if(weapon.Level == 9)
+            {
+                painelItemInfo.UpgradeBTN.interactable = false;
+            }
+            print(currentWeapon);
         }
 
         public void SwapItensInventory(int slotID)

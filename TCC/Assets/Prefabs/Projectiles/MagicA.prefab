@@ -200,4 +200,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destroyLayer:
     serializedVersion: 2
-    m_Bits: 2304
+    m_Bits: 8512

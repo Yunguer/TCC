@@ -88,7 +88,7 @@ namespace ProjetoTCC
 
                         if (_GameController.CurrentLife <= 0)
                         {
-                            //qnd morrer
+                            playerScript.PlayerRb.velocity = new Vector2(0, playerScript.PlayerRb.velocity.y);
                         }
 
                         StartCoroutine(nameof(InvulnerablePlayer));

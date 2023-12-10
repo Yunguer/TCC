@@ -49,6 +49,7 @@ namespace ProjetoTCC
         #region Variaveis para os Botões
         [SerializeField]
         private Button upgradeBTN;
+        public Button UpgradeBTN => upgradeBTN;
         [SerializeField]
         private Button equipBTN;
         [SerializeField]
@@ -65,14 +66,7 @@ namespace ProjetoTCC
 
         void Update()
         {
-            if(_GameController.Gold < 3)
-            {
-                upgradeBTN.enabled = false;
-            }
-            else if(_GameController.Gold >= 3)
-            {
-                upgradeBTN.enabled = true;
-            }
+            
         }
 
         public void LoadItemInfo()
@@ -111,6 +105,18 @@ namespace ProjetoTCC
 
                 deleteBTN.interactable = true;
             }
+            if (_GameController.Gold < 15)
+            {
+                upgradeBTN.interactable = false;
+            }
+            else if (_GameController.Gold >= 15)
+            {
+                upgradeBTN.interactable = true;
+            }
+            if (weapon.Level == 10)
+            {
+                upgradeBTN.interactable = false;
+            }  
         }
 
         public void UpgradeButton()
