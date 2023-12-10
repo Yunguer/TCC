@@ -211,6 +211,7 @@ namespace ProjetoTCC
             NPC.OnAnimationEnded += OnInteractionAnimationEnded;
             NPC_START.OnAnimationEnded += OnInteractionAnimationEnded;
             NPC_BOSS.OnAnimationEnded += OnInteractionAnimationEnded;
+            NPC_POS_BOSS.OnAnimationEnded += OnInteractionAnimationEnded;
 
         }
 
@@ -221,11 +222,11 @@ namespace ProjetoTCC
             NextScene.OnAnimationEnded -= OnInteractionAnimationEnded;
             NPC.OnAnimationEnded -= OnInteractionAnimationEnded;
             NPC_BOSS.OnAnimationEnded -= OnInteractionAnimationEnded;
+            NPC_POS_BOSS.OnAnimationEnded -= OnInteractionAnimationEnded;
         }
 
         void Start()
         {
-            DontDestroyOnLoad(this.gameObject);
             _GameController = FindObjectOfType(typeof(_GameController)) as _GameController;
 
             //CARREGANDO OS DADOS INICIAIS DO PERSONAGEM
@@ -283,6 +284,13 @@ namespace ProjetoTCC
                 {
                     objectInteraction.SendMessage("Talk", SendMessageOptions.DontRequireReceiver);
                 }
+            }
+
+            if(_GameController.CurrentLife <= 0)
+            {
+                playerAnimator.SetInteger("idAnimation", 3);
+                playerRb.velocity = new Vector2(0, playerRb.velocity.y);
+                return;
             }
 
             if (_GameController.CurrentGameState != GameState.GAMEPLAY)

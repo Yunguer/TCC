@@ -19,7 +19,8 @@ namespace ProjetoTCC
         ITEM_INFO,
         DIALOGO,
         FIM_DIALOGO,
-        START
+        START,
+        DEATH
     }
 
     public class _GameController : MonoBehaviour
@@ -270,6 +271,9 @@ namespace ProjetoTCC
                 mission1Count = value;
             }
         }
+
+        [SerializeField]
+        private GameObject deathPainel;
         #endregion
 
         private void Start()
@@ -320,7 +324,10 @@ namespace ProjetoTCC
                 }
             }
 
-            
+            if (currentLife <= 0)
+            {
+                StartCoroutine(nameof(Death));   
+            }
         }
 
         public void ValidateWeapon()
@@ -370,6 +377,10 @@ namespace ProjetoTCC
             if (newState == GameState.FIM_DIALOGO)
             {
                 StartCoroutine(nameof(DialogueEnd));
+            }
+            if(newState == GameState.DEATH)
+            {
+                Time.timeScale = 0;
             }
         }
 
@@ -605,6 +616,19 @@ namespace ProjetoTCC
             ChangeState(GameState.START);
         }
 
+        IEnumerator Death()
+        {
+            yield return new WaitForSeconds(2.5f);
+            ChangeState(GameState.DEATH);
+            deathPainel.SetActive(true);
+        }
+
+        public void BackToMenu()
+        {
+            SceneManager.LoadScene("Titulo");
+            ChangeState(GameState.GAMEPLAY);
+            Destroy(this.gameObject);
+        }
         
     }
 
@@ -620,5 +644,4 @@ namespace ProjetoTCC
         public List<string> inventoryItens;
         
     }
-
 }

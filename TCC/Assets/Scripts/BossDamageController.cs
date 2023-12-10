@@ -233,7 +233,6 @@ namespace ProjetoTCC
 
         }
 
-
         IEnumerator Loot()
         {
             polyTrigger.enabled = false;

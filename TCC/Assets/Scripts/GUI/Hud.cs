@@ -237,8 +237,21 @@ namespace ProjetoTCC
                 hpBar[1].enabled = false;
                 hpBar[0].enabled = false;
             }
+            else if (lifePercentage < 0.0f)
+            {
+                hpBar[9].enabled = false;
+                hpBar[8].enabled = false;
+                hpBar[7].enabled = false;
+                hpBar[6].enabled = false;
+                hpBar[5].enabled = false;
+                hpBar[4].enabled = false;
+                hpBar[3].enabled = false;
+                hpBar[2].enabled = false;
+                hpBar[1].enabled = false;
+                hpBar[0].enabled = false;
+            }
 
-            if(_GameController.PotionQnt != null)
+            if (_GameController.PotionQnt != null)
             {
                 if (_GameController.PotionQnt[0] > 0)
                 {

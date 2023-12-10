@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<chats>
+
+	<dialogue name="dialogue_1">
+		<lines>
+			<line>Sou eu Waurá!</line>
+			<line>Pareçe que você conseguiu acalmar a Mula-sem-cabeça!</line>
+			<line>Ela provavelmente não ira mais causar problemas.</line>
+			<line>Muito obrigado, pela ajuda!</line>
+			<line>Adeus!</line>
+		</lines>
+	</dialogue>
+
+
+	<dialogue name="dialogue_2">
+		<lines>
+			<line>Adeus!</line>
+		</lines>
+	</dialogue>
+	
+</chats>
