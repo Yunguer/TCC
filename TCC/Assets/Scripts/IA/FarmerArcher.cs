@@ -159,7 +159,6 @@ namespace ProjetoTCC
                 }
                 else if (!isAlert || !isLookingToPlayer || yDistance > 0.7)
                 {
-                    print("Saiu alerta");
                     ChangeState(EnemyState.STOPPED);
                     isAlertOnHit = false;
                 }

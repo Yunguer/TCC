@@ -186,7 +186,6 @@ namespace ProjetoTCC
                 }
                 else if (!isAlert || !isLookingToPlayer)
                 {
-                    print("Saiu alerta");
                     ChangeState(EnemyState.STOPPED);
                     isAlertOnHit = false;
                 }

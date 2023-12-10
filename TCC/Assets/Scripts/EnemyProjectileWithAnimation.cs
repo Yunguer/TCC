@@ -63,22 +63,18 @@ namespace ProjetoTCC
                         if (gameObject.transform.position.x > playerScript.transform.position.x && playerScript.IsLookingLeft)
                         {
                             playerScript.KxTemp = playerScript.KnockX * -1;
-                            print(playerScript.KxTemp);
                         }
                         else if (gameObject.transform.position.x > playerScript.transform.position.x && !playerScript.IsLookingLeft)
                         {
                             playerScript.KxTemp = playerScript.KnockX;
-                            print(playerScript.KxTemp);
                         }
                         else if (gameObject.transform.position.x < playerScript.transform.position.x && playerScript.IsLookingLeft)
                         {
                             playerScript.KxTemp = playerScript.KnockX;
-                            print(playerScript.KxTemp);
                         }
                         else if (gameObject.transform.position.x < playerScript.transform.position.x && !playerScript.IsLookingLeft)
                         {
                             playerScript.KxTemp = playerScript.KnockX * -1;
-                            print(playerScript.KxTemp);
                         }
 
                         playerScript.KnockPosition.localPosition = new Vector3(playerScript.KxTemp, playerScript.KnockPosition.localPosition.y, 0);

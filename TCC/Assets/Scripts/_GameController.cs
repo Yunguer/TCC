@@ -477,7 +477,6 @@ namespace ProjetoTCC
             {
                 painelItemInfo.UpgradeBTN.interactable = false;
             }
-            print(currentWeapon);
         }
 
         public void SwapItensInventory(int slotID)

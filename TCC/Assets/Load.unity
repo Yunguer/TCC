@@ -1163,6 +1163,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1365783443681011751, guid: ee90083bcf7d3bc4fbe662c8cecc33ea, type: 3}
+      propertyPath: m_Name
+      value: LeaveButton
+      objectReference: {fileID: 0}
     - target: {fileID: 2117233165339423581, guid: ee90083bcf7d3bc4fbe662c8cecc33ea, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.78597
@@ -1250,6 +1254,34 @@ PrefabInstance:
     - target: {fileID: 8798013661468660357, guid: ee90083bcf7d3bc4fbe662c8cecc33ea, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9125128101471807701, guid: ee90083bcf7d3bc4fbe662c8cecc33ea, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9125128101471807701, guid: ee90083bcf7d3bc4fbe662c8cecc33ea, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9125128101471807701, guid: ee90083bcf7d3bc4fbe662c8cecc33ea, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1414622679}
+    - target: {fileID: 9125128101471807701, guid: ee90083bcf7d3bc4fbe662c8cecc33ea, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9125128101471807701, guid: ee90083bcf7d3bc4fbe662c8cecc33ea, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: BackToMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 9125128101471807701, guid: ee90083bcf7d3bc4fbe662c8cecc33ea, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ProjetoTCC._GameController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 9125128101471807701, guid: ee90083bcf7d3bc4fbe662c8cecc33ea, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
