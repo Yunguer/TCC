@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 1140061840479210611}
   - component: {fileID: 2086370719124090861}
   - component: {fileID: -5590967671498401994}
-  m_Layer: 6
+  m_Layer: 14
   m_Name: EnemyArrow
-  m_TagString: Enemy
+  m_TagString: EnemyProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -171,6 +171,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 667d098300751ac4abe29074d6210bc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyLayer:
-    serializedVersion: 2
-    m_Bits: 2304

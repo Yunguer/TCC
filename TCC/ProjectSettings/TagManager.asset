@@ -9,6 +9,7 @@ TagManager:
   - Entrance
   - Enemy
   - Boss
+  - EnemyProjectile
   layers:
   - Default
   - TransparentFX
@@ -24,7 +25,7 @@ TagManager:
   - Player
   - CameraLimite
   - Boss
-  - 
+  - EnemyProjectile
   - 
   - 
   - 
