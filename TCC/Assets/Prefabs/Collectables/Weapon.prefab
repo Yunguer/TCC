@@ -119,7 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63d8c2f5ed6a81b4892589feffec4484, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colectableWeapon: WEAPON_MELEE_RUBI_LVL_3
+  colectableWeapon: WEAPON_MELEE_RUBI_LVL_0
 --- !u!1 &4853163643473070467
 GameObject:
   m_ObjectHideFlags: 0
