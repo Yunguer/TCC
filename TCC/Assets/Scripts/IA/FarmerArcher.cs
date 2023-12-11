@@ -185,15 +185,18 @@ namespace ProjetoTCC
 
         void Flip()
         {
-            isLookingLeft = !isLookingLeft; // INVERTE O VALOR DA VARIAVEL BOLEANA
-            enemyDamageController.IsLookingLeft = isLookingLeft;
-            float x = transform.localScale.x;
-            x *= -1; // INVERTE O FINAL DO SCALE X
-            transform.localScale = new Vector3(x, transform.localScale.y, transform.localScale.z);
-            dir.x = x;
-            baseSpeed *= -1;
-            float currentSpeed = Speed * -1;
-            Speed = currentSpeed;
+            if (enemyDamageController.EnemyLife > 0)
+            {
+                isLookingLeft = !isLookingLeft; // INVERTE O VALOR DA VARIAVEL BOLEANA
+                enemyDamageController.IsLookingLeft = isLookingLeft;
+                float x = transform.localScale.x;
+                x *= -1; // INVERTE O FINAL DO SCALE X
+                transform.localScale = new Vector3(x, transform.localScale.y, transform.localScale.z);
+                dir.x = x;
+                baseSpeed *= -1;
+                float currentSpeed = Speed * -1;
+                Speed = currentSpeed;
+            }
         }
 
         public void ChangeState(EnemyState newState)
@@ -208,7 +211,14 @@ namespace ProjetoTCC
                     break;
 
                 case EnemyState.PATROL:
-                    Speed = baseSpeed;
+                    if(enemyDamageController.EnemyLife <= 0)
+                    {
+                        Speed = 0;
+                    }
+                    else
+                    {
+                        Speed = baseSpeed;
+                    }          
                     break;
 
                 case EnemyState.ALERT:

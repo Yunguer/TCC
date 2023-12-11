@@ -158,6 +158,11 @@ namespace ProjetoTCC
             VerifySavedGame();
         }
 
+        public void CloseGame()
+        {
+            Application.Quit();
+        }
+
     }
 
 }

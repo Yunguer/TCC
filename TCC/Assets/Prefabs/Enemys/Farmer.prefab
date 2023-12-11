@@ -94,7 +94,7 @@ Transform:
   m_GameObject: {fileID: 1314276952004168662}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.102, y: -0.455, z: 0}
+  m_LocalPosition: {x: -0.1, y: -0.451, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1538,7 +1538,6 @@ GameObject:
   - component: {fileID: 8607583668906049853}
   - component: {fileID: 3860174016343569795}
   - component: {fileID: 8158283662815524517}
-  - component: {fileID: 8148488772992789287}
   - component: {fileID: 1850554005360853388}
   - component: {fileID: 4557008116511714604}
   m_Layer: 6
@@ -1635,11 +1634,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44d0d8a7ac7d10e42841f1bfd98424f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentEnemyState: 0
+  currentEnemyState: 2
   changeRoteDistance: 0.5
   obstaclesLayer:
     serializedVersion: 2
     m_Bits: 3072
+  stopLayer:
+    serializedVersion: 2
+    m_Bits: 1024
   seeCharacterDistance: 3
   characterLayer:
     serializedVersion: 2
@@ -1840,18 +1842,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.33455843, y: 0.46292144}
   m_EdgeRadius: 0
---- !u!114 &8148488772992789287
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7450228826778745187}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 710e9808f0685f54089e22a571e412c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1850554005360853388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1864,7 +1854,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e7efd0339c2fa24e9bfb08253f9ff4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyLife: 40
+  enemyLife: 20
   damageModifier:
   - 0
   - 100

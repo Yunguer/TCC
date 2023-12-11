@@ -41,6 +41,9 @@ namespace ProjetoTCC
         private LayerMask obstaclesLayer;
 
         [SerializeField]
+        private LayerMask stopLayer;
+
+        [SerializeField]
         private float seeCharacterDistance;
 
         [SerializeField]
@@ -123,7 +126,7 @@ namespace ProjetoTCC
                 return;
             }
 
-            if(currentEnemyState != EnemyState.ATTACKING && currentEnemyState != EnemyState.RETREAT)
+            if (currentEnemyState != EnemyState.ATTACKING && currentEnemyState != EnemyState.RETREAT && currentEnemyState != EnemyState.STOPPED)
             {
                 UnityEngine.Debug.DrawRay(transform.position, dir * seeCharacterDistance, Color.red);
                 RaycastHit2D hitCharacter = Physics2D.Raycast(transform.position, dir, seeCharacterDistance, characterLayer);
@@ -156,9 +159,18 @@ namespace ProjetoTCC
 
             if (currentEnemyState == EnemyState.ALERT && playerScript.IsGrounded)
             {
-                if(enemyDamageController.EnemyLife > 0)
+                
+
+                if (enemyDamageController.EnemyLife > 0)
                 {
-                    if (player.position.x < gameObject.transform.position.x)
+                    RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, changeRoteDistance, stopLayer);
+
+                    if (hit == true)
+                    {
+                        ChangeState(EnemyState.STOPPED);
+                        Speed = 0;
+                    }
+                    else if (player.position.x < gameObject.transform.position.x)
                     {
                         Speed = (baseSpeed * -1) * 1.5f;
                     }
@@ -208,15 +220,18 @@ namespace ProjetoTCC
 
         void Flip()
         {
-            isLookingLeft = !isLookingLeft; // INVERTE O VALOR DA VARIAVEL BOLEANA
-            enemyDamageController.IsLookingLeft = isLookingLeft;
-            float x = transform.localScale.x;
-            x *= -1; // INVERTE O FINAL DO SCALE X
-            transform.localScale = new Vector3(x, transform.localScale.y, transform.localScale.z);
-            dir.x = x;
-            baseSpeed *= -1;
-            float currentSpeed = Speed * -1;
-            Speed = currentSpeed;
+            if(enemyDamageController.EnemyLife > 0)
+            {
+                isLookingLeft = !isLookingLeft; // INVERTE O VALOR DA VARIAVEL BOLEANA
+                enemyDamageController.IsLookingLeft = isLookingLeft;
+                float x = transform.localScale.x;
+                x *= -1; // INVERTE O FINAL DO SCALE X
+                transform.localScale = new Vector3(x, transform.localScale.y, transform.localScale.z);
+                dir.x = x;
+                baseSpeed *= -1;
+                float currentSpeed = Speed * -1;
+                Speed = currentSpeed;
+            }
         }
 
         public void ChangeState(EnemyState newState)
@@ -230,7 +245,15 @@ namespace ProjetoTCC
                     StartCoroutine(nameof(Idle));
                     break;
                 case EnemyState.PATROL:
-                    Speed = baseSpeed;
+                    if (enemyDamageController.EnemyLife <= 0)
+                    {
+                        Speed = 0;
+                    }
+                    else
+                    {
+                        Speed = baseSpeed;
+                    }
+                    
                     break;
                 case EnemyState.ALERT:
                     Speed = 0;
@@ -240,9 +263,16 @@ namespace ProjetoTCC
                     Speed = 0;
                     break;
                 case EnemyState.RETREAT:
-                    Flip();
-                    Speed = baseSpeed * 2;
-                    StartCoroutine(nameof(Retreat));
+                    if(enemyDamageController.EnemyLife <= 0)
+                    {
+                        Speed = 0;
+                    }
+                    else
+                    {
+                        Flip();
+                        Speed = baseSpeed * 2;
+                        StartCoroutine(nameof(Retreat));
+                    }
                     break;
             }       
         }
