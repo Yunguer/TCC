@@ -369,6 +369,7 @@ namespace ProjetoTCC
                 if (isInteractionAvailable)
                 {
                     isInteractionAvailable = false;
+                    h = 0;
                     objectInteraction.SendMessage("Interaction", SendMessageOptions.DontRequireReceiver);
                 }
             }
