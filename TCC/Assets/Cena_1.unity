@@ -45566,6 +45566,7 @@ MonoBehaviour:
   leftWall: {fileID: 1452960134}
   rightWall: {fileID: 1284014972}
   cameraPosition: {fileID: 860427654}
+  npcDeactive: {fileID: 8860562494440014311}
   isPlayerOnLeft: 0
   groundCheck: {fileID: 1899342091}
   whatIsGround:
@@ -51508,12 +51509,17 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2125579555668997716, guid: 2fece69c08b40e34c98194edfd16a9ae, type: 3}
   m_PrefabInstance: {fileID: 8860562494440014309}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 8860562494440014311}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 657ac3fc96d7998439e8f2a5e3556ead, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &8860562494440014311 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1515686355171193168, guid: 2fece69c08b40e34c98194edfd16a9ae, type: 3}
+  m_PrefabInstance: {fileID: 8860562494440014309}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -52,6 +52,9 @@ namespace ProjetoTCC
         private Transform cameraPosition;
 
         private CinemachineVirtualCamera vcam;
+
+        [SerializeField]
+        private GameObject npcDeactive;
         #endregion
 
 
@@ -149,6 +152,7 @@ namespace ProjetoTCC
                         if (enemyLife <= 0)
                         {
                             dead = true;
+                            npcDeactive.SetActive(false);
                             bossIA.CurrentBossRoutine = BossIA.BossRoutine.E;
                             animator.SetInteger("idAnimation", 3);
                             StartCoroutine("Loot");
