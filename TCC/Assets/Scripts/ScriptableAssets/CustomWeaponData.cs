@@ -14,9 +14,9 @@ namespace ProjetoTCC
     public enum DamageType
     {
         Normal,
-        Fire,
-        Water,
-        Earth
+        Fogo,
+        Água,
+        Terra
     }
 
     [CreateAssetMenu(menuName = "TCC/ScriptableAssets/Items/Weapon", fileName = "CustomWeapon")]

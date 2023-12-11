@@ -7,7 +7,7 @@
 		
 			<line>Olá, me chamo Iepê!</line>
 			<line>Eu tenho um pedido para você, há um campo de exploradores ilegais a frente, estão desmatando a floresta!</line>
-			<line>Poderia derrota-los por favor?</line>
+			<line>Poderia derrotá-los por favor?</line>
 		</lines>
 	</dialogue>
 
@@ -15,8 +15,8 @@
 	<dialogue name="dialogue_2">
 		<lines>
 
-			<line>Fico feliz em saber que você podera me ajudar!</line>
-			<line>Ao derrota-los volte a falar comigo, te entregarei uma recompensa!</line>
+			<line>Fico feliz em saber que você poderá me ajudar!</line>
+			<line>Ao derrotá-los volte a falar comigo, te entregarei uma recompensa!</line>
 			<line>Até mais!</line>
 		</lines>
 	</dialogue>
@@ -33,7 +33,7 @@
 	<dialogue name="dialogue_4">
 		<lines>
 
-			<line>Volte a falar comigo quando terminar de derrota-los.</line>
+			<line>Volte a falar comigo quando terminar de derrotá-los.</line>
 			<line>Até Logo!</line>
 		</lines>
 	</dialogue>

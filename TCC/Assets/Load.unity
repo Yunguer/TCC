@@ -579,6 +579,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: _GameController
       objectReference: {fileID: 0}
+    - target: {fileID: 5349147069377211326, guid: ee90083bcf7d3bc4fbe662c8cecc33ea, type: 3}
+      propertyPath: m_text
+      value: "Em uma noite silenciosa, voc\xEA \xE9 abruptamente despertado de seu
+        sono profundo pelo som estridente de machados. O barulho \xE9 inconfund\xEDvel,
+        ecoando atrav\xE9s da quietude da noite e invadindo a tranquilidade de seu
+        repouso. Vozes indistintas permeiam o ar, murmurando sobre algo relacionado
+        \xE0 Cucura-Purum\xE3. As palavras s\xE3o sussurradas, quase como se estivessem
+        carregadas de um segredo sombrio.\r\n\r\nUma sensa\xE7\xE3o de desconforto
+        se instala em voc\xEA, semelhante a um press\xE1gio sombrio. \xC9 uma sensa\xE7\xE3o
+        que voc\xEA n\xE3o consegue ignorar, uma inquieta\xE7\xE3o que se arrasta
+        por sua espinha e faz seu cora\xE7\xE3o bater mais r\xE1pido. Voc\xEA tem
+        a certeza inquietante de que algo terr\xEDvel est\xE1 prestes a acontecer,
+        uma tempestade se formando no horizonte.\r\n\r\nDe repente, o som de uma
+        voz ecoa no sil\xEAncio, chamando seu nome em um apelo desesperado por ajuda.
+        A urg\xEAncia na voz aumenta sua apreens\xE3o, intensificando a atmosfera
+        j\xE1 carregada de tens\xE3o. Voc\xEA se encontra em um estado de alerta
+        m\xE1ximo, preparando-se para o que pode estar por vir.\r\n\r\nA noite, antes
+        tranquila, agora est\xE1 repleta de perigo iminente. Cada som, cada sussurro,
+        parece amplificado, aumentando a sensa\xE7\xE3o de medo. Voc\xEA se encontra
+        \xE0 beira do desconhecido, aguardando o que o destino tem reservado para
+        voc\xEA. A \xFAnica certeza \xE9 que a noite ainda guarda muitos segredos
+        e desafios a serem enfrentados. Rapidamente, voc\xEA pega sua arma em m\xE3os
+        e se levanta, preparado para seguir em frente."
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
