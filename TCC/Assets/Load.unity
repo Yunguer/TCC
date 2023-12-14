@@ -603,6 +603,18 @@ PrefabInstance:
         e desafios a serem enfrentados. Rapidamente, voc\xEA pega sua arma em m\xE3os
         e se levanta, preparado para seguir em frente."
       objectReference: {fileID: 0}
+    - target: {fileID: 6122354418893300337, guid: ee90083bcf7d3bc4fbe662c8cecc33ea, type: 3}
+      propertyPath: damageFX.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6122354418893300337, guid: ee90083bcf7d3bc4fbe662c8cecc33ea, type: 3}
+      propertyPath: damageFX.Array.data[2]
+      value: 
+      objectReference: {fileID: 8531150789000964669, guid: db353d2c78ecf164099cc3d747f31f36, type: 3}
+    - target: {fileID: 6122354418893300337, guid: ee90083bcf7d3bc4fbe662c8cecc33ea, type: 3}
+      propertyPath: damageFX.Array.data[3]
+      value: 
+      objectReference: {fileID: 3564416218969322292, guid: e92656ac388a78449b4b39c4bec41476, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
