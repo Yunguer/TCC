@@ -405,6 +405,7 @@ namespace ProjetoTCC
             playerAnimator.SetBool("grounded", isGrounded);
             playerAnimator.SetInteger("idAnimation", idAnimation);
             playerAnimator.SetFloat("speedY", playerRb.velocity.y);
+            
             if(_GameController.CurrentWeapon != null)
             {
                 playerAnimator.SetFloat("weaponClassID", (int)_GameController.CurrentWeapon.WeaponType);
