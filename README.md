@@ -32,7 +32,7 @@ O enredo do jogo é contado ao iniciar um novo jogo. O jogo se passa em uma flor
 </p>
 
 ## Estilo do Jogo
-O jogo possui o estilo plataforma 2D, e o objetivo do jogo é percorrer com o personagem pelo mapa derrotando os exploradores ilegais e ajudando a salvar a floresta. O jogo termina ao terminar a fase derrotando o chefão e interagindo com a placa.
+O jogo possui o estilo plataforma 2D, e o objetivo do jogo é percorrer com o personagem pelo mapa derrotando os exploradores ilegais e ajudando a salvar a floresta. O jogo termina ao concluir a fase derrotando o chefão e interagindo com a placa.
 
 <p align="center">
  <img src="https://github.com/Yunguer/TCC/assets/74862406/890b7fb1-a0eb-4fd3-8bbd-d7e61bdbcc15" width=75% height=75% align=center>
